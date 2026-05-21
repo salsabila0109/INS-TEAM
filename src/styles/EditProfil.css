@@ -1,0 +1,251 @@
+/* Container Utama */
+.edit-profile-page {
+  background-color: #f0f7ff; /* Biru sangat muda yang bersih */
+  min-height: 100vh;
+  padding: 40px 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.edit-profile-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* SIDEBAR */
+.sidebar-nav {
+  width: 280px;
+  background: white;
+  border-radius: 20px;
+  padding: 30px 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.user-preview {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.avatar-preview {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #C94C4C;
+  object-fit: cover;
+  margin-bottom: 12px;
+}
+
+.user-preview h3 {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #333;
+}
+
+.user-preview p {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  border: none;
+  background: transparent;
+  border-radius: 12px;
+  color: #666;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nav-item:hover {
+  background: #fff5f5;
+  color: #C94C4C;
+}
+
+.nav-item.active {
+  background: #C94C4C;
+  color: white;
+}
+
+.btn-logout-sidebar {
+  width: 100%;
+  margin-top: 30px;
+  background: transparent;
+  border: 1px solid #ffebeb;
+  color: #ff4d4d;
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-logout-sidebar:hover {
+  background: #fff0f0;
+}
+
+/* FORM CONTENT */
+.edit-form-content {
+  flex: 1;
+}
+
+.form-card {
+  background: white;
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.form-header {
+  margin-bottom: 30px;
+}
+
+.form-header h2 {
+  font-size: 1.5rem;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.form-header p {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* PHOTO SECTION */
+.upload-photo-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: #fafafa;
+  border-radius: 15px;
+  margin-bottom: 30px;
+}
+
+.current-photo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.upload-box {
+  flex: 1;
+}
+
+.upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #d1d1d1;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.upload-label:hover {
+  border-color: #C94C4C;
+  background: #fff9f9;
+}
+
+.upload-label span {
+  font-size: 0.85rem;
+  color: #C94C4C;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+.file-input {
+  display: none;
+}
+
+/* INPUT GROUPS */
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.input-group input, 
+.input-group textarea {
+  border: 1px solid #e0e0e0;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: 0.2s;
+}
+
+.input-group input:focus, 
+.input-group textarea:focus {
+  border-color: #C94C4C;
+  box-shadow: 0 0 0 3px rgba(201, 76, 76, 0.1);
+}
+
+/* ACTION BUTTON */
+.action-area {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-save {
+  background: #C94C4C;
+  color: white;
+  border: none;
+  padding: 14px 35px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-save:hover {
+  background: #a83b3b;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(201, 76, 76, 0.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 850px) {
+  .edit-profile-container {
+    flex-direction: column;
+  }
+  .sidebar-nav {
+    width: 100%;
+  }
+  .input-row {
+    grid-template-columns: 1fr;
+  }
+}

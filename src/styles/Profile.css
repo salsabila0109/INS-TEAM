@@ -1,0 +1,319 @@
+/* ============================================================
+   1. GLOBAL LAYOUT
+   ============================================================ */
+.profile-page {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 30px;
+  padding: 30px 20px;
+  background: #f7f7f7;
+  min-height: 100vh;
+  align-items: flex-start;
+}
+
+/* ============================================================
+   2. SIDEBAR (Kiri)
+   ============================================================ */
+.sidebar {
+  width: 280px;
+  background: white;
+  padding: 35px 20px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  position: sticky;
+  top: 100px;
+}
+
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #C94C4C;
+  transition: transform 0.3s ease;
+}
+
+.upload-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 110px; height: 110px;
+  background: rgba(0,0,0,0.4);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.avatar-wrapper:hover .upload-overlay {
+  opacity: 1;
+}
+
+.sidebar h3 {
+  font-size: 18px;
+  color: #333;
+  margin: 10px 0 5px;
+}
+
+.email {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+/* MENU NAVIGASI SIDEBAR */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: none;
+  background: #f8f9fa;
+  color: #555;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.menu button svg {
+  color: #C94C4C;
+  width: 16px;
+}
+
+.menu button:hover {
+  background: #eeeeee;
+}
+
+.menu button.active {
+  background: #C94C4C;
+  color: white;
+}
+
+.menu button.active svg {
+  color: white;
+}
+
+/* ============================================================
+   3. CONTENT AREA (Kanan)
+   ============================================================ */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* CARD DASAR */
+.header-card {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* HEADER DALAM CARD (Untuk melempar tombol ke kanan) */
+.card-header-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-card h2, .header-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+}
+
+.profile-details-text p {
+  margin-bottom: 12px;
+  font-size: 15px;
+  color: #444;
+}
+
+/* ============================================================
+   4. RECIPE LIST (Horizontal Style)
+   ============================================================ */
+.recipe-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.recipe-horizontal-card {
+  background: white;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-radius: 16px;
+  border: 1px solid #f0f0f0;
+  gap: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.recipe-horizontal-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.recipe-horizontal-card img {
+  width: 140px;
+  height: 95px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.recipe-details {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recipe-info-text h4 {
+  font-size: 16px;
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.rating-badge {
+  background: #fff9e6;
+  color: #f1c40f;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* TOMBOL AKSI */
+.btn-view {
+  background: white;
+  border: 1.5px solid #C94C4C;
+  color: #C94C4C;
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.btn-view:hover {
+  background: #C94C4C;
+  color: white;
+}
+
+/* ============================================================
+   5. SETTINGS FORM (Alignment)
+   ============================================================ */
+.setting-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.setting-row label {
+  width: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+
+.input-field {
+  flex: 1;
+  height: 45px;
+  padding: 0 18px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: #fdfdfd;
+}
+
+.password-container {
+  display: flex;
+  flex: 1;
+  height: 45px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.password-container input {
+  flex: 1;
+  border: none;
+  padding: 0 18px;
+  outline: none;
+}
+
+.btn-change {
+  background: #C94C4C;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ============================================================
+   6. UTILITIES
+   ============================================================ */
+.logout-btn {
+  align-self: flex-end;
+  background: #C94C4C;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: #a83b3b;
+  box-shadow: 0 4px 12px rgba(201, 76, 76, 0.3);
+}
+
+@media (max-width: 992px) {
+  .profile-page {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    position: relative;
+    top: 0;
+  }
+  .recipe-horizontal-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .recipe-horizontal-card img {
+    width: 100%;
+    height: 180px;
+  }
+}

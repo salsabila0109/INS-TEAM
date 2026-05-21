@@ -1,0 +1,207 @@
+/* RESET WAJIB 🔥 */
+* {
+  box-sizing: border-box;
+}
+
+/* PAGE */
+.upload-page {
+  padding: 30px;
+  background: #f5f6fa;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.upload-header {
+  margin-bottom: 20px;
+}
+
+.back {
+  color: #C94C4C;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* GRID ATAS */
+.upload-grid {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* FOTO */
+.upload-photo {
+  width: 220px;
+}
+
+/* GRID FOTO */
+.image-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* ITEM FOTO */
+.image-item {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.image-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* REMOVE BUTTON */
+.remove-btn {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* ADD BOX */
+.upload-box.small {
+  width: 80px;
+  height: 80px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 24px;
+  color: gray;
+}
+
+/* ================= FORM ================= */
+.upload-form {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.upload-form h4 {
+  margin-bottom: 5px;
+}
+
+/* INPUT ATAS */
+.upload-form input,
+.upload-form textarea,
+.upload-form select {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 14px;
+}
+
+/* TEXTAREA */
+.upload-form textarea {
+  height: 100px;
+  resize: none;
+}
+
+/* ================= BOTTOM ================= */
+.upload-bottom {
+  display: flex;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+/* BOX */
+.bahan-box,
+.langkah-box {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* INPUT BAHAN & LANGKAH 🔥 FIX */
+.bahan-box input,
+.langkah-box input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 14px;
+}
+
+/* BUTTON */
+.btn-add {
+  margin-top: 5px;
+  background: #C94C4C;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-add.right {
+  align-self: flex-end;
+}
+
+/* ================= LANGKAH ================= */
+.langkah-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.langkah-item span {
+  background: #C94C4C;
+  color: white;
+  padding: 5px 9px;
+  border-radius: 50%;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* STEP */
+.step-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+/* ================= SUBMIT ================= */
+.submit-box {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.submit-btn {
+  background: #C94C4C;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 12px;
+  cursor: pointer;
+}

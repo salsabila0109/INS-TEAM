@@ -1,0 +1,24 @@
+/* WRAPPER FLEX CENTER */
+.categories {
+  display: flex;
+  justify-content: center; /* INI KUNCINYA */
+  gap: 140px;
+
+  padding-bottom: 10px;
+
+  border-bottom: 1px solid #eee;
+}
+
+/* ITEM */
+.categories span {
+  cursor: pointer;
+  color: gray;
+  font-weight: 500;
+}
+
+/* ACTIVE */
+.categories .active {
+  color: #C94C4C;
+  border-bottom: 2px solid #C94C4C;
+  padding-bottom: 5px;
+}

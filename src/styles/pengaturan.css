@@ -1,0 +1,274 @@
+.main-wrapper {
+  background-color: #f4f7f6;
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Penyelarasan Grid Container 2 Kolom */
+.settings-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  align-items: start;
+}
+
+/* SIDEBAR STYLING */
+.sidebar-section {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  text-align: center;
+}
+
+.profile-card-side {
+  margin-bottom: 30px;
+}
+
+.profile-avatar-wrapper {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 15px;
+  border: 3px solid #eef2f3;
+}
+
+.profile-avatar-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-card-side h3 {
+  font-size: 1.2rem;
+  color: #333333;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.user-email-text {
+  font-size: 0.85rem;
+  color: #777777;
+}
+
+/* Navigasi Menu Sidebar */
+.navigation-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navigation-menu .nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #555555;
+  text-decoration: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.navigation-menu .nav-item:hover {
+  background: #f8fafc;
+  color: #333333;
+}
+
+/* Menu Pengaturan Aktif (Merah khas FoodiesHub) */
+.navigation-menu .nav-item.active {
+  background: #C94C4C !important;
+  color: #ffffff !important;
+  font-weight: 500;
+}
+
+/* PANEL CONTENT UTAMA */
+.content-section {
+  width: 100%;
+}
+
+.section-main-title {
+  font-size: 1.8rem;
+  color: #333333;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.settings-white-box {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 35px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  position: relative;
+}
+
+.box-sub-title {
+  font-size: 1.2rem;
+  color: #333333;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.input-group-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.input-group-layout label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333333;
+}
+
+.input-field-style {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #333333;
+  outline: none;
+  background: #ffffff;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.input-field-style:focus {
+  border-color: #C94C4C;
+}
+
+.disabled-input {
+  background: #f9f9f9;
+  cursor: not-allowed;
+  color: #999999;
+}
+
+/* Wrapper Khusus Input Password */
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.password-field-style {
+  width: 100%;
+  padding: 12px 100px 12px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: #ffffff;
+  letter-spacing: 3px;
+  box-sizing: border-box;
+}
+
+.inline-ubah-btn {
+  position: absolute;
+  right: 8px;
+  background: #C94C4C;
+  color: #ffffff;
+  border: none;
+  padding: 7px 18px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.inline-ubah-btn:hover {
+  background: #b33c3c;
+}
+
+/* FORM EDIT PASSWORD (DENGAN STRUKTUR BARU YANG RAPIH) */
+.password-change-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.password-action-buttons {
+  display: flex;
+  justify-content: flex-end; /* Mendorong tombol ke kanan bawah */
+  gap: 12px;
+  margin-top: 25px;
+  width: 100%;
+}
+
+/* Tombol Batal Ganti Password */
+.btn-cancel-style {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cancel-style:hover {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+/* Tombol Simpan Ganti Password */
+.btn-save-style {
+  background: #C94C4C;
+  color: #ffffff;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(201, 76, 76, 0.2);
+  transition: all 0.2s ease;
+}
+
+.btn-save-style:hover {
+  background: #b33c3c;
+  box-shadow: 0 4px 12px rgba(201, 76, 76, 0.3);
+}
+
+/* Bagian Footer Keluar Utama */
+.action-footer-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 40px;
+}
+
+.logout-action-btn {
+  background: #C94C4C;
+  color: #ffffff;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.logout-action-btn:hover {
+  background: #b33c3c;
+}
+
+@media (max-width: 768px) {
+  .settings-container {
+    grid-template-columns: 1fr;
+  }
+}

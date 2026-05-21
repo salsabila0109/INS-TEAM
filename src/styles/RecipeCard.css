@@ -1,0 +1,73 @@
+.card {
+  border-radius: 14px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+.image {
+  position: relative;
+}
+
+.image img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #C94C4C;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.content {
+  padding: 15px;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.small {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.rating-bookmark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bookmark-icon {
+  cursor: pointer;
+  font-size: 20px; /* lebih besar */
+  color: #222; /* default hitam */
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.bookmark-icon:hover {
+  transform: scale(1.15);
+}
+
+.bookmark-icon.saved {
+  color: #e53935; /* merah saat disimpan */
+}

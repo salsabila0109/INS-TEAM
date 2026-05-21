@@ -1,0 +1,179 @@
+import "../styles/recipeCard.css";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+import {
+  FaBookmark,
+  FaRegBookmark,
+} from "react-icons/fa";
+
+function RecipeCard({ data }) {
+  const navigate =
+    useNavigate();
+
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
+
+  const [isSaved, setIsSaved] =
+    useState(false);
+
+  const [loadingBookmark, setLoadingBookmark] =
+    useState(false);
+
+  // =========================
+  // CEK APAKAH SUDAH DISIMPAN
+  // =========================
+  useEffect(() => {
+    const checkSaved =
+      async () => {
+        try {
+          if (!user?.id) return;
+
+          const response =
+            await axios.get(
+              `http://localhost:5000/api/saved-recipes/check/${user.id}/${data.id}`
+            );
+
+          setIsSaved(
+            response.data.saved
+          );
+        } catch (error) {
+          console.log(
+            "Gagal cek bookmark:",
+            error
+          );
+        }
+      };
+
+    checkSaved();
+  }, [data.id, user?.id]);
+
+  // =========================
+  // BOOKMARK TOGGLE
+  // =========================
+  const handleBookmark =
+    async () => {
+      try {
+        if (!user?.id) return;
+
+        setLoadingBookmark(
+          true
+        );
+
+        const response =
+          await axios.post(
+            "http://localhost:5000/api/saved-recipes",
+            {
+              userId:
+                user.id,
+              recipeId:
+                data.id,
+            }
+          );
+
+        // update icon
+        setIsSaved(
+          response.data.saved
+        );
+      } catch (error) {
+        console.log(error);
+
+        alert(
+          "Gagal menyimpan resep"
+        );
+      } finally {
+        setLoadingBookmark(
+          false
+        );
+      }
+    };
+
+  return (
+    <div className="card">
+      {/* IMAGE */}
+      <div className="image">
+        <img
+          src={`http://localhost:5000/uploads/${data.image}`}
+          alt={data.title}
+        />
+      </div>
+
+      <div className="content">
+        {/* META */}
+        <div className="meta">
+          {/* AUTHOR */}
+          <span className="author">
+            👤{" "}
+            {data.User?.name ||
+              "User"}
+          </span>
+
+          {/* RATING + BOOKMARK */}
+          <div className="rating-bookmark">
+            <span className="rating">
+              {data.totalReviews >
+              0 ? (
+                <>
+                  ⭐{" "}
+                  {data.rating} (
+                  {
+                    data.totalReviews
+                  }
+                  )
+                </>
+              ) : (
+                <>
+                  ⭐ Belum ada
+                  penilaian
+                </>
+              )}
+            </span>
+
+            {/* BOOKMARK HANYA SAAT LOGIN */}
+            {user && (
+              <span
+                className={`bookmark-icon ${
+                  isSaved
+                    ? "saved"
+                    : ""
+                }`}
+                onClick={
+                  !loadingBookmark
+                    ? handleBookmark
+                    : undefined
+                }
+              >
+                {isSaved ? (
+                  <FaBookmark />
+                ) : (
+                  <FaRegBookmark />
+                )}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* TITLE */}
+        <h3>
+          {data.title}
+        </h3>
+
+        {/* BUTTON */}
+        <button
+          className="btn outline small"
+          onClick={() =>
+            navigate(
+              `/detailresep/${data.id}`
+            )
+          }
+        >
+          Lihat Resep
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default RecipeCard;
