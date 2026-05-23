@@ -1,17 +1,24 @@
 const express = require("express");
 const cors = require("cors");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
+const { body, validationResult } = require("express-validator");
+
 const db = require("./config/database");
 
 // PENTING: LOAD RELASI MODEL
 require("./models");
 
 const authRoutes = require("./routes/auth");
-const profileRoutes = require("./routes/profile"); 
+const profileRoutes = require("./routes/profile");
 const recipeRoutes = require("./routes/recipe");
 const savedRecipeRoutes = require("./routes/SavedRecipes");
 const reviewRoutes = require("./routes/review");
 
 const app = express();
+
+// Helmet security headers
+app.use(helmet());
 
 app.use("/uploads", express.static("uploads"));
 
@@ -25,6 +32,14 @@ app.use(cors({
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
+// Rate Limiter API
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 menit
+  max: 100, // max request
+  message: "Too many requests, try again later.",
+});
+
+app.use("/api", limiter);
 
 // routes
 app.use("/api", authRoutes);
@@ -49,10 +64,29 @@ db.authenticate()
   .catch((err) => console.log("DB Error:", err));
 
 
-app.post("/api/login", (req, res) => {
-  res.send("LOGIN SERVER LANGSUNG");
-});
+app.post(
+  "/api/login",
+  [
+    body("email")
+      .isEmail()
+      .withMessage("Format email tidak valid"),
 
+    body("password")
+      .isLength({ min: 6 })
+      .withMessage("Password minimal 6 karakter"),
+  ],
+  (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
+
+    res.send("LOGIN SERVER LANGSUNG");
+  }
+);
 
 app.listen(5000, () => {
   console.log("Server jalan di http://localhost:5000");
