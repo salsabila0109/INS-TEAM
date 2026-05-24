@@ -28,46 +28,67 @@ function Register() {
     setConfirmError("");
     setSuccessMessage("");
 
-    // validasi kosong
+    // validasi kosong frontend
     if (!name) {
-      setNameError("Nama wajib diisi");
+      setNameError(
+        "Nama wajib diisi"
+      );
     }
 
     if (!email) {
-      setEmailError("Email wajib diisi");
+      setEmailError(
+        "Email wajib diisi"
+      );
     }
 
     if (!password) {
-      setPasswordError("Password wajib diisi");
+      setPasswordError(
+        "Password wajib diisi"
+      );
     }
 
     if (!confirmPassword) {
-      setConfirmError("Konfirmasi password wajib diisi");
+      setConfirmError(
+        "Konfirmasi password wajib diisi"
+      );
     }
 
-    if (!name || !email || !password || !confirmPassword) {
+    if (
+      !name ||
+      !email ||
+      !password ||
+      !confirmPassword
+    ) {
       return;
     }
 
-    // validasi password sama
-    if (password !== confirmPassword) {
-      setConfirmError("Password tidak sama");
+    // password tidak sama
+    if (
+      password !==
+      confirmPassword
+    ) {
+      setConfirmError(
+        "Password tidak sama"
+      );
       return;
     }
 
     try {
 
-      const res = await axios.post(
-        "http://localhost:5000/api/register",
-        {
-          name,
-          email,
-          password,
-          confirmPassword,
-        }
-      );
+      const res =
+        await axios.post(
+          "http://localhost:5000/api/register",
+          {
+            name,
+            email,
+            password,
+            confirmPassword,
+          }
+        );
 
-      setSuccessMessage("Register berhasil!");
+      setSuccessMessage(
+        "Register berhasil!"
+      );
 
       // reset form
       setName("");
@@ -77,37 +98,96 @@ function Register() {
 
     } catch (err) {
 
+      console.log(
+        err.response?.data
+      );
+
+      const error =
+        err.response?.data?.error;
+
+      const errors =
+        err.response?.data?.errors;
+
+      // email sudah ada
       if (
-        err.response?.data?.error ===
-        "Email sudah terdaftar"
+        error ===
+          "Email sudah terdaftar" ||
+        error ===
+          "Email sudah digunakan"
       ) {
         setEmailError(
-          err.response.data.error
+          error
         );
+        return;
       }
 
-      else if (
-        err.response?.data?.error ===
-        "Email sudah digunakan"
-      ) {
-        setEmailError(
-          err.response.data.error
-        );
-      }
-
-      else if (
-        err.response?.data?.error ===
+      // password tidak sama
+      if (
+        error ===
         "Password tidak sama"
       ) {
         setConfirmError(
-          err.response.data.error
+          error
         );
+        return;
       }
 
-      else {
-        setEmailError("Register gagal");
+      // express-validator
+      if (
+        errors &&
+        errors.length > 0
+      ) {
+
+        errors.forEach(
+          (item) => {
+
+            if (
+              item.path ===
+              "name"
+            ) {
+              setNameError(
+                item.msg
+              );
+            }
+
+            if (
+              item.path ===
+              "email"
+            ) {
+              setEmailError(
+                item.msg
+              );
+            }
+
+            if (
+              item.path ===
+              "password"
+            ) {
+              setPasswordError(
+                item.msg
+              );
+            }
+
+            if (
+              item.path ===
+              "confirmPassword"
+            ) {
+              setConfirmError(
+                item.msg
+              );
+            }
+
+          }
+        );
+
+        return;
       }
 
+      // fallback
+      setEmailError(
+        error ||
+        "Register gagal"
+      );
     }
   };
 

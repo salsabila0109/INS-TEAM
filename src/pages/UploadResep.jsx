@@ -293,6 +293,7 @@ const token =
               <option>Makanan</option>
               <option>Minuman</option>
               <option>Dessert</option>
+              <option>Cemilan</option>
             </select>
           </div>
         </div>

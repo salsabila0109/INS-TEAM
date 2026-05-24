@@ -143,7 +143,7 @@ function ResepSaya() {
                       className="my-btn-lihat"
                       onClick={() =>
                         navigate(
-                          `/edit-resep/${resep.id}`
+                          `/lihat-resep-saya/${resep.id}`
                         )
                       }
                     >

@@ -109,8 +109,8 @@ router.post(
       .withMessage("Format email tidak valid"),
 
     body("password")
-      .isLength({ min: 6 })
-      .withMessage("Password minimal 6 karakter"),
+      .notEmpty()
+      .withMessage("Password wajib diisi"),
   ],
   async (req, res) => {
     try {

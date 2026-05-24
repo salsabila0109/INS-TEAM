@@ -18,8 +18,11 @@ const reviewRoutes = require("./routes/review");
 const app = express();
 
 // Helmet security headers
-app.use(helmet());
-
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+  })
+);
 app.use("/uploads", express.static("uploads"));
 
 // middleware
@@ -35,7 +38,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 // Rate Limiter API
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 menit
-  max: 100, // max request
+  max: 10000, // max request
   message: "Too many requests, try again later.",
 });
 

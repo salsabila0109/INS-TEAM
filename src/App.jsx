@@ -17,6 +17,7 @@ import ResepTersimpan from "./pages/ResepTersimpan";
 import UploadResep from "./pages/UploadResep";
 import EditResep from "./pages/EditResep";
 import Pengaturan from "./pages/Pengaturan";
+import LihatResepSaya from "./pages/LihatResepSaya";
 
 function App() {
   return (
@@ -37,10 +38,9 @@ function App() {
           <Route path="/resepsaya" element={<ResepSaya />} />
           <Route path="/reseptersimpan" element={<ResepTersimpan />} />
           <Route path="/uploadresep" element={<UploadResep />} />
-          
-          {/* RUTE EDIT RESEP - Pastikan path ini sama dengan yang dipanggil di navigate() */}
           <Route path="/edit-resep/:id" element={<EditResep />} /> 
-          
+          <Route path="/lihat-resep-saya/:id" element={<LihatResepSaya />}/>
+
           <Route path="/pengaturan" element={<Pengaturan />} />
         </Route>
       </Routes>

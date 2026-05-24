@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2026 at 04:00 PM
+-- Generation Time: May 23, 2026 at 09:48 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,7 +48,12 @@ CREATE TABLE `recipes` (
 --
 
 INSERT INTO `recipes` (`id`, `title`, `serving`, `description`, `category`, `image`, `ingredients`, `steps`, `userId`, `createdAt`, `updatedAt`, `rating`, `totalReviews`) VALUES
-(5, 'Dessert Coklat Puding Choco Oreo', '1', 'Dessert coklat yang sangat sederhana, creamy, dan manis dengan rasa coklat lembut dipadukan remahan biskuit. Cocok untuk pemula karena bahan sedikit dan langkahnya cepat tanpa oven.', 'Dessert', '1778933887053.jpg', '[\"1 bungkus kecil puding coklat instan (atau 1 sdm coklat bubuk + 1 sdt gula)\",\"150 ml susu cair atau air\",\"2 keping biskuit Oreo (diremukkan)\",\"1 sdt susu kental manis coklat (opsional)\"]', '[{\"text\":\"Campurkan bubuk puding coklat dengan susu cair/air dalam panci kecil, lalu aduk rata.\",\"images\":[\"1778933886962.png\"]},{\"text\":\"Masak dengan api kecil sambil diaduk hingga mulai mengental.\",\"images\":[\"1778933886979.png\"]},{\"text\":\"Tuang ke gelas atau mangkuk kecil, lalu taburkan remahan Oreo di atasnya.\",\"images\":[\"1778933886991.png\"]},{\"text\":\"Dinginkan sekitar 10–15 menit atau masukkan ke kulkas sebentar sebelum dimakan.\",\"images\":[\"1778933887000.png\",\"1778933887011.png\"]}]', 6, '2026-05-16 12:18:07', '2026-05-20 13:29:03', 5.0, 1);
+(5, 'Dessert Coklat Puding Choco Oreo', '1', 'Dessert coklat yang sangat sederhana, creamy, dan manis dengan rasa coklat lembut dipadukan remahan biskuit. Cocok untuk pemula karena bahan sedikit dan langkahnya cepat tanpa oven.', 'Dessert', '1778933887053.jpg', '[\"1 bungkus kecil puding coklat instan (atau 1 sdm coklat bubuk + 1 sdt gula)\",\"150 ml susu cair atau air\",\"2 keping biskuit Oreo (diremukkan)\",\"1 sdt susu kental manis coklat (opsional)\"]', '[{\"text\":\"Campurkan bubuk puding coklat dengan susu cair/air dalam panci kecil, lalu aduk rata.\",\"images\":[\"1778933886962.png\"]},{\"text\":\"Masak dengan api kecil sambil diaduk hingga mulai mengental.\",\"images\":[\"1778933886979.png\"]},{\"text\":\"Tuang ke gelas atau mangkuk kecil, lalu taburkan remahan Oreo di atasnya.\",\"images\":[\"1778933886991.png\"]},{\"text\":\"Dinginkan sekitar 10–15 menit atau masukkan ke kulkas sebentar sebelum dimakan.\",\"images\":[\"1778933887000.png\",\"1778933887011.png\"]}]', 6, '2026-05-16 12:18:07', '2026-05-20 13:29:03', 5.0, 1),
+(6, 'Nasi Goreng Telur', '1', 'Nasi goreng telur adalah makanan sederhana yang mudah dibuat di rumah. Rasanya gurih, sedikit manis, dan cocok dimakan saat sarapan maupun malam hari. Resep ini menggunakan bahan yang mudah ditemukan dan proses memasaknya cepat.', 'Makanan', '1779321271089.jpeg', '[\"1 piring nasi putih\",\"1 butir telur\",\"2 siung bawang putih\",\"3 siung bawang merah\",\"2 sdm kecap manis\",\"1 sdm minyak goreng\",\"Garam secukupnya\",\"Merica secukupnya\",\"Daun bawang (opsional)\"]', '[{\"text\":\"Iris bawang merah dan bawang putih.\",\"images\":[]},{\"text\":\"Panaskan minyak di wajan.\",\"images\":[]},{\"text\":\"Tumis bawang hingga harum.\",\"images\":[]},{\"text\":\"Masukkan telur, lalu orak-arik.\",\"images\":[]},{\"text\":\"Tambahkan nasi putih dan aduk rata.\",\"images\":[]},{\"text\":\"Masukkan kecap manis, garam, dan merica.\",\"images\":[]},{\"text\":\"Aduk hingga semua bahan tercampur merata.\",\"images\":[]},{\"text\":\"ambahkan daun bawang jika suka.\",\"images\":[]},{\"text\":\"Sajikan selagi hangat.\",\"images\":[]}]', 6, '2026-05-20 23:54:31', '2026-05-20 23:54:31', NULL, 0),
+(7, 'Es Teh Lemon', '1', 'Es teh lemon adalah minuman segar dengan rasa manis dan sedikit asam. Cocok diminum saat cuaca panas dan sangat mudah dibuat.', 'Minuman', '1779321714303.jpeg', '[\"1 kantong teh\",\"1 buah lemon\",\"2 sdm gula\",\"Air panas secukupnya\",\"Es batu secukupnya\"]', '[{\"text\":\"Seduh teh dengan air panas\",\"images\":[]},{\"text\":\"Tambahkan gula lalu aduk hingga larut\",\"images\":[]},{\"text\":\"Peras lemon ke dalam teh.\",\"images\":[]},{\"text\":\"Tambahkan es batu.\",\"images\":[]},{\"text\":\"Sajikan dingin.\",\"images\":[]}]', 6, '2026-05-21 00:01:54', '2026-05-21 00:01:54', NULL, 0),
+(8, 'Susu Cokelat Dingin', '2', 'Susu cokelat dingin memiliki rasa manis dan creamy. Minuman ini cocok untuk anak-anak maupun orang dewasa.', 'Minuman', '1779321906190.jpeg', '[\"2 gelas susu cair\",\"4 sdm cokelat bubuk atau sirup cokelat\",\"1/5 sdm gula (opsional)\",\"Es batu secukupnya\"]', '[{\"text\":\"Campurkan susu dan cokelat\",\"images\":[]},{\"text\":\"Tambahkan gula jika ingin lebih manis\",\"images\":[]},{\"text\":\"Aduk hingga tercampur rata.\",\"images\":[]},{\"text\":\"Masukkan es batu.\",\"images\":[]},{\"text\":\"Sajikan dingin.\",\"images\":[]}]', 6, '2026-05-21 00:05:06', '2026-05-21 00:05:06', NULL, 0),
+(9, 'Roti Bakar Cokelat', '2', 'Roti bakar cokelat adalah camilan manis yang mudah dibuat dan cocok untuk sarapan atau teman minum teh.', 'Makanan', '1779326014828.jpeg', '[\"4 lembar roti tawar\",\"Margarin secukupnya\",\"Cokelat meses atau selai cokelat\"]', '[{\"text\":\"Oleskan margarin pada roti.\",\"images\":[]},{\"text\":\"Tambahkan cokelat meses atau selai cokelat.\",\"images\":[]},{\"text\":\"Panggang di teflon hingga kecokelatan.\",\"images\":[]},{\"text\":\"Potong sesuai selera.\",\"images\":[]},{\"text\":\"Sajikan hangat.\",\"images\":[]}]', 6, '2026-05-21 01:13:34', '2026-05-21 01:13:34', NULL, 0),
+(10, 'Ayam Geprek', '1', 'Ayam geprek adalah makanan favorit dengan ayam crispy yang dihancurkan bersama sambal pedas. Rasanya gurih, renyah, dan cocok dimakan dengan nasi hangat.', 'Makanan', '1779326410677.jpeg', '[\"1 potong ayam goreng crispy \",\"5 buah cabai merah \",\"2 buah cabai rawit\",\"1 siung bawang putih \",\"Garam secukupnya \",\"Nasi hangat\"]', '[{\"text\":\"Goreng ayam hingga crispy. \",\"images\":[]},{\"text\":\"Ulek cabai, bawang putih, dan garam.\",\"images\":[]},{\"text\":\"Masukkan ayam lalu geprek bersama sambal. \",\"images\":[]},{\"text\":\"Sajikan dengan nasi hangat.\",\"images\":[]}]', 6, '2026-05-21 01:20:10', '2026-05-21 01:20:10', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -92,7 +97,8 @@ CREATE TABLE `saved_recipes` (
 --
 
 INSERT INTO `saved_recipes` (`id`, `userId`, `recipeId`, `createdAt`, `updatedAt`) VALUES
-(6, 23, 5, '2026-05-20 13:56:45', '2026-05-20 13:56:45');
+(6, 23, 5, '2026-05-20 13:56:45', '2026-05-20 13:56:45'),
+(8, 23, 8, '2026-05-21 00:24:21', '2026-05-21 00:24:21');
 
 -- --------------------------------------------------------
 
@@ -166,7 +172,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -178,7 +184,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `saved_recipes`
 --
 ALTER TABLE `saved_recipes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`

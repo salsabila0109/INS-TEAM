@@ -10,7 +10,8 @@ function Categories({
     "Populer",
     "Makanan",
     "Minuman",
-    "Dessert"
+    "Dessert",
+    "Cemilan"
   ];
 
   return (

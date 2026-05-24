@@ -71,28 +71,64 @@ function Login() {
 
     } catch (err) {
 
+      console.log(err.response?.data);
+
+      const error =
+        err.response?.data?.error;
+
+      const errors =
+        err.response?.data?.errors;
+
+      // email tidak ditemukan
       if (
-        err.response?.data?.error ===
+        error ===
         "Email tidak ditemukan"
       ) {
-        setEmailError(
-          err.response.data.error
-        );
+        setEmailError(error);
+        return;
       }
 
-      else if (
-        err.response?.data?.error ===
+      // password salah
+      if (
+        error ===
         "Password salah"
       ) {
-        setPasswordError(
-          err.response.data.error
-        );
+        setPasswordError(error);
+        return;
       }
 
-      else {
-        setEmailError("Login gagal");
+      // express-validator
+      if (
+        errors &&
+        errors.length > 0
+      ) {
+        errors.forEach((item) => {
+
+          if (
+            item.path === "email"
+          ) {
+            setEmailError(
+              item.msg
+            );
+          }
+
+          if (
+            item.path === "password"
+          ) {
+            setPasswordError(
+              item.msg
+            );
+          }
+
+        });
+
+        return;
       }
 
+      // fallback
+      setEmailError(
+        error || "Login gagal"
+      );
     }
   };
 
