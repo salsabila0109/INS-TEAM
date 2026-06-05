@@ -18,6 +18,7 @@ import UploadResep from "./pages/UploadResep";
 import EditResep from "./pages/EditResep";
 import Pengaturan from "./pages/Pengaturan";
 import LihatResepSaya from "./pages/LihatResepSaya";
+import ProfilDikunjungi from "./pages/ProfilDikunjungi";
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
         <Route path="/cekdapur" element={<CekDapur />} />
         <Route path="/detailresep/:id" element={<DetailResep />} />
         <Route path="/profil-publik/:id" element={<ProfilPublik />} />
+        <Route path="/profil-dikunjungi/:id" element={<ProfilDikunjungi />}/>
+        
 
         {/* PRIVATE ROUTES (Hanya bisa diakses jika login) */}
         <Route element={<ProtectedRoute />}>

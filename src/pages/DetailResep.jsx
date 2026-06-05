@@ -226,7 +226,12 @@ function DetailResep() {
             </div>
 
             <div className="description-card">
-              <div className="author-info">
+              <div
+                className="author-info"
+                onClick={() =>
+                  navigate(`/profil-dikunjungi/${recipe.User?.id}`)
+                }
+              >
                 <FaUserCircle />
 
                 <span>
