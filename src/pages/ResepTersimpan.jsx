@@ -14,10 +14,39 @@ function ResepTersimpan() {
   const [activeMenu] =
     useState("tersimpan");
 
+  const [followers, setFollowers] = useState(0);
+  const [following, setFollowing] = useState(0);
+      
   const user = JSON.parse(
     localStorage.getItem("user")
   );
 
+  // =========================
+  // GET FOLLOW STATS
+  // =========================
+  const getFollowStats =
+    async (userId) => {
+      try {
+        const response =
+          await axios.get(
+            `http://localhost:5000/api/follow/stats/${userId}`
+          );
+
+        setFollowers(
+          response.data
+            .followers
+        );
+
+        setFollowing(
+          response.data
+            .following
+        );
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    
   // AMBIL RESEP TERSIMPAN DARI DATABASE
   useEffect(() => {
     const getSavedRecipes =
@@ -48,6 +77,10 @@ function ResepTersimpan() {
 
     if (user?.id) {
       getSavedRecipes();
+
+      getFollowStats(
+        user.id
+      );
     }
   }, [user?.id]);
 
@@ -148,12 +181,10 @@ function ResepTersimpan() {
       <div className="profile-page">
         <ProfileSidebar
           user={user}
-          activeMenu={
-            activeMenu
-          }
-          handleUpload={
-            handleUpload
-          }
+          activeMenu={activeMenu}
+          handleUpload={handleUpload}
+          followers={followers}
+          following={following}
         />
 
         <div className="content">

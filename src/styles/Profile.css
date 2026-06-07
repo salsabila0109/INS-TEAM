@@ -20,10 +20,12 @@
   background: white;
   padding: 35px 20px;
   border-radius: 20px;
-  text-align: center;
   box-shadow: 0 4px 20px rgba(0,0,0,0.06);
   position: sticky;
   top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .avatar-wrapper {
@@ -65,12 +67,65 @@
   font-size: 18px;
   color: #333;
   margin: 10px 0 5px;
+  text-align: center;
 }
 
 .email {
   font-size: 13px;
   color: #888;
   margin-bottom: 20px;
+  text-align: center;
+  word-break: break-word;
+}
+
+/* ============================================================
+   FOLLOW STATS SIMPLE
+============================================================ */
+.follow-stats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 25px;
+  font-size: 14px;
+  color: #666;
+}
+
+.follow-stats div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.follow-stats strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.follow-stats span {
+  color: #777;
+}
+
+.follow-btn {
+  background: white;
+  border: 1.5px solid #C94C4C;
+  color: #C94C4C;
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.follow-btn:hover {
+  background: #C94C4C;
+  color: white;
+}
+
+.follow-btn strong {
+  color: #333;
+  font-weight: 600;
 }
 
 /* MENU NAVIGASI SIDEBAR */
@@ -78,6 +133,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 }
 
 .menu button {

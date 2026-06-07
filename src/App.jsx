@@ -19,6 +19,8 @@ import EditResep from "./pages/EditResep";
 import Pengaturan from "./pages/Pengaturan";
 import LihatResepSaya from "./pages/LihatResepSaya";
 import ProfilDikunjungi from "./pages/ProfilDikunjungi";
+import FollowerPage from "./pages/FollowerPage";
+import FollowingPage from "./pages/FollowingPage";
 
 function App() {
   return (
@@ -33,7 +35,6 @@ function App() {
         <Route path="/profil-publik/:id" element={<ProfilPublik />} />
         <Route path="/profil-dikunjungi/:id" element={<ProfilDikunjungi />}/>
         
-
         {/* PRIVATE ROUTES (Hanya bisa diakses jika login) */}
         <Route element={<ProtectedRoute />}>
           <Route path="/profile" element={<Profile />} />
@@ -43,6 +44,8 @@ function App() {
           <Route path="/uploadresep" element={<UploadResep />} />
           <Route path="/edit-resep/:id" element={<EditResep />} /> 
           <Route path="/lihat-resep-saya/:id" element={<LihatResepSaya />}/>
+          <Route path="/followers" element={<FollowerPage />}/> 
+          <Route path="/following" element={<FollowingPage />}/>
 
           <Route path="/pengaturan" element={<Pengaturan />} />
         </Route>

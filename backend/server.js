@@ -14,6 +14,7 @@ const profileRoutes = require("./routes/profile");
 const recipeRoutes = require("./routes/recipe");
 const savedRecipeRoutes = require("./routes/SavedRecipes");
 const reviewRoutes = require("./routes/review");
+const followRoutes =require("./routes/follow");
 
 const app = express();
 
@@ -54,6 +55,8 @@ app.use("/api/recipes", recipeRoutes);
 app.use("/api/saved-recipes", savedRecipeRoutes);
 
 app.use("/api/reviews", reviewRoutes);
+
+app.use("/api/follow", followRoutes);
 
 // test route
 app.get("/", (req, res) => {

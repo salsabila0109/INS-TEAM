@@ -40,6 +40,34 @@ const EditProfil = () => {
     activeMenu,
     setActiveMenu,
   ] = useState("profil");
+  const [followers, setFollowers] = useState(0);
+  const [following, setFollowing] = useState(0);
+
+  // =========================
+  // GET FOLLOW STATS
+  // =========================
+  const getFollowStats =
+    async (userId) => {
+      try {
+        const response =
+          await axios.get(
+            `http://localhost:5000/api/follow/stats/${userId}`
+          );
+
+        setFollowers(
+          response.data
+            .followers
+        );
+
+        setFollowing(
+          response.data
+            .following
+        );
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
   // =========================
   // LOAD USER
@@ -64,6 +92,10 @@ const EditProfil = () => {
       setPhotoPreview(
         localUser.photo ||
           "https://via.placeholder.com/150"
+      );
+      // ambil data follow
+      getFollowStats(
+        localUser.id
       );
     }
   }, []);
@@ -270,18 +302,13 @@ const EditProfil = () => {
       <Navbar hideSearch={true} />
 
       <div className="profile-page">
-        {/* SIDEBAR SAMA SEPERTI PROFILE */}
         <ProfileSidebar
           user={user}
-          activeMenu={
-            activeMenu
-          }
-          setActiveMenu={
-            setActiveMenu
-          }
-          handleUpload={
-            handleUpload
-          }
+          activeMenu={activeMenu}
+          setActiveMenu={setActiveMenu}
+          handleUpload={handleUpload}
+          followers={followers}
+          following={following}
         />
 
         {/* CONTENT */}

@@ -6,22 +6,23 @@ import {
   faUpload,
   faGear,
 } from "@fortawesome/free-solid-svg-icons";
+
 import { useNavigate } from "react-router-dom";
 
 function ProfileSidebar({
   user,
   activeMenu,
   handleUpload,
+  followers = 0,
+  following = 0,
 }) {
   const navigate = useNavigate();
 
   return (
     <aside className="sidebar">
+
       {/* FOTO PROFIL */}
-      <label
-        htmlFor="upload"
-        className="avatar-wrapper"
-      >
+      <div className="avatar-wrapper">
         <img
           src={
             user?.photo ||
@@ -34,30 +35,59 @@ function ProfileSidebar({
               "https://via.placeholder.com/150";
           }}
         />
-
-        <div className="upload-overlay">
-          Ganti Foto
-        </div>
-      </label>
-
-      <input
-        id="upload"
-        type="file"
-        accept="image/*"
-        hidden
-        onChange={handleUpload}
-      />
+      </div>
 
       {/* INFO USER */}
-      <h3>{user?.name || "User Foodies"}</h3>
+      <h3>
+        {user?.name ||
+          "User Foodies"}
+      </h3>
 
       <p className="email">
         {user?.email ||
           "email@example.com"}
       </p>
 
+      {/* FOLLOW INFO */}
+      <div className="follow-stats">
+
+        <div
+          onClick={() =>
+            navigate("/followers")
+          }
+          style={{
+            cursor: "pointer",
+          }}
+        >
+          <strong>
+            {followers}
+          </strong>
+          <span>
+            pengikut
+          </span>
+        </div>
+
+        <div
+          onClick={() =>
+            navigate("/following")
+          }
+          style={{
+            cursor: "pointer",
+          }}
+        >
+          <strong>
+            {following}
+          </strong>
+          <span>
+            mengikuti
+          </span>
+        </div>
+
+      </div>
+
       {/* MENU */}
       <nav className="menu">
+
         <button
           className={
             activeMenu === "profil"
@@ -68,79 +98,61 @@ function ProfileSidebar({
             navigate("/profile")
           }
         >
-          <FontAwesomeIcon
-            icon={faUser}
-          />{" "}
+          <FontAwesomeIcon icon={faUser} />
           Profil
         </button>
 
         <button
           className={
-            activeMenu ===
-            "resepsaya"
+            activeMenu === "resepsaya"
               ? "active"
               : ""
           }
           onClick={() =>
-            navigate(
-              "/resepsaya"
-            )
+            navigate("/resepsaya")
           }
         >
-          <FontAwesomeIcon
-            icon={faUtensils}
-          />{" "}
+          <FontAwesomeIcon icon={faUtensils} />
           Resep Saya
         </button>
 
         <button
           className={
-            activeMenu ===
-            "tersimpan"
+            activeMenu === "tersimpan"
               ? "active"
               : ""
           }
           onClick={() =>
-            navigate(
-              "/reseptersimpan"
-            )
+            navigate("/reseptersimpan")
           }
         >
-          <FontAwesomeIcon
-            icon={faBookmark}
-          />{" "}
+          <FontAwesomeIcon icon={faBookmark} />
           Resep Tersimpan
         </button>
 
         <button
           onClick={() =>
-            navigate(
-              "/uploadresep"
-            )
+            navigate("/uploadresep")
           }
         >
-          <FontAwesomeIcon
-            icon={faUpload}
-          />{" "}
+          <FontAwesomeIcon icon={faUpload} />
           Upload Resep
         </button>
 
         <button
-        className={
-            activeMenu ===
-            "pengaturan"
-            ? "active"
-            : ""
-        }
-        onClick={() =>
+          className={
+            activeMenu === "pengaturan"
+              ? "active"
+              : ""
+          }
+          onClick={() =>
             navigate("/pengaturan")
-        }
+          }
         >
-        <FontAwesomeIcon
-            icon={faGear}
-        />{" "}
-        Pengaturan
+          <FontAwesomeIcon icon={faGear} />
+          Pengaturan
         </button>
+
       </nav>
     </aside>
   );

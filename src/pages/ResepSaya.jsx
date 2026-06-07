@@ -9,12 +9,39 @@ function ResepSaya() {
   const navigate = useNavigate();
 
   const [recipes, setRecipes] = useState([]);
-  const [activeMenu, setActiveMenu] =
-    useState("resepsaya");
+  const [activeMenu, setActiveMenu] = useState("resepsaya");
+  const [followers, setFollowers] = useState(0);
+  const [following, setFollowing] = useState(0);
 
   const user = JSON.parse(
     localStorage.getItem("user")
   );
+
+// =========================
+// GET FOLLOW STATS
+// =========================
+const getFollowStats =
+  async (userId) => {
+    try {
+      const response =
+        await axios.get(
+          `http://localhost:5000/api/follow/stats/${userId}`
+        );
+
+      setFollowers(
+        response.data
+          .followers
+      );
+
+      setFollowing(
+        response.data
+          .following
+      );
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     const getMyRecipes = async () => {
@@ -29,7 +56,7 @@ function ResepSaya() {
       }
     };
 
-    if (user?.id) getMyRecipes();
+    if (user?.id) {getMyRecipes(); getFollowStats(user.id);}
   }, []);
 
   // Upload foto profil
@@ -77,12 +104,10 @@ function ResepSaya() {
         <ProfileSidebar
           user={user}
           activeMenu={activeMenu}
-          setActiveMenu={
-            setActiveMenu
-          }
-          handleUpload={
-            handleUpload
-          }
+          setActiveMenu={setActiveMenu}
+          handleUpload={handleUpload}
+          followers={followers}
+          following={following}
         />
 
         <div className="content">

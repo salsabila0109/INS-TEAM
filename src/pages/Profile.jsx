@@ -20,6 +20,8 @@ function Profile() {
   const [user, setUser] = useState({});
   const [myRecipes, setMyRecipes] = useState([]);
   const [activeMenu, setActiveMenu] = useState("profil");
+  const [followers, setFollowers] = useState(0);
+  const [following, setFollowing] = useState(0);
 
   // =========================
   // UPLOAD FOTO PROFIL
@@ -67,6 +69,32 @@ function Profile() {
   };
 
   // =========================
+  // GET FOLLOW STATS
+  // =========================
+  const getFollowStats =
+    async (userId) => {
+      try {
+        const response =
+          await axios.get(
+            `http://localhost:5000/api/follow/stats/${userId}`
+          );
+
+        setFollowers(
+          response.data
+            .followers
+        );
+
+        setFollowing(
+          response.data
+            .following
+        );
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    
+  // =========================
   // GET PROFILE & RESEP
   // =========================
   useEffect(() => {
@@ -113,8 +141,14 @@ function Profile() {
       }
     };
 
-    getProfile();
-    getMyRecipes();
+  getProfile();
+  getMyRecipes();
+
+  if (localUser?.id) {
+    getFollowStats(
+      localUser.id
+    );
+  }    
   }, []);
 
   // =========================
@@ -145,6 +179,8 @@ function Profile() {
           activeMenu={activeMenu}
           setActiveMenu={setActiveMenu}
           handleUpload={handleUpload}
+          followers={followers}
+          following={following}
         />
 
         {/* ========================= */}

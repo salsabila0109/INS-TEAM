@@ -37,6 +37,34 @@ function Pengaturan() {
   // Menu aktif sidebar
   const [activeMenu] =
     useState("pengaturan");
+  const [followers, setFollowers] = useState(0);
+  const [following, setFollowing] = useState(0);
+
+  // =========================
+  // GET FOLLOW STATS
+  // =========================
+  const getFollowStats =
+    async (userId) => {
+      try {
+        const response =
+          await axios.get(
+            `http://localhost:5000/api/follow/stats/${userId}`
+          );
+
+        setFollowers(
+          response.data
+            .followers
+        );
+
+        setFollowing(
+          response.data
+            .following
+        );
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
   // Get user dari localStorage
   useEffect(() => {
@@ -48,7 +76,14 @@ function Pengaturan() {
       );
 
     if (localUser) {
-      setUser(localUser);
+      setUser(
+        localUser
+      );
+
+      // ambil jumlah follow
+      getFollowStats(
+        localUser.id
+      );
     }
   }, []);
 
@@ -208,15 +243,12 @@ function Pengaturan() {
       />
 
       <div className="profile-page">
-        {/* Sidebar Reusable */}
         <ProfileSidebar
           user={user}
-          activeMenu={
-            activeMenu
-          }
-          handleUpload={
-            handleUpload
-          }
+          activeMenu={activeMenu}
+          handleUpload={handleUpload}
+          followers={followers}
+          following={following}
         />
 
         {/* Content */}
