@@ -115,65 +115,58 @@ function CekDapur() {
   // =========================
   // CARI RESEP
   // =========================
-  const handleCari =
-    () => {
-      if (
-        bahan.length ===
-        0
+  const handleCari = () => {
+    if (bahan.length === 0) return;
+
+    const filtered = recipes
+      .map((recipe) => {
+        let ingredients = [];
+
+        try {
+          ingredients = JSON.parse(
+            recipe.ingredients
+          );
+        } catch {
+          ingredients = [];
+        }
+
+        // lowercase
+        const recipeIngredients =
+          ingredients.map((item) =>
+            item.toLowerCase()
+          );
+
+        // hitung jumlah bahan yang cocok
+        const matchedCount =
+          bahan.filter((item) =>
+            recipeIngredients.some(
+              (ingredient) =>
+                ingredient.includes(item)
+            )
+          ).length;
+
+        return {
+          ...recipe,
+          matchedCount,
+        };
+      })
+
+      // hanya ambil yang punya kecocokan
+      .filter(
+        (recipe) =>
+          recipe.matchedCount > 0
       )
-        return;
 
-      const filtered =
-        recipes.filter(
-          (recipe) => {
-            // parse ingredients
-            let ingredients =
-              [];
-
-            try {
-              ingredients =
-                JSON.parse(
-                  recipe.ingredients
-                );
-            } catch {
-              ingredients =
-                [];
-            }
-
-            // ubah ke lowercase
-            const recipeIngredients =
-              ingredients.map(
-                (
-                  item
-                ) =>
-                  item.toLowerCase()
-              );
-
-            // cek apakah ada bahan cocok
-            return bahan.some(
-              (
-                item
-              ) =>
-                recipeIngredients.some(
-                  (
-                    ingredient
-                  ) =>
-                    ingredient.includes(
-                      item
-                    )
-                )
-            );
-          }
-        );
-
-      setResultRecipes(
-        filtered
+      // urutkan terbanyak dulu
+      .sort(
+        (a, b) =>
+          b.matchedCount -
+          a.matchedCount
       );
 
-      setShowResult(
-        true
-      );
-    };
+    setResultRecipes(filtered);
+    setShowResult(true);
+  };
 
   return (
     <>
@@ -200,41 +193,54 @@ function CekDapur() {
         <div className="cek-container">
           {/* LEFT */}
           <div className="cek-left">
-            <h4>
-              Bahan di
-              Dapur Anda
-            </h4>
+            <h4>Bahan di Dapur Anda</h4>
+
+            <div className="instruction-box">
+              <p className="guide-title">
+                Cara Menggunakan
+              </p>
+
+              <p className="guide-text">
+                Ketik <b>1 bahan</b>, lalu klik 
+                <b> + Tambah</b>. 
+                Ulangi untuk menambahkan bahan lain,
+                kemudian klik <b>Cari Resep</b>.
+              </p>
+
+              <p className="example-text">
+                Contoh bahan:
+                <span> telur</span>,
+                <span> ayam</span>,
+                <span> mie</span>,
+                <span> cabai</span>,
+                <span> tomat</span>,
+                <span> bawang</span>
+              </p>
+            </div>
 
             <div className="input-box">
               <input
                 type="text"
-                placeholder="Tambah bahan...."
-                value={
-                  input
+                placeholder="Masukkan 1 bahan (contoh: telur)"
+                value={input}
+                onChange={(e) =>
+                  setInput(e.target.value)
                 }
-                onChange={(
-                  e
-                ) =>
-                  setInput(
-                    e
-                      .target
-                      .value
-                  )
-                }
-                onKeyDown={
-                  handleKey
-                }
+                onKeyDown={handleKey}
               />
 
               <button
-                onClick={
-                  handleTambah
-                }
+                onClick={handleTambah}
               >
                 + Tambah
               </button>
             </div>
 
+            <p className="ingredient-status">
+              {bahan.length === 0
+                ? "Belum ada bahan ditambahkan"
+                : `${bahan.length} bahan ditambahkan ✓`}
+            </p>
             {/* CHIP */}
             <div className="chip-container">
               {bahan.map(
@@ -269,12 +275,12 @@ function CekDapur() {
             {/* BUTTON */}
             <button
               className="btn-search"
-              onClick={
-                handleCari
+              onClick={handleCari}
+              disabled={
+                bahan.length === 0
               }
             >
-              Cari
-              Resep
+              Cari Resep
             </button>
           </div>
 
@@ -301,42 +307,68 @@ function CekDapur() {
                   ) => (
                     <div
                       className="recipe-card"
-                      key={
-                        item.id
-                      }
+                      key={item.id}
                     >
+                      {/* IMAGE */}
                       <img
                         src={`http://localhost:5000/uploads/${item.image}`}
-                        alt={
-                          item.title
-                        }
+                        alt={item.title}
                       />
 
-                      <div className="recipe-info">
-                        <p>
+                      <div className="recipe-content">
+                        {/* AUTHOR + RATING */}
+                        <div className="recipe-meta">
+                          <span className="author">
+                            👤{" "}
+                            {item.User?.name ||
+                              "User"}
+                          </span>
+
+                          <span className="rating">
+                            {item.totalReviews >
+                            0 ? (
+                              <>
+                                ⭐ {item.rating} (
+                                {
+                                  item.totalReviews
+                                }
+                                )
+                              </>
+                            ) : (
+                              <>
+                                ⭐ Belum ada
+                                penilaian
+                              </>
+                            )}
+                          </span>
+                        </div>
+
+                        {/* TITLE */}
+                        <h3 className="recipe-title">
+                          {item.title}
+                        </h3>
+
+                        {/* MATCHED */}
+                        <span className="match-badge">
+                          ✅{" "}
                           {
-                            item.title
-                          }
-                        </p>
-
-                        <span className="rating">
-                          ⭐{" "}
-                          {item.rating ||
-                            0}
+                            item.matchedCount
+                          }{" "}
+                          bahan cocok
                         </span>
-                      </div>
 
-                      <button
-                        className="outline-btn"
-                        onClick={() =>
-                          navigate(
-                            `/detailresep/${item.id}`
-                          )
-                        }
-                      >
-                        Lihat
-                        Resep
-                      </button>
+                        {/* BUTTON */}
+                        <button
+                          className="outline-btn"
+                          onClick={() =>
+                            navigate(
+                              `/detailresep/${item.id}`
+                            )
+                          }
+                        >
+                          Lihat Resep
+                        </button>
+                      </div>
                     </div>
                   )
                 )

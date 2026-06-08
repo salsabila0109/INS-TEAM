@@ -24,7 +24,7 @@
 .cek-page .cek-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start; 
   gap: 60px;
 }
 
@@ -107,35 +107,132 @@
 
 /* ===== BUTTON CARI ===== */
 .cek-page .btn-search {
-  margin-top: 25px;
-  padding: 14px 26px;
+  margin-top: 24px;
+  width: 100%;
+  padding: 16px;
   background: #C94C4C;
   color: white;
   border: none;
-  border-radius: 14px;
+  border-radius: 18px;
   cursor: pointer;
   font-size: 15px;
   font-weight: 600;
-  transition: 0.2s;
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 20px rgba(201, 76, 76, 0.25);
 }
 
 .cek-page .btn-search:hover {
+  background: #b94242;
   transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(201, 76, 76, 0.35);
+}
+
+.cek-page .btn-search:active {
+  transform: scale(0.98);
+}
+
+.cek-page .btn-search:disabled {
+  background: #d9d9d9;
+  color: #888;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* ===== PETUNJUK ===== */
+.cek-page .instruction-box {
+  background: #fff;
+  border: 1px solid #e7e7e7;
+  border-radius: 18px;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+}
+
+.cek-page .guide-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #C94C4C;
+  margin-bottom: 10px;
+}
+
+.cek-page .guide-text {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 14px;
+}
+
+.cek-page .guide-text b {
+  color: #C94C4C;
+}
+
+/* ===== CONTOH BAHAN ===== */
+.cek-page .example-text {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.cek-page .example-text span {
+  background: #fff3f3;
+  color: #C94C4C;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-left: 6px;
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+/* ===== STATUS BAHAN ===== */
+.cek-page .ingredient-status {
+  margin-top: 14px;
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+/* ===== BUTTON TAMBAH ===== */
+.cek-page .input-box button {
+  background: #C94C4C;
+  color: white;
+  border: none;
+  padding: 15px 24px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 16px rgba(201, 76, 76, 0.25);
+}
+
+.cek-page .input-box button:hover {
+  background: #b94242;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(201, 76, 76, 0.35);
+}
+
+.cek-page .input-box button:active {
+  transform: scale(0.98);
 }
 
 /* ===== RIGHT IMAGE ===== */
 .cek-page .cek-right {
-  flex: 0.8;
+  flex: 1;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+  margin-top: -80px; 
 }
 
 .cek-page .cek-right img {
   width: 100%;
-  max-width: 380px;
+  max-width: 520px; 
   object-fit: contain;
 }
-
 /* ========================= */
 /* RESULT SECTION */
 /* ========================= */
@@ -154,6 +251,75 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   gap: 25px;
+}
+
+/* ===== CARD CONTENT ===== */
+.cek-page .recipe-content {
+  padding: 18px;
+}
+
+/* ===== META ===== */
+.cek-page .recipe-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.cek-page .author {
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+}
+
+.cek-page .rating {
+  background: #fff4d6;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ===== TITLE ===== */
+.cek-page .recipe-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 12px;
+  line-height: 1.4;
+}
+
+/* ===== MATCH ===== */
+.cek-page .match-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #eafaf0;
+  color: #1f8b4c;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* ===== BUTTON ===== */
+.cek-page .outline-btn {
+  width: 100%;
+  border: 1.5px solid #C94C4C;
+  background: white;
+  color: #C94C4C;
+  border-radius: 14px;
+  padding: 13px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.cek-page .outline-btn:hover {
+  background: #C94C4C;
+  color: white;
 }
 
 /* ===== CARD ===== */

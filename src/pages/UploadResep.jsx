@@ -268,6 +268,10 @@ const token =
           {/* FORM */}
           <div className="upload-form">
             <h4>Informasi Resep</h4>
+            <p className="section-hint">
+              Isi informasi dasar resep sebelum
+              menambahkan bahan dan langkah.
+            </p>
 
             <input
               placeholder="Judul Resep"
@@ -275,7 +279,7 @@ const token =
               onChange={(e) => setTitle(e.target.value)}
             />
             <input
-              placeholder="Porsi"
+              placeholder="Porsi (Contoh: 1)"
               value={serving}
               onChange={(e) => setServing(e.target.value)}
             />
@@ -305,6 +309,9 @@ const token =
           <div className="bahan-box">
 
             <h4>Bahan-Bahan</h4>
+            <p className="section-hint">
+              Tambahkan satu bahan per kolom, lalu klik <b>+ Tambah Bahan</b> untuk menambah bahan lainnya.
+            </p>
 
             {ingredients.map((item, index) => (
 
@@ -356,6 +363,11 @@ const token =
           {/* LANGKAH */}
           <div className="langkah-box">
             <h4>Langkah-Langkah</h4>
+            <p className="section-hint">
+              Tulis langkah memasak satu per satu.
+              Anda juga dapat menambahkan foto
+              pada setiap langkah.
+            </p>
 
             {steps.map((step, index) => (
               <div key={index} className="langkah-item">
