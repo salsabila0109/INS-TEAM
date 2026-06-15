@@ -381,6 +381,7 @@ const EditProfil = () => {
                 <input
                   type="text"
                   value={name}
+                  maxLength={50}  
                   onChange={(
                     e
                   ) =>
@@ -391,6 +392,9 @@ const EditProfil = () => {
                     )
                   }
                 />
+                <small style={{ fontSize: "0.75rem", color: "#888" }}>
+                  Maksimal 50 karakter
+                </small>
               </div>
 
               {/* EMAIL */}
@@ -440,6 +444,7 @@ const EditProfil = () => {
                   rows="4"
                   placeholder="Ceritakan sedikit tentang dirimu..."
                   value={bio}
+                  maxLength={300}
                   onChange={(
                     e
                   ) =>
@@ -450,19 +455,28 @@ const EditProfil = () => {
                     )
                   }
                 />
+                <small style={{ fontSize: "0.75rem", color: "#888" }}>
+                  {bio.length}/300 karakter
+                </small>                
               </div>
 
               {/* BUTTON */}
               <div className="action-area">
+
+                <button
+                  className="btn-cancel"
+                  onClick={() => navigate("/profile")}
+                >
+                  Batal
+                </button>
+
                 <button
                   className="btn-save"
-                  onClick={
-                    handleSave
-                  }
+                  onClick={handleSave}
                 >
-                  Simpan
-                  Perubahan
+                  Simpan Perubahan
                 </button>
+
               </div>
             </section>
           </div>

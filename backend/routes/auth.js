@@ -13,11 +13,15 @@ router.post(
   [
     body("name")
       .notEmpty()
-      .withMessage("Nama wajib diisi"),
+      .withMessage("Nama wajib diisi")
+      .isLength({ min: 2, max: 50 })
+      .withMessage("Nama harus 2–50 karakter"),,
 
     body("email")
       .isEmail()
-      .withMessage("Format email tidak valid"),
+      .withMessage("Format email tidak valid")
+      .isLength({ max: 120 })
+      .withMessage("Email terlalu panjang (maks 120 karakter)"),
 
     body("password")
       .isLength({ min: 6 })

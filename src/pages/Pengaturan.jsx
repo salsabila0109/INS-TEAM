@@ -281,32 +281,16 @@ function Pengaturan() {
 
             {/* Password */}
             {!isChanging ? (
-              <div className="input-group-layout">
-                <label>
-                  Password
-                </label>
+            <div className="input-group-layout">
+              <label>Password</label>
 
-                <div className="password-input-wrapper">
-                  <input
-                    type="password"
-                    value="••••••"
-                    className="password-field-style"
-                    disabled
-                  />
-
-                  <button
-                    type="button"
-                    className="inline-ubah-btn"
-                    onClick={() =>
-                      setIsChanging(
-                        true
-                      )
-                    }
-                  >
-                    Ubah
-                  </button>
-                </div>
-              </div>
+              <input
+                type="password"
+                value="••••••••"
+                className="input-field-style disabled-input"
+                disabled
+              />
+            </div>
             ) : (
               <form
                 onSubmit={
@@ -411,17 +395,23 @@ function Pengaturan() {
               </form>
             )}
 
-            {/* Logout */}
+            {/* ACTION FOOTER */}
             {!isChanging && (
               <div className="action-footer-row">
                 <button
                   type="button"
-                  className="logout-action-btn"
-                  onClick={
-                    handleLogout
-                  }
+                  className="btn-ubah-style"
+                  onClick={() => setIsChanging(true)}
                 >
-                  Keluar
+                  Ubah Password
+                </button>
+
+                <button
+                  type="button"
+                  className="logout-action-btn"
+                  onClick={handleLogout}
+                >
+                  Logout
                 </button>
               </div>
             )}

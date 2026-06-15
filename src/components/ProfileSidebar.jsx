@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function ProfileSidebar({
   user,
@@ -17,24 +18,25 @@ function ProfileSidebar({
   following = 0,
 }) {
   const navigate = useNavigate();
+  const [imgError, setImgError] = useState(false);
 
   return (
     <aside className="sidebar">
 
       {/* FOTO PROFIL */}
       <div className="avatar-wrapper">
-        <img
-          src={
-            user?.photo ||
-            "https://via.placeholder.com/150"
-          }
-          alt="profile"
-          className="avatar"
-          onError={(e) => {
-            e.target.src =
-              "https://via.placeholder.com/150";
-          }}
-        />
+        {user?.photo && !imgError ? (
+          <img
+            src={user.photo}
+            alt="profile"
+            className="avatar"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="avatar-fallback">
+            <FontAwesomeIcon icon={faUser} />
+          </div>
+        )}
       </div>
 
       {/* INFO USER */}

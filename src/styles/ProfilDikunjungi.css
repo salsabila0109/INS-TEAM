@@ -1,102 +1,228 @@
+/* =========================
+   WRAPPER UTAMA
+========================= */
+.visited-profile-wrapper {
+  padding: 24px 40px;
+  background: #f6f6f6;
+  min-height: 100vh;
+}
+
+/* layout utama */
 .visited-profile {
   display: flex;
-  gap: 30px;
-  padding: 30px;
-  min-height: 100vh;
-  background: #f8f8f8;
+  gap: 28px;
+  align-items: flex-start;
+  margin-top: 10px;
 }
 
 /* =========================
-   SIDEBAR
+   BACK BUTTON
+========================= */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 600;
+  color: #444;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: 0.2s ease;
+}
+
+.back-button:hover {
+  color: #c94c4c;
+  transform: translateX(-3px);
+}
+
+/* =========================
+   SIDEBAR PROFILE
 ========================= */
 .profile-card {
-  width: 320px;
+  width: 290px;
   flex-shrink: 0;
-  background: white;
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  position: sticky;
+  top: 20px;
+}
+
+.profile-card h2 {
+  margin-top: 14px;
+  font-size: 20px;
+  font-weight: 700;
+
+  /* FIX: biar bisa wrap ke bawah */
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  text-align: center;
+}
+
+.profile-card p {
+  font-size: 13px;
+  color: #777;
+
+  /* FIX: biar bisa wrap ke bawah */
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
   text-align: center;
 }
 
 .profile-photo {
-  width: 130px;
-  height: 130px;
+  width: 135px;
+  height: 135px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #ef4444;
+  border: 3px solid #c94c4c;
+}
+
+.profile-photo-fallback {
+  width: 135px;
+  height: 135px;
+  border-radius: 50%;
+  border: 3px solid #c94c4c;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f5f5f5;
+  color: #999;
+  font-size: 40px;
+
+  margin: 0 auto;
 }
 
 .profile-card h2 {
-  margin-top: 15px;
+  margin-top: 14px;
+  font-size: 20px;
+  font-weight: 700;
 }
 
+.profile-card p {
+  font-size: 13px;
+  color: #777;
+}
+
+/* stats */
 .stats {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  margin: 15px 0;
-  font-size: 14px;
+  gap: 35px;
+  margin: 18px 0;
 }
 
 .stats div {
   text-align: center;
 }
 
+.stats strong {
+  font-size: 16px;
+  color: #222;
+}
+
+.stats p {
+  font-size: 12px;
+  color: #777;
+}
+
+/* follow button */
 .follow-btn {
   background: white;
-  border: 1.5px solid #C94C4C;
-  color: #C94C4C;
-  padding: 8px 18px;
-  border-radius: 10px;
+  border: 1.8px solid #c94c4c;
+  color: #c94c4c;
+  padding: 9px 20px;
+  border-radius: 12px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
-  white-space: nowrap;
+  transition: 0.25s;
+  margin-top: 8px;
+  width: 100%;
 }
 
 .follow-btn:hover {
-  background: #C94C4C;
+  background: #c94c4c;
   color: white;
 }
 
 .bio-box {
-  margin-top: 20px;
-  background: #fff5f5;
-  padding: 15px;
-  border-radius: 10px;
+  margin-top: 18px;
+  padding: 16px 16px 14px;
+  border-radius: 14px;
+
+  /* gradient soft biar tidak flat */
+  background: linear-gradient(135deg, #fff5f5, #fff);
+
+  border: 1px solid rgba(201, 76, 76, 0.15);
+
   text-align: left;
+  font-size: 13px;
+  color: #444;
+  line-height: 1.5;
+
+  position: relative;
+
+  /* efek depth */
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
+}
+
+.bio-box::before {
+  content: "“";
+  position: absolute;
+  top: 6px;
+  left: 10px;
+
+  font-size: 28px;
+  color: rgba(201, 76, 76, 0.25);
+  font-weight: bold;
+}
+
+.bio-box p {
+  margin: 0;
 }
 
 /* =========================
-   AREA KANAN
+   SECTION KANAN
 ========================= */
 .recipe-section {
   flex: 1;
   min-width: 0;
-  display: flex;
-  flex-direction: column;
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* header */
+.header-card {
+  margin-bottom: 12px;
+}
+
+.card-header-inline h2 {
+  font-size: 20px;
+  font-weight: 700;
 }
 
 /* =========================
-   SEARCH (SAMA SEPERTI NAVBAR)
+   SEARCH
 ========================= */
 .visited-profile .search-box {
   width: 100%;
-  margin-top: 10px;
-
-  max-width: 500px;
-
+  max-width: 520px;
   display: flex;
   align-items: center;
-
-  background: #f5f5f5;
+  background: #f4f4f4;
   border-radius: 30px;
-  padding: 10px 18px;
+  padding: 10px 16px;
+  margin-top: 10px;
 }
 
 .visited-profile .search-box input {
@@ -105,42 +231,32 @@
   outline: none;
   background: transparent;
   font-size: 14px;
-  color: #222;
-}
-
-/* placeholder */
-.visited-profile .search-box input::placeholder {
-  color: #999;
 }
 
 /* =========================
-   BACK BUTTON
-========================= */
-.visited-profile-wrapper {
-  padding: 20px 30px;
-  background: #f8f8f8;
-  min-height: 100vh;
-}
-
-.back-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border: none;
-  background: transparent;
-  font-size: 16px;
-  font-weight: 600;
-  color: #444;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-/* =========================
-   GRID RECIPE
+   GRID RESEP (INI YANG DIPERBAIKI BESAR)
 ========================= */
 .recipe-grid {
-  margin-top: 20px;
+  margin-top: 18px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+  .visited-profile {
+    flex-direction: column;
+  }
+
+  .profile-card {
+    width: 100%;
+    position: relative;
+  }
+
+  .recipe-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
 }

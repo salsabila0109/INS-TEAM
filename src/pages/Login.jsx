@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../styles/Auth.css";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 function Login() {
   const navigate = useNavigate();
@@ -178,11 +180,9 @@ function Login() {
 
           <span
             className="eye-icon"
-            onClick={() =>
-              setShow(!show)
-            }
+            onClick={() => setShow(!show)}
           >
-            👁
+            <FontAwesomeIcon icon={show ? faEyeSlash : faEye} />
           </span>
 
         </div>

@@ -4,6 +4,7 @@ import ProfileSidebar from "../components/ProfileSidebar";
 import "../styles/profile.css";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faUser,
   faUtensils,

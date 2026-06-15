@@ -111,7 +111,7 @@ function RecipeCard({ data }) {
           </span>
 
           {/* RATING + BOOKMARK */}
-          <div className="rating-bookmark">
+          <div className="right-meta">
             <span className="rating">
               {data.totalReviews >
               0 ? (

@@ -45,6 +45,8 @@ function EditResep() {
 
   const [steps, setSteps] =
     useState([]);
+  const [errorPopup, setErrorPopup] = useState(false);
+  const [errorMessages, setErrorMessages] = useState([]);
 
   // =========================
   // GET DATA RECIPE
@@ -317,149 +319,126 @@ function EditResep() {
   // =========================
   // SAVE
   // =========================
-  const handleSave =
-    async () => {
-      try {
-        const formData =
-          new FormData();
+  const handleSave = async () => {
+    const errors = [];
 
-        formData.append(
-          "title",
-          title
-        );
+    const validIngredients = ingredients.filter(
+      (i) => i.text.trim() !== ""
+    );
 
-        formData.append(
-          "serving",
-          serving
-        );
+    const validSteps = steps.filter(
+      (s) => s.text.trim() !== ""
+    );
 
-        formData.append(
-          "description",
-          description
-        );
+    // ================= VALIDASI =================
+    if (!image) {
+      errors.push("Foto resep wajib diisi");
+    }
 
-        formData.append(
-          "category",
-          category
-        );
+    if (!title || !serving || !description || !category) {
+      errors.push("Informasi resep wajib diisi lengkap");
+    }
 
-        formData.append(
-          "ingredients",
-          JSON.stringify(
-            ingredients.map(
-              (
-                item
-              ) =>
-                item.text
-            )
-          )
-        );
+    if (validIngredients.length < 1) {
+      errors.push("Minimal harus ada 1 bahan");
+    }
 
-        const formattedSteps =
-          [];
+    if (validSteps.length < 1) {
+      errors.push("Minimal harus ada 1 langkah");
+    }
 
-        steps.forEach(
-          (
-            step,
-            stepIndex
-          ) => {
-            const imageNames =
-              [];
+    // ================= STOP =================
+    if (errors.length > 0) {
+      setErrorMessages(errors);
+      setErrorPopup(true);
+      return;
+    }
 
-            step.images.forEach(
-              (
-                img,
-                imgIndex
-              ) => {
+    try {
+      const formData = new FormData();
 
-                if (
-                  img.file
-                ) {
-                  imageNames.push(
-                    `step-${stepIndex}-${imgIndex}-${img.file.name}`
-                  );
+      formData.append("title", title);
+      formData.append("serving", serving);
+      formData.append("description", description);
+      formData.append("category", category);
 
-                  formData.append(
-                    "stepImages",
-                    img.file
-                  );
-                } else {
-                  imageNames.push(
-                    img.oldImage
-                  );
-                }
-              }
-            );
+      formData.append(
+        "ingredients",
+        JSON.stringify(validIngredients.map((i) => i.text))
+      );
 
-            formattedSteps.push(
-              {
-                text:
-                  step.text,
-                images:
-                  imageNames,
-              }
-            );
+      const formattedSteps = [];
+
+      validSteps.forEach((step, stepIndex) => {
+        const imageNames = [];
+
+        step.images.forEach((img, imgIndex) => {
+          if (img.file) {
+            const name = `step-${stepIndex}-${imgIndex}-${img.file.name}`;
+            imageNames.push(name);
+            formData.append("stepImages", img.file);
+          } else {
+            imageNames.push(img.oldImage);
           }
-        );
+        });
 
-        formData.append(
-          "steps",
-          JSON.stringify(
-            formattedSteps
-          )
-        );
+        formattedSteps.push({
+          text: step.text,
+          images: imageNames,
+        });
+      });
 
-        if (
-          image?.file
-        ) {
-          formData.append(
-            "image",
-            image.file
-          );
-        }
+      formData.append("steps", JSON.stringify(formattedSteps));
 
-        const token =
-          localStorage.getItem(
-            "token"
-          );
-
-        await axios.put(
-          `http://localhost:5000/api/recipes/${id}`,
-          formData,
-          {
-            headers: {
-              Authorization:
-                `Bearer ${token}`,
-              "Content-Type":
-                "multipart/form-data",
-            },
-          }
-        );
-
-        alert(
-          "Resep berhasil diperbarui!"
-        );
-
-        navigate(
-          "/resepsaya"
-        );
-
-      } catch (error) {
-
-        console.log(
-          error
-        );
-
-        alert(
-          "Gagal update resep"
-        );
+      if (image?.file) {
+        formData.append("image", image.file);
       }
-    };
+
+      const token = localStorage.getItem("token");
+
+      await axios.put(
+        `http://localhost:5000/api/recipes/${id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      navigate("/resepsaya");
+    } catch (error) {
+      setErrorMessages(["Gagal update resep"]);
+      setErrorPopup(true);
+    }
+  };
 
   return (
     <>
-      <Navbar />
+      <Navbar hideSearch={true} />
+      {errorPopup && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <h3>⚠ Data Belum Lengkap</h3>
 
+            <ul>
+              {errorMessages.map((msg, i) => (
+                <li key={i}>{msg}</li>
+              ))}
+            </ul>
+
+            <div className="popup-buttons">
+              <button
+                className="popup-btn primary"
+                onClick={() => setErrorPopup(false)}
+              >
+                Mengerti
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="upload-page">
 
         {/* HEADER */}

@@ -49,6 +49,33 @@
   padding: 28px;
 }
 
+.author-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f1f1f1;
+  flex-shrink: 0;
+}
+
+/* kalau image */
+.author-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* kalau icon */
+.author-avatar svg {
+  font-size: 38px;
+  color: #999;
+}
+
 .author-info {
   display: flex;
   align-items: center;

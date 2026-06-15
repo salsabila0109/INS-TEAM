@@ -5,6 +5,8 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import ProfileSidebar from "../components/ProfileSidebar";
 import "../styles/followPage.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function FollowingPage() {
   const navigate = useNavigate();
@@ -129,15 +131,22 @@ function FollowingPage() {
                     }
                   >
                     <div className="follow-user">
-                      <img
-                        src={
-                          item.photo ||
-                          "https://via.placeholder.com/80"
-                        }
-                        alt={
-                          item.name
-                        }
-                      />
+                      <div className="follow-avatar">
+                        {item.photo ? (
+                          <img
+                            src={
+                              item.photo.startsWith("http")
+                                ? item.photo
+                                : `http://localhost:5000/uploads/${item.photo}`
+                            }
+                            alt={item.name}
+                          />
+                        ) : (
+                          <div className="follow-avatar-fallback">
+                            <FontAwesomeIcon icon={faUser} />
+                          </div>
+                        )}
+                      </div>
 
                       <div>
                         <h4>

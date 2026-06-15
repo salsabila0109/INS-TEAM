@@ -1,3 +1,6 @@
+/* =========================
+   GLOBAL
+========================= */
 .main-wrapper {
   background-color: #f4f7f6;
   min-height: 100vh;
@@ -5,7 +8,9 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* Penyelarasan Grid Container 2 Kolom */
+/* =========================
+   GRID LAYOUT
+========================= */
 .settings-container {
   display: grid;
   grid-template-columns: 280px 1fr;
@@ -16,12 +21,14 @@
   align-items: start;
 }
 
-/* SIDEBAR STYLING */
+/* =========================
+   SIDEBAR
+========================= */
 .sidebar-section {
-  background: #ffffff;
+  background: #fff;
   border-radius: 16px;
   padding: 30px 20px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
   text-align: center;
 }
 
@@ -46,17 +53,19 @@
 
 .profile-card-side h3 {
   font-size: 1.2rem;
-  color: #333333;
+  color: #333;
   margin-bottom: 4px;
   font-weight: 600;
 }
 
 .user-email-text {
   font-size: 0.85rem;
-  color: #777777;
+  color: #777;
 }
 
-/* Navigasi Menu Sidebar */
+/* =========================
+   NAV MENU
+========================= */
 .navigation-menu {
   display: flex;
   flex-direction: column;
@@ -69,56 +78,57 @@
   gap: 12px;
   width: 100%;
   padding: 12px 16px;
-  background: none;
   border: none;
+  background: none;
   border-radius: 10px;
   font-size: 0.95rem;
-  color: #555555;
-  text-decoration: none;
+  color: #555;
   cursor: pointer;
-  box-sizing: border-box;
-  transition: all 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .navigation-menu .nav-item:hover {
   background: #f8fafc;
-  color: #333333;
+  color: #333;
 }
 
-/* Menu Pengaturan Aktif (Merah khas FoodiesHub) */
 .navigation-menu .nav-item.active {
-  background: #C94C4C !important;
-  color: #ffffff !important;
+  background: #C94C4C;
+  color: #fff;
   font-weight: 500;
 }
 
-/* PANEL CONTENT UTAMA */
+/* =========================
+   MAIN CONTENT
+========================= */
 .content-section {
   width: 100%;
 }
 
 .section-main-title {
   font-size: 1.8rem;
-  color: #333333;
+  color: #333;
   font-weight: 600;
   margin-bottom: 20px;
 }
 
 .settings-white-box {
-  background: #ffffff;
+  background: #fff;
   border-radius: 16px;
   padding: 35px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-  position: relative;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }
 
 .box-sub-title {
   font-size: 1.2rem;
-  color: #333333;
+  color: #333;
   margin-bottom: 25px;
   font-weight: 600;
 }
 
+/* =========================
+   INPUT FIELD
+========================= */
 .input-group-layout {
   display: flex;
   flex-direction: column;
@@ -129,146 +139,176 @@
 .input-group-layout label {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #333333;
+  color: #333;
 }
 
 .input-field-style {
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid #d1d5db;
   border-radius: 10px;
   font-size: 0.95rem;
-  color: #333333;
   outline: none;
-  background: #ffffff;
-  box-sizing: border-box;
-  transition: border-color 0.2s;
+  background: #fff;
+  transition: 0.2s;
 }
 
 .input-field-style:focus {
   border-color: #C94C4C;
+  box-shadow: 0 0 0 3px rgba(201, 76, 76, 0.1);
 }
 
 .disabled-input {
   background: #f9f9f9;
+  color: #999;
   cursor: not-allowed;
-  color: #999999;
 }
 
-/* Wrapper Khusus Input Password */
-.password-input-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
+/* =========================
+   PASSWORD DISPLAY MODE (READ ONLY)
+========================= */
+.password-display {
   width: 100%;
-}
-
-.password-field-style {
-  width: 100%;
-  padding: 12px 100px 12px 16px;
-  border: 1px solid #cbd5e1;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
   border-radius: 10px;
-  font-size: 1rem;
-  background: #ffffff;
-  letter-spacing: 3px;
+  font-size: 0.95rem;
+  background: #f9f9f9;
+  color: #999;
   box-sizing: border-box;
+  letter-spacing: 2px;
 }
 
-.inline-ubah-btn {
-  position: absolute;
-  right: 8px;
-  background: #C94C4C;
-  color: #ffffff;
-  border: none;
-  padding: 7px 18px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.inline-ubah-btn:hover {
-  background: #b33c3c;
-}
-
-/* FORM EDIT PASSWORD (DENGAN STRUKTUR BARU YANG RAPIH) */
-.password-change-form {
+/* =========================
+   PASSWORD EDIT MODE
+========================= */
+.password-input-wrapper {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-top: 10px;
-}
-
-.password-action-buttons {
-  display: flex;
-  justify-content: flex-end; /* Mendorong tombol ke kanan bawah */
-  gap: 12px;
-  margin-top: 25px;
   width: 100%;
-}
-
-/* Tombol Batal Ganti Password */
-.btn-cancel-style {
-  background: #f1f5f9;
-  color: #475569;
-  border: 1px solid #cbd5e1;
-  padding: 10px 24px;
+  border: 1px solid #d1d5db;
   border-radius: 10px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  background: #fff;
+  overflow: hidden;
+  transition: 0.2s ease;
 }
 
-.btn-cancel-style:hover {
-  background: #e2e8f0;
-  color: #334155;
+.password-input-wrapper:focus-within {
+  border-color: #C94C4C;
+  box-shadow: 0 0 0 3px rgba(201, 76, 76, 0.1);
 }
 
-/* Tombol Simpan Ganti Password */
-.btn-save-style {
-  background: #C94C4C;
-  color: #ffffff;
+/* input */
+.password-field-style {
+  flex: 1;
   border: none;
-  padding: 10px 28px;
-  border-radius: 10px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(201, 76, 76, 0.2);
-  transition: all 0.2s ease;
+  outline: none;
+  padding: 12px 16px;
+  font-size: 0.95rem; 
+  background: transparent;
+  color: #333;
 }
 
-.btn-save-style:hover {
-  background: #b33c3c;
-  box-shadow: 0 4px 12px rgba(201, 76, 76, 0.3);
-}
-
-/* Bagian Footer Keluar Utama */
+/* =========================
+   ACTION BUTTONS (FIXED LAYOUT)
+========================= */
 .action-footer-row {
   display: flex;
   justify-content: flex-end;
-  margin-top: 40px;
+  gap: 12px;
+  margin-top: 30px;
+  flex-wrap: wrap;
 }
 
+/* UBAH PASSWORD */
+.btn-ubah-style {
+  background: #fff;
+  color: #C94C4C;
+  border: 1.5px solid #C94C4C;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-ubah-style:hover {
+  background: rgba(201, 76, 76, 0.08);
+}
+
+/* KELUAR */
 .logout-action-btn {
   background: #C94C4C;
-  color: #ffffff;
+  color: #fff;
   border: none;
-  padding: 10px 28px;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-weight: 500;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: 0.2s ease;
 }
 
 .logout-action-btn:hover {
   background: #b33c3c;
 }
 
+/* =========================
+   PASSWORD FORM ACTION
+========================= */
+.password-change-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.password-action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+/* BUTTON CANCEL */
+.btn-cancel-style {
+  background: #fff;
+  color: #C94C4C;
+  border: 1.5px solid #C94C4C;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-cancel-style:hover {
+background: rgba(201, 76, 76, 0.08);
+}
+
+/* BUTTON SAVE */
+.btn-save-style {
+  background: #C94C4C;
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.btn-save-style:hover {
+  background: #b33c3c;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 768px) {
   .settings-container {
     grid-template-columns: 1fr;
+  }
+
+  .action-footer-row {
+    justify-content: center;
   }
 }

@@ -226,18 +226,29 @@ function DetailResep() {
             </div>
 
             <div className="description-card">
-              <div
-                className="author-info"
-                onClick={() =>
-                  navigate(`/profil-dikunjungi/${recipe.User?.id}`)
-                }
-              >
-                <FaUserCircle />
-
-                <span>
-                  {recipe.User?.name}
-                </span>
+            <div
+              className="author-info"
+              onClick={() =>
+                navigate(`/profil-dikunjungi/${recipe.User?.id}`)
+              }
+            >
+              <div className="author-avatar">
+                {recipe.User?.photo ? (
+                  <img
+                    src={
+                      recipe.User.photo.startsWith("http")
+                        ? recipe.User.photo
+                        : `http://localhost:5000/uploads/${recipe.User.photo}`
+                    }
+                    alt="user"
+                  />
+                ) : (
+                  <FaUserCircle />
+                )}
               </div>
+
+              <span>{recipe.User?.name}</span>
+            </div>
 
               <p>
                 {recipe.description}

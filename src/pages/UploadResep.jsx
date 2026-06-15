@@ -11,11 +11,13 @@ function UploadResep() {
   const [serving, setServing] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-
-  const [ingredients, setIngredients] = useState([
-    { text: "" }
-  ]);
-
+  const [stepError, setStepError] = useState([]);
+  const [ingredientError, setIngredientError] = useState([]);
+  const [ingredients, setIngredients] = useState([{ text: "" }]);
+  const [submitted, setSubmitted] = useState(false);
+  const [errorPopup, setErrorPopup] = useState(false);
+  const [errorMessages, setErrorMessages] = useState([]);
+  
   // ================= FOTO UTAMA (SINGLE) =================
   const [image, setImage] = useState(null);
 
@@ -42,6 +44,12 @@ function UploadResep() {
     const updated = [...steps];
     updated[index].text = value;
     setSteps(updated);
+
+    if (submitted) {
+      const errors = [...stepError];
+      errors[index] = value.trim() === "";
+      setStepError(errors);
+    }
   };
 
   const handleStepImage = (e, index) => {
@@ -99,12 +107,39 @@ function UploadResep() {
   };
 
   const handleSubmit = async () => {
+    setSubmitted(true);
+
+    const errors = [];
+
+    // ================= VALIDASI =================
+    if (!image) errors.push("Foto resep wajib diisi");
+
+    if (!title || !serving || !description || !category)
+      errors.push("Informasi resep wajib diisi lengkap");
+
+    const validIngredients = ingredients.filter(
+      (item) => item.text.trim() !== ""
+    );
+
+    if (validIngredients.length < 1)
+      errors.push("Minimal harus ada 1 bahan");
+
+    const validSteps = steps.filter(
+      (step) => step.text.trim() !== ""
+    );
+
+    if (validSteps.length < 1)
+      errors.push("Minimal harus ada 1 langkah");
+
+    // ================= STOP DI SINI =================
+    if (errors.length > 0) {
+      setErrorMessages(errors);
+      setErrorPopup(true);
+      return;
+    }
 
     try {
-
-      const user = JSON.parse(
-        localStorage.getItem("user")
-      );
+      const user = JSON.parse(localStorage.getItem("user"));
 
       const formData = new FormData();
 
@@ -115,91 +150,81 @@ function UploadResep() {
 
       formData.append(
         "ingredients",
-        JSON.stringify(
-          ingredients.map((item) => item.text)
-        )
+        JSON.stringify(validIngredients.map((i) => i.text.trim()))
       );
 
-      // simpan step + nama file gambar
       const formattedSteps = [];
 
-      steps.forEach((step, stepIndex) => {
-
+      validSteps.forEach((step, stepIndex) => {
         const imageNames = [];
 
         step.images.forEach((img, imgIndex) => {
-
-          const fileName =
-            `step-${stepIndex}-${imgIndex}-${img.file.name}`;
+          const fileName = `step-${stepIndex}-${imgIndex}-${img.file.name}`;
 
           imageNames.push(fileName);
-
-          formData.append(
-            "stepImages",
-            img.file
-          );
-
+          formData.append("stepImages", img.file);
         });
 
         formattedSteps.push({
-          text: step.text,
+          text: step.text.trim(),
           images: imageNames,
         });
-
       });
 
-      formData.append(
-        "steps",
-        JSON.stringify(formattedSteps)
-      );
-
+      formData.append("steps", JSON.stringify(formattedSteps));
       formData.append("userId", user.id);
 
-      // upload gambar jika ada
       if (image) {
-        formData.append(
-          "image",
-          image.file
-        );
+        formData.append("image", image.file);
       }
 
-const token =
-  localStorage.getItem("token");
+      const token = localStorage.getItem("token");
 
       await axios.post(
         "http://localhost:5000/api/recipes",
         formData,
         {
           headers: {
-            "Content-Type":
-              "multipart/form-data",
-
-            Authorization:
-              `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
-      alert("Resep berhasil dipublikasikan!");
-
       navigate("/");
-
     } catch (error) {
-
       console.log(error);
-
-      console.log(error.response?.data);
-
-      alert("Gagal upload resep");
-
+      setErrorMessages(["Gagal upload resep, coba lagi"]);
+      setErrorPopup(true);
     }
-
   };
 
   return (
     <>
-      <Navbar />
+      <Navbar hideSearch={true} />
+      
+      {errorPopup && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <h3>⚠ Form Belum Lengkap</h3>
 
+            <ul>
+              {errorMessages.map((msg, i) => (
+                <li key={i}>{msg}</li>
+              ))}
+            </ul>
+
+            <div className="popup-buttons">
+              <button
+                className="popup-btn primary"
+                onClick={() => setErrorPopup(false)}
+              >
+                Mengerti
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="upload-page">
 
         {/* HEADER */}
@@ -325,12 +350,10 @@ const token =
                 <div className="step-box">
 
                   <input
+                    className={submitted && ingredientError[index]? "input-error": ""}
                     value={item.text}
                     onChange={(e) =>
-                      handleIngredientText(
-                        e.target.value,
-                        index
-                      )
+                      handleIngredientText(e.target.value, index)
                     }
                     placeholder="Tambahkan bahan..."
                   />
@@ -376,6 +399,7 @@ const token =
                 <div className="step-box">
 
                   <input
+                    className={submitted && stepError[index]? "input-error": ""}
                     value={step.text}
                     onChange={(e) =>
                       handleStepText(e.target.value, index)

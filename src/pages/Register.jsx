@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import "../styles/Auth.css";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -34,11 +36,23 @@ function Register() {
         "Nama wajib diisi"
       );
     }
+    
+    // VALIDASI PANJANG NAMA
+    if (name.length > 50) {
+      setNameError("Nama maksimal 50 karakter");
+      return;
+    }
 
     if (!email) {
       setEmailError(
         "Email wajib diisi"
       );
+    }
+
+    // VALIDASI EMAIL
+    if (email.length > 120) {
+      setEmailError("Email maksimal 120 karakter");
+      return;
     }
 
     if (!password) {
@@ -207,6 +221,7 @@ function Register() {
           type="text"
           placeholder="Nama"
           value={name}
+          maxLength={50}
           onChange={(e) => setName(e.target.value)}
         />
 
@@ -221,6 +236,7 @@ function Register() {
           type="email"
           placeholder="Email"
           value={email}
+          maxLength={120}
           onChange={(e) => setEmail(e.target.value)}
         />
 
@@ -243,14 +259,7 @@ function Register() {
             className="eye-icon"
             onClick={() => setShowPassword(!showPassword)}
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M2 12C4 7 8 5 12 5C16 5 20 7 22 12C20 17 16 19 12 19C8 19 4 17 2 12Z"
-                stroke="#999"
-                strokeWidth="2"
-              />
-              <circle cx="12" cy="12" r="3" stroke="#999" strokeWidth="2" />
-            </svg>
+            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
           </span>
         </div>
                 
@@ -273,14 +282,7 @@ function Register() {
             className="eye-icon"
             onClick={() => setShowConfirm(!showConfirm)}
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M2 12C4 7 8 5 12 5C16 5 20 7 22 12C20 17 16 19 12 19C8 19 4 17 2 12Z"
-                stroke="#999"
-                strokeWidth="2"
-              />
-              <circle cx="12" cy="12" r="3" stroke="#999" strokeWidth="2" />
-            </svg>
+            <FontAwesomeIcon icon={showConfirm ? faEyeSlash : faEye} />
           </span>
         </div>
 

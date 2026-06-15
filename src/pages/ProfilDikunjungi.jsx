@@ -5,6 +5,8 @@ import axios from "axios";
 import RecipeCard from "../components/RecipeCard";
 import Navbar from "../components/Navbar";
 import "../styles/profilDikunjungi.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function ProfilDikunjungi() {
   const { id } = useParams();
@@ -12,6 +14,7 @@ function ProfilDikunjungi() {
   const [user, setUser] = useState(null);
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
 
   const [followers, setFollowers] =
     useState(0);
@@ -90,28 +93,27 @@ function ProfilDikunjungi() {
   // ========================
   // FOLLOW / UNFOLLOW
   // ========================
-  const handleFollow =
-    async () => {
-      try {
-        await axios.post(
-          "http://localhost:5000/api/follow/toggle",
-          {
-            followerId:
-              currentUser.id,
-            followingId: id,
-          }
-        );
+  const handleFollow = async () => {
+    // ❗ CEK LOGIN DULU
+    if (!currentUser) {
+      setShowPopup(true);
+      return;
+    }
 
-        // refresh data
-        getProfile();
+    try {
+      await axios.post(
+        "http://localhost:5000/api/follow/toggle",
+        {
+          followerId: currentUser.id,
+          followingId: id,
+        }
+      );
 
-      } catch (err) {
-        console.log(
-          "Error follow:",
-          err
-        );
-      }
-    };
+      getProfile();
+    } catch (err) {
+      console.log("Error follow:", err);
+    }
+  };
 
   // ========================
   // SEARCH RECIPE
@@ -143,6 +145,37 @@ function ProfilDikunjungi() {
           ‹ Kembali
         </button>
 
+        {showPopup && (
+          <div className="popup-overlay">
+            <div className="popup-box">
+
+              <h3>Login Diperlukan</h3>
+              <p>
+                Silakan login terlebih dahulu untuk mengikuti user ini.
+              </p>
+
+              <div className="popup-buttons">
+
+                <button
+                  className="popup-btn outline"
+                  onClick={() => setShowPopup(false)}
+                >
+                  Batal
+                </button>
+
+                <button
+                  className="popup-btn primary"
+                  onClick={() => navigate("/login")}
+                >
+                  Login
+                </button>
+
+              </div>
+
+            </div>
+          </div>
+        )}
+
         <div className="visited-profile">
 
           {/* =======================
@@ -150,21 +183,23 @@ function ProfilDikunjungi() {
           ======================= */}
           <div className="profile-card">
 
-            {user.photo ? (
-              <img
-                src={
-                  user.photo.startsWith(
-                    "http"
-                  )
-                    ? user.photo
-                    : `http://localhost:5000/uploads/${user.photo}`
-                }
-                alt={user.name}
-                className="profile-photo"
-              />
-            ) : (
-              <div className="profile-photo"></div>
-            )}
+            <div className="profile-photo-wrapper">
+              {user.photo ? (
+                <img
+                  src={
+                    user.photo.startsWith("http")
+                      ? user.photo
+                      : `http://localhost:5000/uploads/${user.photo}`
+                  }
+                  alt={user.name}
+                  className="profile-photo"
+                />
+              ) : (
+                <div className="profile-photo-fallback">
+                  <FontAwesomeIcon icon={faUser} />
+                </div>
+              )}
+            </div>
 
             <h2>{user.name}</h2>
             <p>{user.email}</p>

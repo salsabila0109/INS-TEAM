@@ -30,9 +30,12 @@
 
 .avatar-wrapper {
   position: relative;
-  display: inline-block;
-  cursor: pointer;
+  width: 110px;
+  height: 110px;
   margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .avatar {
@@ -41,7 +44,21 @@
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid #C94C4C;
-  transition: transform 0.3s ease;
+}
+
+.avatar-fallback {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 4px solid #C94C4C;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f5f5f5;
+  color: #999;
+  font-size: 36px;
 }
 
 .upload-overlay {
@@ -65,17 +82,34 @@
 
 .sidebar h3 {
   font-size: 18px;
+  font-weight: 700;
   color: #333;
-  margin: 10px 0 5px;
+  margin: 12px 0 6px;
   text-align: center;
+
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  line-height: 1.4;
+
+  max-width: 100%;
+  padding: 0 12px;
+
+  /* efek lebih halus */
+  letter-spacing: 0.2px;
 }
 
 .email {
   font-size: 13px;
   color: #888;
-  margin-bottom: 20px;
   text-align: center;
+
+  white-space: normal;
+  overflow-wrap: break-word;
   word-break: break-word;
+
+  line-height: 1.4;
+  padding: 0 10px;
 }
 
 /* ============================================================

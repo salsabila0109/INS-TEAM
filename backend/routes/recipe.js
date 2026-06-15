@@ -240,33 +240,23 @@ router.get("/:id", async (req, res) => {
 // GET RECIPES BY USER
 // =========================
 router.get("/user/:id", async (req, res) => {
-
   try {
-
     const recipes = await Recipe.findAll({
-
-      where: {
-        userId: req.params.id,
-      },
-
-      order: [
-        ["createdAt", "DESC"]
+      where: { userId: req.params.id },
+      include: [
+        {
+          model: User,
+          attributes: ["id", "name", "photo"],
+        },
       ],
-
+      order: [["createdAt", "DESC"]],
     });
 
     res.json(recipes);
-
   } catch (error) {
-
     console.log(error);
-
-    res.status(500).json({
-      message: error.message,
-    });
-
+    res.status(500).json({ message: error.message });
   }
-
 });
 
 // =========================

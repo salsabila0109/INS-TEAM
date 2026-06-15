@@ -1,6 +1,9 @@
-/* Container Utama */
+/* =========================
+   EDIT PROFILE PAGE
+========================= */
+
 .edit-profile-page {
-  background-color: #f0f7ff; /* Biru sangat muda yang bersih */
+  background-color: #f0f7ff;
   min-height: 100vh;
   padding: 40px 20px;
   font-family: 'Inter', sans-serif;
@@ -10,35 +13,38 @@
   max-width: 1100px;
   margin: 0 auto;
   display: flex;
-  gap: 30px;
+  gap: 24px;
   align-items: flex-start;
 }
 
-/* SIDEBAR */
+/* =========================
+   SIDEBAR
+========================= */
+
 .sidebar-nav {
   width: 280px;
   background: white;
   border-radius: 20px;
-  padding: 30px 15px;
+  padding: 26px 14px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .user-preview {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 22px;
 }
 
 .avatar-preview {
-  width: 90px;
-  height: 90px;
+  width: 85px;
+  height: 85px;
   border-radius: 50%;
   border: 3px solid #C94C4C;
   object-fit: cover;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .user-preview h3 {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   margin: 0;
   color: #333;
 }
@@ -48,6 +54,7 @@
   color: #888;
 }
 
+/* NAV MENU */
 .nav-menu {
   display: flex;
   flex-direction: column;
@@ -57,15 +64,15 @@
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 15px;
+  gap: 10px;
+  padding: 11px 14px;
   border: none;
   background: transparent;
   border-radius: 12px;
   color: #666;
   font-weight: 500;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.2s ease;
 }
 
 .nav-item:hover {
@@ -78,18 +85,19 @@
   color: white;
 }
 
+/* LOGOUT */
 .btn-logout-sidebar {
   width: 100%;
-  margin-top: 30px;
+  margin-top: 22px;
   background: transparent;
-  border: 1px solid #ffebeb;
+  border: 1px solid #ffd6d6;
   color: #ff4d4d;
-  padding: 12px;
+  padding: 11px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -98,7 +106,10 @@
   background: #fff0f0;
 }
 
-/* FORM CONTENT */
+/* =========================
+   FORM CONTENT
+========================= */
+
 .edit-form-content {
   flex: 1;
 }
@@ -106,18 +117,18 @@
 .form-card {
   background: white;
   border-radius: 20px;
-  padding: 35px;
+  padding: 30px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .form-header {
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .form-header h2 {
   font-size: 1.5rem;
   color: #222;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .form-header p {
@@ -125,20 +136,23 @@
   font-size: 0.9rem;
 }
 
-/* PHOTO SECTION */
+/* =========================
+   PHOTO SECTION
+========================= */
+
 .upload-photo-section {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 20px;
+  gap: 16px;
+  padding: 18px;
   background: #fafafa;
   border-radius: 15px;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .current-photo {
-  width: 70px;
-  height: 70px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -154,10 +168,10 @@
   justify-content: center;
   border: 2px dashed #d1d1d1;
   background: white;
-  padding: 15px;
+  padding: 12px;
   border-radius: 12px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.2s ease;
 }
 
 .upload-label:hover {
@@ -168,7 +182,7 @@
 .upload-label span {
   font-size: 0.85rem;
   color: #C94C4C;
-  margin-top: 5px;
+  margin-top: 4px;
   font-weight: 600;
 }
 
@@ -176,18 +190,21 @@
   display: none;
 }
 
-/* INPUT GROUPS */
+/* =========================
+   INPUT
+========================= */
+
 .input-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 16px;
 }
 
 .input-group {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .input-group label {
@@ -196,56 +213,98 @@
   color: #444;
 }
 
-.input-group input, 
+.input-group input,
 .input-group textarea {
   border: 1px solid #e0e0e0;
-  padding: 12px 16px;
+  padding: 11px 14px;
   border-radius: 10px;
   font-size: 0.95rem;
   outline: none;
-  transition: 0.2s;
+  transition: 0.2s ease;
 }
 
-.input-group input:focus, 
+.input-group input:focus,
 .input-group textarea:focus {
   border-color: #C94C4C;
   box-shadow: 0 0 0 3px rgba(201, 76, 76, 0.1);
 }
 
-/* ACTION BUTTON */
+/* =========================
+   ACTION BUTTON
+========================= */
+
 .action-area {
-  margin-top: 10px;
+  margin-top: 12px;
   display: flex;
   justify-content: flex-end;
+  gap: 10px; /* 🔥 ini yang bikin tidak terlalu jauh */
 }
 
+/* CANCEL */
+.btn-cancel {
+  background: transparent;
+  color: #C94C4C;
+  border: 1.5px solid #C94C4C;
+
+  padding: 11px 22px;
+  border-radius: 12px;
+
+  font-weight: 600;
+  font-size: 0.95rem;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-cancel:hover {
+background: rgba(201, 76, 76, 0.08);
+}
+
+/* SAVE */
 .btn-save {
   background: #C94C4C;
   color: white;
+
   border: none;
-  padding: 14px 35px;
+  padding: 11px 22px;
   border-radius: 12px;
+
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.95rem;
+
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.2s ease;
 }
 
 .btn-save:hover {
   background: #a83b3b;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(201, 76, 76, 0.3);
+  box-shadow: 0 5px 12px rgba(201, 76, 76, 0.25);
 }
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media (max-width: 850px) {
   .edit-profile-container {
     flex-direction: column;
+    gap: 20px;
   }
+
   .sidebar-nav {
     width: 100%;
   }
+
   .input-row {
     grid-template-columns: 1fr;
+  }
+
+  .action-area {
+    justify-content: stretch;
+  }
+
+  .btn-cancel,
+  .btn-save {
+    flex: 1;
   }
 }

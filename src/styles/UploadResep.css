@@ -47,28 +47,42 @@
   width: 80px;
   height: 80px;
   border-radius: 10px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .image-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 /* REMOVE BUTTON */
 .remove-btn {
   position: absolute;
-  top: -5px;
-  right: -5px;
-  background: red;
-  color: white;
-  border: none;
+  top: -6px;
+  right: -6px;
+
+  width: 20px;
+  height: 20px;
+
   border-radius: 50%;
+  border: 2px solid #fff; /* biar kelihatan nempel di luar */
+  
+  background: #C94C4C;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   font-size: 12px;
-  width: 18px;
-  height: 18px;
+  font-weight: bold;
+
   cursor: pointer;
+
+  z-index: 5; /* pastikan selalu di atas */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 }
 
 /* ADD BOX */
@@ -213,4 +227,123 @@
   padding: 12px 25px;
   border-radius: 12px;
   cursor: pointer;
+}
+
+/* =========================
+   POPUP (FINAL CLEAN UI)
+========================= */
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+/* BOX */
+.popup-box {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+  animation: popupIn 0.22s ease;
+}
+
+/* TITLE */
+.popup-box h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #C94C4C;
+  margin-bottom: 10px;
+}
+
+/* LIST ERROR (INI YANG KAMU PERBAIKI BESAR) */
+.popup-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  text-align: left;
+}
+
+.popup-box li {
+  position: relative;
+  font-size: 14px;
+  color: #444;
+  padding-left: 22px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* bullet merah */
+.popup-box li::before {
+  content: "⚠";
+  position: absolute;
+  left: 0;
+  color: #C94C4C;
+  font-size: 14px;
+}
+
+/* BUTTON WRAPPER */
+.popup-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* BUTTON BASE */
+.popup-btn {
+  flex: 1;
+  height: 44px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s;
+}
+
+/* PRIMARY */
+.popup-btn.primary {
+  background: #C94C4C;
+  color: white;
+  box-shadow: 0 10px 25px rgba(201, 76, 76, 0.25);
+}
+
+.popup-btn.primary:hover {
+  background: #b94141;
+  transform: translateY(-1px);
+}
+
+/* OUTLINE */
+.popup-btn.outline {
+  background: transparent;
+  border: 1.5px solid #C94C4C;
+  color: #C94C4C;
+}
+
+.popup-btn.outline:hover {
+  background: rgba(201, 76, 76, 0.08);
+}
+
+/* ANIMATION */
+@keyframes popupIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
