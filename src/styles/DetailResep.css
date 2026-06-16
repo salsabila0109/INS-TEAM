@@ -118,6 +118,50 @@
   box-shadow: 0 4px 15px rgba(0,0,0,.05);
 }
 
+.content-card ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.content-card li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.content-card li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #C94C4C;
+  font-weight: bold;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.portion-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+  background: #f3f4f6;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.portion-icon {
+  font-size: 14px;
+  color: black;
+}
+
 .steps-card {
   max-height: 500px;
   overflow-y: auto;

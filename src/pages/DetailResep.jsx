@@ -293,9 +293,14 @@ function DetailResep() {
           {/* Main */}
           <main className="main-content-grid">
             <div className="content-card">
-              <h3>
-                Bahan-Bahan
-              </h3>
+              <div className="section-header">
+                <h3>Bahan-Bahan</h3>
+
+                <div className="portion-info">
+                  <FaUserCircle className="portion-icon" />
+                  <span>{recipe.serving || "1"} Porsi</span>
+                </div>
+              </div>
 
               <ul>
                 {recipe.ingredients?.map(

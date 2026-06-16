@@ -1,7 +1,3 @@
-import cssUrl from "../styles/Navbar.css?url";
-
-console.log(cssUrl);
-
 import "../styles/Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -50,7 +46,7 @@ function Navbar({
   }, []);
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${hideSearch ? "no-search" : ""}`}>
 
       <div className="navbar-inner">
 

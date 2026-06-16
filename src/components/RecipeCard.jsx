@@ -125,8 +125,7 @@ function RecipeCard({ data }) {
                 </>
               ) : (
                 <>
-                  ⭐ Belum ada
-                  penilaian
+                  ⭐ 0.0 (0)
                 </>
               )}
             </span>
