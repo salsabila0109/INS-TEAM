@@ -7,7 +7,7 @@ import "../styles/detailresep.css";
 
 function LihatResepSaya() {
   const { id } = useParams();
-
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const navigate =
     useNavigate();
 
@@ -149,47 +149,27 @@ function LihatResepSaya() {
       }
     };
 
-  const handleDelete =
-    async () => {
-      const confirmDelete =
-        window.confirm(
-          "Yakin ingin menghapus resep ini?"
-        );
+  const handleDelete = async () => {
+    try {
+      const token = localStorage.getItem("token");
 
-      if (!confirmDelete)
-        return;
+      await axios.delete(
+        `http://localhost:5000/api/recipes/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-      try {
-        const token =
-          localStorage.getItem(
-            "token"
-          );
+      setShowDeleteModal(false);
 
-        await axios.delete(
-          `http://localhost:5000/api/recipes/${id}`,
-          {
-            headers: {
-              Authorization:
-                `Bearer ${token}`,
-            },
-          }
-        );
-
-        alert(
-          "Resep berhasil dihapus"
-        );
-
-        navigate(
-          "/resepsaya"
-        );
-      } catch (error) {
-        console.log(error);
-
-        alert(
-          "Gagal menghapus resep"
-        );
-      }
-    };
+      navigate("/resepsaya");
+    } catch (error) {
+      console.log(error);
+      alert("Gagal menghapus resep");
+    }
+  };
 
   if (loading)
     return <div>Memuat...</div>;
@@ -349,15 +329,36 @@ function LihatResepSaya() {
 
         <button
             className="my-btn-delete-recipe"
-            onClick={
-            handleDelete
-            }
+            onClick={() => setShowDeleteModal(true)}
         >
             <FaTrash />
             Hapus
         </button>
         </div>
+        {showDeleteModal && (
+          <div className="modal-overlay">
+            <div className="modal-box">
+              <h3>Hapus Resep?</h3>
+              <p>Apakah kamu yakin ingin menghapus resep ini? Tindakan ini tidak bisa dibatalkan.</p>
 
+              <div className="modal-actions">
+                <button
+                  className="btn-cancel"
+                  onClick={() => setShowDeleteModal(false)}
+                >
+                  Batal
+                </button>
+
+                <button
+                  className="btn-delete"
+                  onClick={handleDelete}
+                >
+                  Hapus
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
           {/* KOMENTAR */}
           <section className="review-list">
             <h3>

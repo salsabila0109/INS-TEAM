@@ -8,6 +8,11 @@ import Categories from "../components/Categories";
 import RecipeCard from "../components/RecipeCard";
 import axios from "axios";
 import "../styles/Home.css";
+import { FaFire, FaClock, FaStar } from "react-icons/fa";
+
+const shuffleArray = (arr) => {
+  return [...arr].sort(() => Math.random() - 0.5);
+};
 
 function Home() {
   const [recipes, setRecipes] =
@@ -25,6 +30,39 @@ function Home() {
   const [searchTerm, setSearchTerm] =
     useState("");
 
+  const isAllCategory = activeCategory === "Semua";
+
+  const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
+  const now = Date.now();
+
+  const trendingRecipes = [...recipes]
+    .filter((item) => {
+      const createdTime = new Date(item.createdAt).getTime();
+      return now - createdTime <= SEVEN_DAYS;
+    })
+    .sort((a, b) => {
+      const scoreA =
+        (a.totalReviews || 0) * 15 +
+        (a.averageRating || 0) * 50 +
+        (new Date(a.createdAt).getTime() / 1000000000);
+
+      const scoreB =
+        (b.totalReviews || 0) * 15 +
+        (b.averageRating || 0) * 50 +
+        (new Date(b.createdAt).getTime() / 1000000000);
+
+      return scoreB - scoreA;
+    })
+    .slice(0, 6);
+    
+  const latestRecipes = [...recipes]
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 6);
+
+  const topRatedRecipes = [...recipes]
+    .sort((a, b) => (b.averageRating || 0) - (a.averageRating || 0))
+    .slice(0, 6);
+    
   useEffect(() => {
     const getRecipes =
       async () => {
@@ -87,7 +125,7 @@ function Home() {
 
       categoryMatch =
         avgRating >= 4 &&
-        totalReviews >= 2;
+        totalReviews >= 5;
     }
 
     // KATEGORI
@@ -161,51 +199,79 @@ function Home() {
       />
 
       <main className="home-main-wrapper">
+
         <section className="categories-section">
           <Categories
-            activeCategory={
-              activeCategory
-            }
-            setActiveCategory={
-              setActiveCategory
-            }
+            activeCategory={activeCategory}
+            setActiveCategory={setActiveCategory}
           />
         </section>
 
+        {/* 🔥 TRENDING */}
+        {isAllCategory && (
+          <section className="home-section">
+            <h2>
+              <FaFire className="section-icon" style={{ color: "#C94C4C" }} />
+              Trending Sekarang
+            </h2>
+
+            <div className="horizontal-scroll">
+              {trendingRecipes.map((item) => (
+                <RecipeCard key={item._id || item.id} data={item} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* 🆕 LATEST */}
+        {isAllCategory && (
+          <section className="home-section">
+            <h2>
+              <FaClock className="section-icon" style={{ color: "#64748b" }} />
+              Resep Terbaru
+            </h2>
+
+            <div className="horizontal-scroll">
+              {latestRecipes.map((item) => (
+                <RecipeCard key={item._id || item.id} data={item} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* ⭐ TOP RATED */}
+        {isAllCategory && (
+          <section className="home-section">
+            <h2>
+              <FaStar className="section-icon" style={{ color: "#c9a227" }} />
+              Top Rated
+            </h2>
+
+            <div className="horizontal-scroll">
+              {topRatedRecipes.map((item) => (
+                <RecipeCard key={item._id || item.id} data={item} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* GRID ALL (FILTER KAMU TETAP DIPERTAHANKAN) */}
         <div className="recipe-cards-grid">
           {loading ? (
-            <p
-              style={{
-                textAlign:
-                  "center",
-                gridColumn:
-                  "1 / -1",
-              }}
-            >
+            <p style={{ textAlign: "center", gridColumn: "1 / -1" }}>
               Memuat resep...
             </p>
-          ) : filteredRecipes.length >
-            0 ? (
-            filteredRecipes.map(
-              (item) => (
-                <RecipeCard
-                  key={
-                    item._id ||
-                    item.id
-                  }
-                  data={item}
-                />
-              )
-            )
+          ) : filteredRecipes.length > 0 ? (
+            shuffleArray(filteredRecipes).map((item) => (
+              <RecipeCard key={item._id || item.id} data={item} />
+            ))
           ) : (
             <div className="empty-state-card">
-              <p>
-                Tidak ada
-                resep ditemukan
-              </p>
+              <p>Tidak ada resep ditemukan</p>
             </div>
           )}
         </div>
+
       </main>
     </div>
   );

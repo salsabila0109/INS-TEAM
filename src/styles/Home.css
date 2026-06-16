@@ -69,6 +69,56 @@
   border: 1px dashed #cbd5e1;
 }
 
+.home-section {
+  margin-top: 5px;
+}
+
+.home-section h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #1e293b;
+}
+
+/* horizontal scroll ala Cookpad */
+.horizontal-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* biar card tidak full width di scroll */
+.horizontal-scroll > * {
+  flex: 0 0 auto;
+  width: 220px;
+  scroll-snap-align: start;
+}
+
+.section-icon {
+  margin-right: 10px;
+  font-size: 16px;
+  vertical-align: middle;
+  opacity: 0.9;
+}
+
+.home-section h2 {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+}
+
+.home-section h2 svg {
+  transition: 0.2s ease;
+}
+
+.home-section h2:hover svg {
+  transform: scale(1.1);
+}
 
 /* =========================
    CARD ANIMATION

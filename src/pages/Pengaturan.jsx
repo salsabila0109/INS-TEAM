@@ -7,9 +7,14 @@ import ProfileSidebar from "../components/ProfileSidebar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/pengaturan.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 function Pengaturan() {
   const navigate = useNavigate();
+  const [errorOldPassword, setErrorOldPassword] = useState("");
+  const [errorNewPassword, setErrorNewPassword] = useState("");
+  const [errorConfirmPassword, setErrorConfirmPassword] = useState("");
 
   const [user, setUser] =
     useState(
@@ -158,69 +163,62 @@ function Pengaturan() {
   };
 
   // Ganti password
-  const handleChangePassword =
-    async (e) => {
-      e.preventDefault();
+  const handleChangePassword = async (e) => {
+    e.preventDefault();
 
-      if (
-        newPassword !==
-        confirmPassword
-      ) {
-        alert(
-          "Konfirmasi kata sandi baru tidak cocok!"
-        );
-        return;
-      }
+    // reset error
+    setErrorOldPassword("");
+    setErrorNewPassword("");
+    setErrorConfirmPassword("");
 
-      const userId =
-        user.id || user._id;
+    let hasError = false;
 
-      if (!userId) {
-        alert(
-          "Sesi habis. Silakan login kembali."
-        );
-        return;
-      }
+    if (newPassword.length < 6) {
+      setErrorNewPassword("Kata sandi minimal 6 karakter");
+      hasError = true;
+    }
 
-      try {
-        const token =
-          localStorage.getItem(
-            "token"
-          );
+    if (newPassword !== confirmPassword) {
+      setErrorConfirmPassword("Konfirmasi kata sandi tidak cocok");
+      hasError = true;
+    }
 
-        await axios.put(
-          `http://localhost:5000/api/profile/change-password/${userId}`,
-          {
-            oldPassword,
-            newPassword,
+    if (hasError) return;
+
+    const userId = user.id || user._id;
+
+    if (!userId) return;
+
+    try {
+      const token = localStorage.getItem("token");
+
+      await axios.put(
+        `http://localhost:5000/api/profile/change-password/${userId}`,
+        { oldPassword, newPassword },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        }
+      );
 
-        alert(
-          "Kata sandi berhasil diperbarui!"
-        );
+      alert("Kata sandi berhasil diperbarui!");
 
-        setOldPassword("");
-        setNewPassword("");
-        setConfirmPassword("");
-        setIsChanging(false);
-      } catch (error) {
-        console.error(
-          error
-        );
+      setOldPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+      setIsChanging(false);
+    } catch (error) {
+      // ambil error backend (misalnya password lama salah)
+      const msg = error.response?.data?.message;
 
-        alert(
-          error.response?.data
-            ?.message ||
-            "Gagal mengubah kata sandi"
-        );
+      if (msg?.toLowerCase().includes("lama")) {
+        setErrorOldPassword("Kata sandi lama salah");
+      } else {
+        setErrorOldPassword(msg || "Gagal mengubah password");
       }
-    };
+    }
+  };
 
   // Logout
   const handleLogout =
@@ -307,19 +305,14 @@ function Pengaturan() {
                   <input
                     type="password"
                     className="input-field-style"
-                    value={
-                      oldPassword
-                    }
-                    onChange={(
-                      e
-                    ) =>
-                      setOldPassword(
-                        e.target
-                          .value
-                      )
-                    }
+                    value={oldPassword}
+                    onChange={(e) => setOldPassword(e.target.value)}
                     required
                   />
+
+                  {errorOldPassword && (
+                    <p className="error-text">{errorOldPassword}</p>
+                  )}
                 </div>
 
                 <div className="input-group-layout">
@@ -331,19 +324,14 @@ function Pengaturan() {
                   <input
                     type="password"
                     className="input-field-style"
-                    value={
-                      newPassword
-                    }
-                    onChange={(
-                      e
-                    ) =>
-                      setNewPassword(
-                        e.target
-                          .value
-                      )
-                    }
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
                     required
                   />
+
+                  {errorNewPassword && (
+                    <p className="error-text">{errorNewPassword}</p>
+                  )}
                 </div>
 
                 <div className="input-group-layout">
@@ -356,19 +344,14 @@ function Pengaturan() {
                   <input
                     type="password"
                     className="input-field-style"
-                    value={
-                      confirmPassword
-                    }
-                    onChange={(
-                      e
-                    ) =>
-                      setConfirmPassword(
-                        e.target
-                          .value
-                      )
-                    }
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                   />
+
+                  {errorConfirmPassword && (
+                    <p className="error-text">{errorConfirmPassword}</p>
+                  )}
                 </div>
 
                 <div className="password-action-buttons">

@@ -451,7 +451,13 @@ function DetailResep() {
                   className="review-card"
                 >
                   {/* kiri foto */}
-                <div className="review-photo">
+                  <div
+                    className="review-photo"
+                    onClick={() =>
+                      navigate(`/profil-dikunjungi/${item.User?.id}`)
+                    }
+                    style={{ cursor: "pointer" }}
+                  >
                   {item.User?.photo ? (
                     <img
                       src={item.User.photo.startsWith("http")
@@ -471,7 +477,14 @@ function DetailResep() {
                     {/* nama & tanggal */}
                     <div className="review-header">
                       <div>
-                        <h4>
+                        <h4
+                          onClick={() =>
+                            navigate(`/profil-dikunjungi/${item.User?.id}`)
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        >
                           {item.User?.name}
                         </h4>
 
