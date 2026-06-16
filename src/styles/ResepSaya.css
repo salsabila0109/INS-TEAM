@@ -112,26 +112,156 @@
   color: white;
 }
 
-/* ========================= */
-/* RESPONSIVE */
-/* ========================= */
+/* =========================
+   RESPONSIVE RESEP SAYA
+========================= */
+
+/* =========================
+<= 992px (Tablet)
+========================= */
+@media (max-width: 992px) {
+
+  .my-recipe-list {
+    gap: 16px;
+  }
+
+  .my-recipe-card {
+    max-width: 100%;
+    padding: 15px;
+    gap: 16px;
+    border-radius: 16px;
+  }
+
+  .my-recipe-img {
+    width: 180px;
+    height: 125px;
+  }
+
+  .my-recipe-text h4 {
+    font-size: 17px;
+    line-height: 1.4;
+
+    /* nama panjang aman */
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .my-recipe-text p {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .my-btn-sunting,
+  .my-btn-lihat {
+    padding: 9px 14px;
+    font-size: 13px;
+  }
+}
+
+
+/* =========================
+<= 768px (Tablet kecil)
+========================= */
 @media (max-width: 768px) {
+
+  .my-recipe-list {
+    gap: 14px;
+    margin-top: 20px;
+  }
+
   .my-recipe-card {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    gap: 16px;
+
+    padding: 14px;
+    border-radius: 16px;
   }
 
   .my-recipe-img {
     width: 100%;
-    height: 200px;
+    height: 220px;
+    border-radius: 14px;
   }
 
+  .my-recipe-info {
+    min-height: auto;
+    gap: 14px;
+  }
+
+  .my-recipe-text h4 {
+    font-size: 16px;
+  }
+
+  .my-recipe-text p {
+    font-size: 13px;
+    margin: 8px 0;
+  }
+
+  .my-recipe-rating {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  /* tombol jadi full */
   .my-recipe-actions {
     width: 100%;
+    gap: 10px;
   }
 
   .my-btn-sunting,
   .my-btn-lihat {
     flex: 1;
+    text-align: center;
+    min-height: 44px;
+  }
+}
+
+
+/* =========================
+<= 480px (Mobile)
+========================= */
+@media (max-width: 480px) {
+
+  .my-recipe-list {
+    gap: 12px;
+  }
+
+  .my-recipe-card {
+    padding: 12px;
+    border-radius: 14px;
+    gap: 14px;
+  }
+
+  .my-recipe-img {
+    height: 190px;
+  }
+
+  .my-recipe-text h4 {
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
+  .my-recipe-text p {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .my-recipe-rating {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  .my-recipe-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .my-btn-sunting,
+  .my-btn-lihat {
+    width: 100%;
+    min-height: 44px;
+    font-size: 13px;
+    border-radius: 10px;
   }
 }

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../styles/Auth.css";
 import axios from "axios";
@@ -20,7 +20,7 @@ function Register() {
   const [passwordError, setPasswordError] = useState("");
   const [confirmError, setConfirmError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-
+  const navigate = useNavigate();
   const handleRegister = async () => {
 
     // reset error
@@ -89,26 +89,30 @@ function Register() {
 
     try {
 
-      const res =
-        await axios.post(
-          "http://localhost:5000/api/register",
-          {
-            name,
-            email,
-            password,
-            confirmPassword,
-          }
-        );
+      const res = await axios.post(
+        "http://localhost:5000/api/register",
+        {
+          name,
+          email,
+          password,
+          confirmPassword,
+        }
+      );
 
       setSuccessMessage(
         "Register berhasil!"
       );
 
-      // reset form
-      setName("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
+      // simpan user jika backend mengirim data user
+      if (res.data.user) {
+        localStorage.setItem(
+          "user",
+          JSON.stringify(res.data.user)
+        );
+      }
+
+      // langsung ke halaman home
+      navigate("/");
 
     } catch (err) {
 
@@ -122,31 +126,24 @@ function Register() {
       const errors =
         err.response?.data?.errors;
 
-      // email sudah ada
       if (
         error ===
           "Email sudah terdaftar" ||
         error ===
           "Email sudah digunakan"
       ) {
-        setEmailError(
-          error
-        );
+        setEmailError(error);
         return;
       }
 
-      // password tidak sama
       if (
         error ===
         "Password tidak sama"
       ) {
-        setConfirmError(
-          error
-        );
+        setConfirmError(error);
         return;
       }
 
-      // express-validator
       if (
         errors &&
         errors.length > 0
@@ -156,8 +153,7 @@ function Register() {
           (item) => {
 
             if (
-              item.path ===
-              "name"
+              item.path === "name"
             ) {
               setNameError(
                 item.msg
@@ -165,8 +161,7 @@ function Register() {
             }
 
             if (
-              item.path ===
-              "email"
+              item.path === "email"
             ) {
               setEmailError(
                 item.msg
@@ -174,8 +169,7 @@ function Register() {
             }
 
             if (
-              item.path ===
-              "password"
+              item.path === "password"
             ) {
               setPasswordError(
                 item.msg
@@ -197,7 +191,6 @@ function Register() {
         return;
       }
 
-      // fallback
       setEmailError(
         error ||
         "Register gagal"

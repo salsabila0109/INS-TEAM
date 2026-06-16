@@ -8,8 +8,10 @@ import ProfileSidebar from "../components/ProfileSidebar";
 import "../styles/EditProfil.css";
 
 import { useNavigate } from "react-router-dom";
-import { Camera } from "lucide-react";
 import axios from "axios";
+import { Camera } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const EditProfil = () => {
   const navigate =
@@ -27,9 +29,7 @@ const EditProfil = () => {
   const [
     photoPreview,
     setPhotoPreview,
-  ] = useState(
-    "https://via.placeholder.com/150"
-  );
+  ] = useState("");
 
   const [
     photoFile,
@@ -42,7 +42,7 @@ const EditProfil = () => {
   ] = useState("profil");
   const [followers, setFollowers] = useState(0);
   const [following, setFollowing] = useState(0);
-
+  const [imgError, setImgError] = useState(false);
   // =========================
   // GET FOLLOW STATS
   // =========================
@@ -90,8 +90,7 @@ const EditProfil = () => {
       );
 
       setPhotoPreview(
-        localUser.photo ||
-          "https://via.placeholder.com/150"
+        localUser.photo || ""
       );
       // ambil data follow
       getFollowStats(
@@ -140,6 +139,7 @@ const EditProfil = () => {
       }
 
       setPhotoFile(file);
+      setImgError(false);
 
       // Preview sementara
       setPhotoPreview(
@@ -329,33 +329,32 @@ const EditProfil = () => {
             <section className="info-section">
               {/* FOTO */}
               <div className="upload-photo-section">
-                <img
-                  src={
-                    photoPreview
-                  }
-                  alt="Current"
-                  className="current-photo"
-                  onError={(
-                    e
-                  ) => {
-                    e.target.src =
-                      "https://via.placeholder.com/150";
-                  }}
-                />
+
+                {photoPreview && !imgError ? (
+                  <img
+                    src={photoPreview}
+                    alt="Current"
+                    className="current-photo"
+                    onError={() =>
+                      setImgError(true)
+                    }
+                  />
+                ) : (
+                  <div className="current-photo-fallback">
+                    <FontAwesomeIcon
+                      icon={faUser}
+                    />
+                  </div>
+                )}
 
                 <div className="upload-box">
                   <label
                     htmlFor="file-upload"
                     className="upload-label"
                   >
-                    <Camera
-                      size={
-                        20
-                      }
-                    />
+                    <Camera size={20} />
                     <span>
-                      Ganti
-                      Foto
+                      Ganti Foto
                     </span>
                   </label>
 
@@ -370,7 +369,6 @@ const EditProfil = () => {
                   />
                 </div>
               </div>
-
               {/* NAMA */}
               <div className="input-group">
                 <label>

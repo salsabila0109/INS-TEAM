@@ -1,74 +1,185 @@
-/* Pengaturan Dasar Halaman Utama */
+/* =========================
+   HOME PAGE
+========================= */
+
 .home-page {
-  background-color: #f8fafc; /* Latar belakang abu-abu sangat lembut agar kartu putih kontras */
+  background-color: #f8fafc;
   min-height: 100vh;
   width: 100%;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   box-sizing: border-box;
 }
 
-/* Pembungkus halaman agar konten selalu presisi di tengah */
+
+/* =========================
+   MAIN WRAPPER
+========================= */
+
 .home-main-wrapper {
-  max-width: 1140px; /* Batas lebar konten utama figma desktop */
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 30px 24px 80px 24px;
+
+  padding: 30px 24px 80px;
+
   display: flex;
   flex-direction: column;
-  gap: 35px; /* Jarak antara baris kategori dengan daftar resep */
-}
+  gap: 32px;
 
-/* Sistem Tata Letak Grid Otomatis */
-.recipe-cards-grid {
-  display: grid;
-  /* Membuat kolom otomatis membagi ruang secara pas (minimal lebar 320px per kartu) */
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 30px; /* Jarak antar kartu resep (samping kanan-kiri & atas-bawah) */
-  width: 100%;
   box-sizing: border-box;
 }
 
-/* Tampilan fallback jika kategori kosong */
+
+/* =========================
+   RECIPE GRID
+========================= */
+
+.recipe-cards-grid {
+  display: grid;
+
+  /* auto responsive */
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(300px, 1fr)
+    );
+
+  gap: 28px;
+  width: 100%;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
 .empty-state-card {
-  grid-column: 1 / -1; /* Membentang penuh melintasi kolom grid */
+  grid-column: 1 / -1;
+
   text-align: center;
+
   padding: 60px 20px;
+
   background: #ffffff;
-  border-radius: 16px;
-  color: #777777;
+  border-radius: 18px;
+
+  color: #777;
   border: 1px dashed #cbd5e1;
 }
 
-/* Efek Transisi Halus Saat Mengganti Kategori */
+
+/* =========================
+   CARD ANIMATION
+========================= */
+
 .recipe-cards-grid > * {
-  animation: slideUpFade 0.4s ease-out forwards;
+  animation:
+    slideUpFade
+    0.35s ease-out;
 }
 
 @keyframes slideUpFade {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform:
+      translateY(14px);
   }
+
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform:
+      translateY(0);
   }
 }
 
-/* Penyesuaian Responsif untuk Perangkat Mobile */
-@media (max-width: 768px) {
+
+/* =========================
+   LAPTOP KECIL
+========================= */
+
+@media (max-width: 1024px) {
+
   .home-main-wrapper {
-    padding: 20px 16px 50px 16px;
-    gap: 20px;
+    padding: 24px 20px 60px;
+    gap: 26px;
   }
-  
+
   .recipe-cards-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns:
+      repeat(
+        auto-fill,
+        minmax(280px, 1fr)
+      );
+
+    gap: 24px;
   }
 }
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 768px) {
+
+  .home-main-wrapper {
+    padding: 20px 16px 50px;
+    gap: 22px;
+  }
+
+  .recipe-cards-grid {
+    grid-template-columns:
+      repeat(
+        auto-fill,
+        minmax(240px, 1fr)
+      );
+
+    gap: 18px;
+  }
+
+  .empty-state-card {
+    padding: 50px 18px;
+    border-radius: 16px;
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 480px) {
+
+  .home-main-wrapper {
+    padding: 16px 14px 40px;
+    gap: 18px;
+  }
+
   .recipe-cards-grid {
-    grid-template-columns: 1fr; /* Otomatis 1 kolom penuh jika dibuka di smartphone */
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .empty-state-card {
+    padding: 40px 16px;
+    font-size: 14px;
+  }
+}
+
+
+/* =========================
+   HP SANGAT KECIL
+========================= */
+
+@media (max-width: 360px) {
+
+  .home-main-wrapper {
+    padding: 14px 12px 36px;
+  }
+
+  .recipe-cards-grid {
+    gap: 14px;
   }
 }

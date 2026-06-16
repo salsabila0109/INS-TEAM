@@ -301,14 +301,277 @@ background: rgba(201, 76, 76, 0.08);
 }
 
 /* =========================
-   RESPONSIVE
+   RESPONSIVE SETTINGS
+========================= */
+
+/* =========================
+<= 992px (Tablet)
+========================= */
+@media (max-width: 992px) {
+
+  .settings-container {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 28px 18px 60px;
+  }
+
+  /* SIDEBAR */
+  .sidebar-section {
+    width: 100%;
+    padding: 28px 22px;
+    border-radius: 18px;
+  }
+
+  .profile-avatar-wrapper {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-card-side h3 {
+    font-size: 1.1rem;
+  }
+
+  .user-email-text {
+    font-size: 0.82rem;
+    word-break: break-word;
+  }
+
+  /* MENU */
+  .navigation-menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .navigation-menu .nav-item {
+    justify-content: center;
+    text-align: center;
+    padding: 14px 12px;
+  }
+
+  /* CONTENT */
+  .content-section {
+    width: 100%;
+  }
+
+  .section-main-title {
+    font-size: 1.6rem;
+  }
+
+  .settings-white-box {
+    padding: 28px 24px;
+    border-radius: 18px;
+  }
+
+  .box-sub-title {
+    font-size: 1.1rem;
+  }
+
+  /* PASSWORD */
+  .password-input-wrapper {
+    width: 100%;
+  }
+
+  .password-field-style {
+    font-size: 0.92rem;
+  }
+
+  /* ACTION BUTTON */
+  .action-footer-row {
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .password-action-buttons {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}
+
+
+/* =========================
+<= 768px (Tablet kecil)
 ========================= */
 @media (max-width: 768px) {
+
   .settings-container {
+    padding: 22px 14px 50px;
+    gap: 20px;
+  }
+
+  /* SIDEBAR */
+  .sidebar-section {
+    padding: 24px 18px;
+    border-radius: 16px;
+  }
+
+  .profile-avatar-wrapper {
+    width: 90px;
+    height: 90px;
+  }
+
+  .profile-card-side h3 {
+    font-size: 1rem;
+  }
+
+  .user-email-text {
+    font-size: 0.8rem;
+  }
+
+  /* MENU JADI 1 KOLOM */
+  .navigation-menu {
     grid-template-columns: 1fr;
   }
 
+  .navigation-menu .nav-item {
+    width: 100%;
+    justify-content: flex-start;
+    font-size: 0.92rem;
+  }
+
+  /* CONTENT */
+  .section-main-title {
+    font-size: 1.45rem;
+    margin-bottom: 16px;
+  }
+
+  .settings-white-box {
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  .box-sub-title {
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+
+  /* INPUT */
+  .input-group-layout {
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .input-group-layout label {
+    font-size: 0.9rem;
+  }
+
+  .input-field-style,
+  .password-display,
+  .password-field-style {
+    font-size: 0.9rem;
+    padding: 11px 14px;
+  }
+
+  /* PASSWORD ACTION */
+  .password-action-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .btn-cancel-style,
+  .btn-save-style {
+    width: 100%;
+  }
+
+  /* FOOTER ACTION */
   .action-footer-row {
-    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .btn-ubah-style,
+  .logout-action-btn {
+    width: 100%;
+  }
+}
+
+
+/* =========================
+<= 480px (Mobile)
+========================= */
+@media (max-width: 480px) {
+
+  .settings-container {
+    padding: 16px 12px 40px;
+    gap: 16px;
+  }
+
+  .sidebar-section {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+
+  .profile-avatar-wrapper {
+    width: 85px;
+    height: 85px;
+  }
+
+  .profile-card-side h3 {
+    font-size: 0.95rem;
+  }
+
+  .user-email-text {
+    font-size: 0.75rem;
+  }
+
+  /* MENU */
+  .navigation-menu .nav-item {
+    font-size: 0.88rem;
+    padding: 12px 14px;
+    border-radius: 10px;
+  }
+
+  /* CONTENT */
+  .section-main-title {
+    font-size: 1.3rem;
+  }
+
+  .settings-white-box {
+    padding: 18px 16px;
+  }
+
+  .box-sub-title {
+    font-size: 0.95rem;
+  }
+
+  /* INPUT */
+  .input-group-layout label {
+    font-size: 0.88rem;
+  }
+
+  .input-field-style,
+  .password-display,
+  .password-field-style {
+    font-size: 0.88rem;
+    min-height: 44px;
+  }
+
+  .password-field-style {
+    padding: 12px;
+  }
+
+  /* BUTTON */
+  .btn-ubah-style,
+  .logout-action-btn,
+  .btn-cancel-style,
+  .btn-save-style {
+    width: 100%;
+    min-height: 44px;
+    font-size: 0.9rem;
+  }
+
+  .password-input-wrapper {
+    flex-direction: column;
+    border: none;
+    background: transparent;
+    gap: 10px;
+  }
+
+  .password-field-style {
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    background: #fff;
   }
 }

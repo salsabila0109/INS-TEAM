@@ -1,24 +1,129 @@
-/* WRAPPER FLEX CENTER */
+/* =========================
+   CATEGORY WRAPPER
+========================= */
+
 .categories {
   display: flex;
-  justify-content: center; /* INI KUNCINYA */
-  gap: 140px;
+  align-items: center;
+  justify-content: space-evenly;
 
-  padding-bottom: 10px;
+  width: 100%;
+  min-height: 50px;
 
+  padding-bottom: 14px;
   border-bottom: 1px solid #eee;
+
+  box-sizing: border-box;
 }
 
-/* ITEM */
+
+/* =========================
+   CATEGORY ITEM
+========================= */
+
 .categories span {
   cursor: pointer;
-  color: gray;
+
+  color: #777;
   font-weight: 500;
+  font-size: 16px;
+
+  white-space: nowrap;
+
+  transition: 0.2s ease;
 }
 
-/* ACTIVE */
+.categories span:hover {
+  color: #C94C4C;
+}
+
+
+/* =========================
+   ACTIVE
+========================= */
+
 .categories .active {
   color: #C94C4C;
   border-bottom: 2px solid #C94C4C;
-  padding-bottom: 5px;
+  padding-bottom: 8px;
+  font-weight: 600;
+}
+
+
+/* =========================
+   LAPTOP KECIL
+========================= */
+
+@media (max-width: 1024px) {
+
+  .categories span {
+    font-size: 15px;
+  }
+}
+
+
+/* =========================
+   TABLET (iPad dll)
+========================= */
+
+@media (max-width: 768px) {
+
+  .categories {
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .categories span {
+    font-size: 14px;
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .categories {
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    flex-wrap: nowrap;
+
+    gap: 28px;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .categories::-webkit-scrollbar {
+    display: none;
+  }
+
+  .categories span {
+    flex-shrink: 0;
+    font-size: 13px;
+  }
+
+  .categories .active {
+    padding-bottom: 6px;
+  }
+}
+
+
+/* =========================
+   HP KECIL
+========================= */
+
+@media (max-width: 360px) {
+
+  .categories {
+    gap: 22px;
+  }
+
+  .categories span {
+    font-size: 12px;
+  }
 }

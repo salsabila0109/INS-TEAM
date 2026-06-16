@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Recipe = require("../models/Recipe");
 const User = require("../models/User");
-
+const Review = require("../models/Review");
 const multer = require("multer");
 const path = require("path");
 
@@ -18,6 +18,14 @@ User.hasMany(Recipe, {
 
 Recipe.belongsTo(User, {
   foreignKey: "userId",
+});
+
+Recipe.hasMany(Review, {
+  foreignKey: "recipeId",
+});
+
+Review.belongsTo(Recipe, {
+  foreignKey: "recipeId",
 });
 
 const storage = multer.diskStorage({
@@ -144,33 +152,84 @@ router.get("/", async (req, res) => {
 
   try {
 
-    const recipes = await Recipe.findAll({
+    const recipes =
+      await Recipe.findAll({
 
-      include: [
-        {
-          model: User,
-          attributes: [
-            "id",
-            "name",
-            "photo",
-          ],
-        },
-      ],
+        include: [
+          {
+            model: User,
+            attributes: [
+              "id",
+              "name",
+              "photo",
+            ],
+          },
+          {
+            model: Review,
+            attributes: [
+              "rating"
+            ],
+          },
+        ],
 
-      order: [
-        ["createdAt", "DESC"]
-      ],
+        order: [
+          ["createdAt", "DESC"]
+        ],
 
-    });
+      });
 
-    res.json(recipes);
+    // HITUNG RATING & REVIEW
+    const recipesWithStats =
+      recipes.map(
+        (recipe) => {
+
+          const data =
+            recipe.toJSON();
+
+          const reviews =
+            data.Reviews || [];
+
+          const totalReviews =
+            reviews.length;
+
+          const averageRating =
+            totalReviews > 0
+              ? reviews.reduce(
+                  (
+                    sum,
+                    review
+                  ) =>
+                    sum +
+                    review.rating,
+                  0
+                ) /
+                totalReviews
+              : 0;
+
+          return {
+            ...data,
+            totalReviews,
+            averageRating:
+              Number(
+                averageRating.toFixed(
+                  1
+                )
+              ),
+          };
+        }
+      );
+
+    res.json(
+      recipesWithStats
+    );
 
   } catch (error) {
 
     console.log(error);
 
     res.status(500).json({
-      message: error.message,
+      message:
+        error.message,
     });
 
   }

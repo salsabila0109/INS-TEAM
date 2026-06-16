@@ -347,3 +347,297 @@
     opacity: 1;
   }
 }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+/* <= 1024px (Tablet Landscape) */
+@media (max-width: 1024px) {
+
+  .upload-page {
+    padding: 24px 20px;
+  }
+
+  .upload-grid {
+    gap: 20px;
+  }
+
+  .upload-photo {
+    width: 180px;
+    flex-shrink: 0;
+  }
+
+  .upload-form {
+    padding: 18px;
+  }
+
+  .upload-bottom {
+    gap: 16px;
+  }
+}
+
+
+/* <= 768px (Tablet) */
+@media (max-width: 768px) {
+
+  .upload-page {
+    padding: 20px 16px;
+  }
+
+  /* STACK KE BAWAH */
+  .upload-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* FOTO KE TENGAH */
+  .upload-photo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .upload-photo h4,
+  .upload-photo p {
+    text-align: center;
+  }
+
+  /* GRID FOTO TETAP RAPI */
+  .image-grid {
+    justify-content: center;
+  }
+
+  /* FORM */
+  .upload-form {
+    width: 100%;
+    padding: 18px;
+  }
+
+  .upload-form h4 {
+    font-size: 15px;
+  }
+
+  .upload-form input,
+  .upload-form textarea,
+  .upload-form select {
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+
+  /* BAGIAN BAWAH JADI KE BAWAH */
+  .upload-bottom {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .bahan-box,
+  .langkah-box {
+    width: 100%;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+  }
+}
+
+
+/* <= 480px (Mobile) */
+@media (max-width: 480px) {
+
+  .upload-page {
+    padding: 16px 12px;
+  }
+
+  .upload-header {
+    margin-bottom: 16px;
+  }
+
+  .back {
+    font-size: 14px;
+  }
+
+  /* FOTO */
+  .upload-photo {
+    width: 100%;
+  }
+
+  .image-item,
+  .upload-box.small {
+    width: 72px;
+    height: 72px;
+  }
+
+  /* REMOVE BUTTON */
+  .remove-btn {
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    top: -5px;
+    right: -5px;
+  }
+
+  /* FORM */
+  .upload-form {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .upload-form h4 {
+    font-size: 14px;
+  }
+
+  .section-hint {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .upload-form input,
+  .upload-form textarea,
+  .upload-form select,
+  .bahan-box input,
+  .langkah-box input {
+    padding: 11px 13px;
+    font-size: 13px;
+  }
+
+  .upload-form textarea {
+    height: 90px;
+  }
+
+  /* CARD BAWAH */
+  .bahan-box,
+  .langkah-box {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  /* LANGKAH */
+  .langkah-item {
+    gap: 8px;
+  }
+
+  .langkah-item span {
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+
+  /* BUTTON */
+  .btn-add {
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .btn-add.right {
+    align-self: stretch;
+  }
+
+  .submit-box {
+    margin-top: 22px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  /* POPUP */
+  .popup-box {
+    padding: 22px 18px;
+    border-radius: 18px;
+  }
+
+  .popup-box h3 {
+    font-size: 16px;
+  }
+
+  .popup-box li {
+    font-size: 13px;
+    padding-left: 20px;
+  }
+
+  .popup-buttons {
+    flex-direction: column;
+  }
+
+  .popup-btn {
+    width: 100%;
+    height: 44px;
+  }
+}
+
+
+/* <= 360px (HP kecil) */
+@media (max-width: 360px) {
+
+  .upload-page {
+    padding: 14px 10px;
+  }
+
+  .upload-form,
+  .bahan-box,
+  .langkah-box {
+    padding: 14px;
+  }
+
+  .image-item,
+  .upload-box.small {
+    width: 66px;
+    height: 66px;
+  }
+
+  .upload-form input,
+  .upload-form textarea,
+  .upload-form select {
+    font-size: 12px;
+  }
+
+  .submit-btn {
+    padding: 12px;
+    font-size: 13px;
+  }
+}
+
+/* =========================
+   FIX POPUP BUTTON MOBILE
+========================= */
+@media (max-width: 480px) {
+
+  .popup-buttons {
+    margin-top: 14px;
+  }
+
+  .popup-btn {
+    min-height: 52px;
+    height: 52px;
+
+    padding: 14px 18px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    border-radius: 16px;
+  }
+
+  .popup-btn.primary {
+    box-shadow: 0 8px 20px rgba(201, 76, 76, 0.25);
+  }
+}
+
+
+/* iPhone / HP tinggi seperti 414 x 896 */
+@media (max-width: 430px) and (min-height: 800px) {
+
+  .popup-btn {
+    min-height: 56px;
+    height: 56px;
+
+    font-size: 15px;
+    border-radius: 16px;
+  }
+}

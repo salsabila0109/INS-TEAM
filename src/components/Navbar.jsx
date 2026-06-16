@@ -1,5 +1,8 @@
-import "../styles/Navbar.css";
+import cssUrl from "../styles/Navbar.css?url";
 
+console.log(cssUrl);
+
+import "../styles/Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

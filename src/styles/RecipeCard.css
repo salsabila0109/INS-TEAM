@@ -1,34 +1,65 @@
+/* =========================
+   RECIPE CARD
+========================= */
+
 .card {
   border-radius: 14px;
-  background: white;
+  background: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   overflow: hidden;
-  transition: 0.2s;
+  transition: 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+/* =========================
+   IMAGE
+========================= */
 
 .image {
   position: relative;
+  overflow: hidden;
 }
 
 .image img {
   width: 100%;
-  height: 170px;
+  height: 190px;
   object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .image img {
+  transform: scale(1.04);
 }
 
 .badge {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 12px;
+  left: 12px;
   background: #C94C4C;
   color: white;
   padding: 5px 10px;
   border-radius: 8px;
   font-size: 12px;
+  font-weight: 500;
 }
 
+/* =========================
+   CONTENT
+========================= */
+
 .content {
-  padding: 15px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .meta {
@@ -36,20 +67,42 @@
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+
   font-size: 12px;
   color: #666;
 }
 
-h3 {
-  font-size: 15px;
-  margin-bottom: 10px;
+/* =========================
+   TITLE
+========================= */
+
+.content h3 {
+  font-size: 16px;
+  line-height: 1.45;
+  margin-bottom: 12px;
+  color: #222;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  min-height: 46px;
 }
+
+/* =========================
+   BUTTON
+========================= */
 
 .small {
   padding: 6px 12px;
   font-size: 12px;
 }
+
+/* =========================
+   AUTHOR
+========================= */
 
 .author {
   display: flex;
@@ -57,18 +110,23 @@ h3 {
   gap: 6px;
 
   flex: 1;
-  min-width: 0;          
-  max-width: 60%;        
+  min-width: 0;
+  max-width: 60%;
 
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
+/* =========================
+   META RIGHT
+========================= */
+
 .right-meta {
   display: flex;
   align-items: center;
   gap: 10px;
+
   flex-shrink: 0;
   white-space: nowrap;
 }
@@ -80,14 +138,18 @@ h3 {
 
   flex-shrink: 0;
   white-space: nowrap;
-
   margin-left: auto;
 }
 
+/* =========================
+   BOOKMARK
+========================= */
+
 .bookmark-icon {
   cursor: pointer;
-  font-size: 20px; /* lebih besar */
-  color: #222; /* default hitam */
+  font-size: 20px;
+  color: #222;
+
   display: flex;
   align-items: center;
   transition: all 0.2s ease;
@@ -98,5 +160,115 @@ h3 {
 }
 
 .bookmark-icon.saved {
-  color: #e53935; /* merah saat disimpan */
+  color: #e53935;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+/* TABLET */
+@media (max-width: 768px) {
+
+  .card {
+    border-radius: 12px;
+  }
+
+  .image img {
+    height: 170px;
+  }
+
+  .content {
+    padding: 14px;
+  }
+
+  .content h3 {
+    font-size: 15px;
+    min-height: auto;
+  }
+
+  .meta {
+    font-size: 11px;
+    gap: 10px;
+  }
+
+  .badge {
+    font-size: 11px;
+    padding: 4px 9px;
+  }
+
+  .bookmark-icon {
+    font-size: 18px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+
+  .card {
+    border-radius: 12px;
+  }
+
+  .image img {
+    height: 180px;
+  }
+
+  .content {
+    padding: 13px;
+  }
+
+  .content h3 {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+
+  .meta {
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 11px;
+  }
+
+  .author {
+    max-width: 100%;
+  }
+
+  .rating-bookmark {
+    margin-left: 0;
+  }
+
+  .small {
+    width: 100%;
+    text-align: center;
+    padding: 8px 12px;
+  }
+
+  .bookmark-icon {
+    font-size: 18px;
+  }
+}
+
+/* HP KECIL */
+@media (max-width: 360px) {
+
+  .image img {
+    height: 160px;
+  }
+
+  .content {
+    padding: 12px;
+  }
+
+  .content h3 {
+    font-size: 13px;
+  }
+
+  .meta {
+    font-size: 10px;
+  }
+
+  .badge {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
 }

@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar";
 import Categories from "../components/Categories";
 import RecipeCard from "../components/RecipeCard";
 import axios from "axios";
-import "../styles/home.css";
+import "../styles/Home.css";
 
 function Home() {
   const [recipes, setRecipes] =
@@ -58,42 +58,96 @@ function Home() {
 
   // FILTER RESEP
   const filteredRecipes =
-    recipes.filter((item) => {
-      // filter kategori
-      let categoryMatch =
-        false;
+  recipes
+  .filter((item) => {
 
-      if (
-        activeCategory ===
-        "Semua"
-      ) {
-        categoryMatch =
-          true;
-      } else if (
-        activeCategory ===
-        "Populer"
-      ) {
-        categoryMatch =
-          item.totalReviews > 0;
-      } else {
-        categoryMatch =
-          item.category?.toLowerCase() ===
-          activeCategory.toLowerCase();
-      }
+    let categoryMatch =
+      false;
 
-      // filter pencarian nama resep
-      const searchMatch =
-        item.title
-          ?.toLowerCase()
-          .includes(
-            searchTerm.toLowerCase()
-          );
+    // SEMUA
+    if (
+      activeCategory ===
+      "Semua"
+    ) {
+      categoryMatch =
+        true;
+    }
 
-      return (
-        categoryMatch &&
-        searchMatch
+    // POPULER
+    else if (
+      activeCategory ===
+      "Populer"
+    ) {
+
+      const avgRating =
+        item.averageRating || 0;
+
+      const totalReviews =
+        item.totalReviews || 0;
+
+      categoryMatch =
+        avgRating >= 4 &&
+        totalReviews >= 2;
+    }
+
+    // KATEGORI
+    else {
+
+      categoryMatch =
+        item.category
+          ?.toLowerCase() ===
+        activeCategory.toLowerCase();
+    }
+
+    // SEARCH
+    const searchMatch =
+      item.title
+        ?.toLowerCase()
+        .includes(
+          searchTerm.toLowerCase()
+        );
+
+    return (
+      categoryMatch &&
+      searchMatch
+    );
+  })
+
+  .sort((a, b) => {
+
+    // khusus populer
+    if (
+      activeCategory !==
+      "Populer"
+    ) {
+      return 0;
+    }
+
+    const scoreA =
+      (
+        (a.averageRating || 0)
+        * 50
+      ) +
+      (
+        (a.totalReviews || 0)
+        * 10
       );
-    });
+
+    const scoreB =
+      (
+        (b.averageRating || 0)
+        * 50
+      ) +
+      (
+        (b.totalReviews || 0)
+        * 10
+      );
+
+    return (
+      scoreB -
+      scoreA
+    );
+  });
 
   return (
     <div className="home-page">

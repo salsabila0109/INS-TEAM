@@ -6,7 +6,6 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import DetailResep from "./pages/DetailResep";
-import ProfilPublik from "./pages/ProfilPublik";
 import CekDapur from "./pages/CekDapur";
 
 // PRIVATE
@@ -32,7 +31,6 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/cekdapur" element={<CekDapur />} />
         <Route path="/detailresep/:id" element={<DetailResep />} />
-        <Route path="/profil-publik/:id" element={<ProfilPublik />} />
         <Route path="/profil-dikunjungi/:id" element={<ProfilDikunjungi />}/>
         
         {/* PRIVATE ROUTES (Hanya bisa diakses jika login) */}

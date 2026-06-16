@@ -419,36 +419,258 @@
   transform: translateY(-2px);
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
+/* ======================================
+   RESPONSIVE CEK DAPUR
+====================================== */
+
+/* ===== TABLET ===== */
+@media (max-width: 992px) {
+
+  .cek-page {
+    padding: 35px 28px;
+  }
+
   .cek-page .cek-container {
     flex-direction: column;
-    text-align: center;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .cek-page .cek-left,
+  .cek-page .cek-right {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* gambar jangan naik */
+  .cek-page .cek-right {
+    margin-top: 0;
+    order: -1;
+    justify-content: center;
   }
 
   .cek-page .cek-right img {
-    max-width: 280px;
-  }
-
-  .cek-page .input-box {
-    flex-direction: column;
-  }
-
-  .cek-page .input-box button {
+    max-width: 340px;
     width: 100%;
-  }
-}
-
-@media (max-width: 600px) {
-  .cek-page {
-    padding: 30px 20px;
   }
 
   .cek-page .title {
     font-size: 28px;
+    text-align: center;
+  }
+
+  .cek-page .desc {
+    text-align: center;
+    margin: 0 auto 28px;
+    font-size: 15px;
+  }
+
+  .cek-page .instruction-box {
+    text-align: left;
+  }
+}
+
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+
+  .cek-page {
+    padding: 26px 18px;
+  }
+
+  .cek-page .title {
+    font-size: 24px;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .cek-page .desc {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 24px;
+    line-height: 1.7;
+  }
+
+  .cek-page .cek-left {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* ======================
+     INPUT AREA FIX
+  ====================== */
+  .cek-page .input-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  /* INPUT FULL WIDTH */
+  .cek-page .input-box input {
+    width: 100%;
+    min-width: 100%;
+    height: 54px;
+    padding: 0 18px;
+    font-size: 14px;
+    border-radius: 14px;
+    box-sizing: border-box;
+    flex: unset;
+  }
+
+  /* BUTTON TAMBAH */
+  .cek-page .input-box button {
+    width: 100%;
+    min-height: 54px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  /* BUTTON CARI RESEP */
+  .cek-page .btn-search {
+    width: 100%;
+    min-height: 54px;
+    border-radius: 16px;
+    font-size: 14px;
+    padding: 0 18px;
+  }
+
+  /* CHIP */
+  .cek-page .chip-container {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .cek-page .chip {
+    font-size: 13px;
+    padding: 9px 14px;
+  }
+
+  /* GAMBAR */
+  .cek-page .cek-right {
+    margin-top: 0;
+  }
+
+  .cek-page .cek-right img {
+    max-width: 260px;
+  }
+
+  /* RESULT */
+  .cek-page .result-section {
+    margin-top: 40px;
+  }
+
+  .cek-page .recipe-list {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .cek-page .recipe-card {
+    border-radius: 18px;
   }
 
   .cek-page .recipe-card img {
-    height: 190px;
+    height: 210px;
+  }
+
+  .cek-page .recipe-title {
+    font-size: 16px;
+  }
+
+  .cek-page .recipe-info p {
+    font-size: 15px;
+  }
+
+  .cek-page .outline-btn {
+    height: 48px;
+    font-size: 13px;
+  }
+}
+
+
+/* ===== HP KECIL ===== */
+@media (max-width: 480px) {
+
+  .cek-page {
+    padding: 22px 14px;
+  }
+
+  .cek-page .title {
+    font-size: 22px;
+  }
+
+  .cek-page .guide-title {
+    font-size: 13px;
+  }
+
+  .cek-page .guide-text,
+  .cek-page .example-text {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  /* INPUT TETAP TEBAL */
+  .cek-page .input-box input {
+    height: 52px;
+    font-size: 13px;
+    padding: 0 16px;
+  }
+
+  .cek-page .input-box button {
+    height: 52px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .cek-page .btn-search {
+    height: 52px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .cek-page .cek-right img {
+    max-width: 220px;
+  }
+
+  .cek-page .recipe-card img {
+    height: 180px;
+  }
+
+  .cek-page .badge {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .cek-page .more-btn button {
+    width: 100%;
+    height: 50px;
+    border-radius: 14px;
+  }
+}
+
+
+/* ===== HP SANGAT KECIL ===== */
+@media (max-width: 380px) {
+
+  .cek-page {
+    padding: 20px 12px;
+  }
+
+  .cek-page .title {
+    font-size: 20px;
+  }
+
+  .cek-page .input-box input,
+  .cek-page .input-box button,
+  .cek-page .btn-search {
+    height: 50px;
+  }
+
+  .cek-page .chip {
+    width: 100%;
+    justify-content: space-between;
   }
 }

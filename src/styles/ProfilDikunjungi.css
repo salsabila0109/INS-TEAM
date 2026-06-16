@@ -246,17 +246,257 @@
 /* =========================
    RESPONSIVE
 ========================= */
-@media (max-width: 900px) {
+
+/* =========================
+   <= 1024px (Tablet Landscape / iPad)
+========================= */
+@media (max-width: 1024px) {
+
+  .visited-profile-wrapper {
+    padding: 22px 22px 50px;
+  }
+
   .visited-profile {
-    flex-direction: column;
+    gap: 22px;
   }
 
   .profile-card {
-    width: 100%;
-    position: relative;
+    width: 260px;
+    padding: 24px;
+  }
+
+  .profile-photo,
+  .profile-photo-fallback {
+    width: 115px;
+    height: 115px;
+  }
+
+  .stats {
+    gap: 24px;
   }
 
   .recipe-grid {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+}
+
+
+/* =========================
+   <= 900px (Tablet Portrait)
+========================= */
+@media (max-width: 900px) {
+
+  .visited-profile-wrapper {
+    padding: 20px 18px 45px;
+  }
+
+  .visited-profile {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* profile pindah ke atas */
+  .profile-card {
+    width: 100%;
+    position: relative;
+    top: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-card h2 {
+    font-size: 19px;
+  }
+
+  .stats {
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .follow-btn {
+    max-width: 300px;
+  }
+
+  .bio-box {
+    width: 100%;
+    text-align: left;
+  }
+
+  .recipe-section {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .recipe-grid {
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  }
+}
+
+
+/* =========================
+   <= 768px (Tablet kecil)
+========================= */
+@media (max-width: 768px) {
+
+  .visited-profile-wrapper {
+    padding: 18px 14px 40px;
+  }
+
+  .back-button {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .profile-card {
+    border-radius: 16px;
+    padding: 22px 18px;
+  }
+
+  .profile-photo,
+  .profile-photo-fallback {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-card h2 {
+    font-size: 18px;
+  }
+
+  .profile-card p {
+    font-size: 12px;
+  }
+
+  .stats {
+    gap: 18px;
+  }
+
+  .stats strong {
+    font-size: 15px;
+  }
+
+  .stats p {
+    font-size: 11px;
+  }
+
+  .bio-box {
+    font-size: 12px;
+    padding: 14px;
+  }
+
+  .recipe-section {
+    border-radius: 16px;
+    padding: 18px;
+  }
+
+  .card-header-inline h2 {
+    font-size: 18px;
+  }
+
+  .visited-profile .search-box {
+    padding: 9px 14px;
+  }
+
+  .visited-profile .search-box input {
+    font-size: 13px;
+  }
+
+  .recipe-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+  }
+}
+
+
+/* =========================
+   <= 480px (Mobile)
+========================= */
+@media (max-width: 480px) {
+
+  .visited-profile-wrapper {
+    padding: 16px 12px 35px;
+  }
+
+  .profile-card {
+    padding: 20px 16px;
+  }
+
+  .profile-photo,
+  .profile-photo-fallback {
+    width: 90px;
+    height: 90px;
+  }
+
+  .profile-card h2 {
+    font-size: 17px;
+  }
+
+  .profile-card p {
+    font-size: 12px;
+  }
+
+  .stats {
+    width: 100%;
+    justify-content: space-around;
+    gap: 12px;
+  }
+
+  .follow-btn {
+    font-size: 12px;
+    padding: 10px 14px;
+  }
+
+  .bio-box {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .recipe-section {
+    padding: 16px;
+  }
+
+  .card-header-inline h2 {
+    font-size: 17px;
+  }
+
+  /* search tetap nyaman */
+  .visited-profile .search-box {
+    padding: 8px 12px;
+    border-radius: 20px;
+  }
+
+  .visited-profile .search-box input {
+    font-size: 12px;
+  }
+
+  /* recipe jadi 1 kolom */
+  .recipe-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+
+/* =========================
+   <= 380px (HP kecil)
+========================= */
+@media (max-width: 380px) {
+
+  .profile-card h2 {
+    font-size: 16px;
+  }
+
+  .stats strong {
+    font-size: 14px;
+  }
+
+  .stats p {
+    font-size: 10px;
+  }
+
+  .recipe-section {
+    padding: 14px;
   }
 }

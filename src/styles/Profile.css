@@ -389,21 +389,294 @@
   box-shadow: 0 4px 12px rgba(201, 76, 76, 0.3);
 }
 
+/* ============================================================
+   RESPONSIVE PROFILE
+============================================================ */
+
+/* =========================
+   <= 992px (Tablet)
+========================= */
 @media (max-width: 992px) {
+
   .profile-page {
     flex-direction: column;
+    padding: 24px 18px 60px;
+    gap: 20px;
   }
+
+  /* SIDEBAR */
   .sidebar {
     width: 100%;
     position: relative;
     top: 0;
+    padding: 28px 22px;
+    border-radius: 18px;
   }
+
+  .avatar-wrapper,
+  .avatar,
+  .avatar-fallback,
+  .upload-overlay {
+    width: 100px;
+    height: 100px;
+  }
+
+  .sidebar h3 {
+    font-size: 18px;
+  }
+
+  .email {
+    font-size: 13px;
+  }
+
+  .follow-stats {
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .menu button {
+    justify-content: center;
+  }
+
+  /* CONTENT */
+  .content {
+    width: 100%;
+    gap: 20px;
+  }
+
+  .header-card {
+    padding: 24px;
+  }
+
+  .card-header-inline {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  /* RECIPE CARD */
   .recipe-horizontal-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .recipe-horizontal-card img {
+    width: 180px;
+    height: 120px;
+    flex-shrink: 0;
+  }
+
+  .recipe-details {
+    gap: 16px;
+  }
+
+  /* SETTINGS */
+  .setting-row {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
   }
+
+  .setting-row label {
+    width: 100%;
+  }
+
+  .input-field,
+  .password-container {
+    width: 100%;
+  }
+}
+
+
+/* =========================
+   <= 768px (Tablet Kecil)
+========================= */
+@media (max-width: 768px) {
+
+  .profile-page {
+    padding: 20px 14px 50px;
+  }
+
+  .sidebar {
+    padding: 24px 18px;
+  }
+
+  .sidebar h3 {
+    font-size: 17px;
+  }
+
+  .follow-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* MENU JADI 1 KOLOM */
+  .menu {
+    grid-template-columns: 1fr;
+  }
+
+  .menu button {
+    width: 100%;
+  }
+
+  /* HEADER */
+  .header-card {
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  .header-card h2,
+  .header-card h3 {
+    font-size: 18px;
+  }
+
+  .profile-details-text p {
+    font-size: 14px;
+  }
+
+  /* RECIPE CARD */
+  .recipe-horizontal-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px;
+  }
+
   .recipe-horizontal-card img {
     width: 100%;
-    height: 180px;
+    height: 220px;
+    border-radius: 14px;
+  }
+
+  .recipe-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    width: 100%;
+  }
+
+  .recipe-info-text {
+    width: 100%;
+  }
+
+  .recipe-info-text h4 {
+    font-size: 15px;
+  }
+
+  .btn-view {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* SETTINGS */
+  .password-container {
+    flex-direction: column;
+    height: auto;
+    border: none;
+    gap: 10px;
+  }
+
+  .password-container input {
+    height: 45px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+  }
+
+  .btn-change {
+    width: 100%;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .logout-btn {
+    width: 100%;
+    align-self: stretch;
+  }
+}
+
+
+/* =========================
+   <= 480px (Mobile)
+========================= */
+@media (max-width: 480px) {
+
+  .profile-page {
+    padding: 16px 12px 40px;
+    gap: 16px;
+  }
+
+  .sidebar {
+    border-radius: 16px;
+    padding: 22px 16px;
+  }
+
+  .avatar-wrapper,
+  .avatar,
+  .avatar-fallback,
+  .upload-overlay {
+    width: 90px;
+    height: 90px;
+  }
+
+  .sidebar h3 {
+    font-size: 16px;
+  }
+
+  .email {
+    font-size: 12px;
+  }
+
+  .follow-stats {
+    gap: 12px;
+    font-size: 13px;
+  }
+
+  .menu button {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .header-card {
+    padding: 18px 16px;
+  }
+
+  .header-card h2,
+  .header-card h3 {
+    font-size: 17px;
+  }
+
+  .recipe-horizontal-card img {
+    height: 190px;
+  }
+
+  .recipe-info-text h4 {
+    font-size: 14px;
+  }
+
+  .rating-badge {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  .btn-view {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .input-field,
+  .password-container input {
+    height: 44px;
+    font-size: 13px;
+  }
+
+  .logout-btn {
+    height: 46px;
+    font-size: 14px;
   }
 }

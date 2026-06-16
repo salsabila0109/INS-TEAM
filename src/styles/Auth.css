@@ -247,17 +247,295 @@ input:focus {
 }
 
 /* ============================================================
-   4. RESPONSIVE
-   ============================================================ */
+   RESPONSIVE AUTH PAGE
+============================================================ */
+
+/* =========================
+   <= 1024px (Laptop kecil)
+========================= */
+@media (max-width: 1024px) {
+
+  .auth-left,
+  .auth-right {
+    padding: 40px 28px;
+  }
+
+  .logo-big {
+    font-size: 44px;
+  }
+
+  .title-line h2 {
+    font-size: 20px;
+  }
+
+  .navbar-inner {
+    padding: 12px 10px;
+  }
+
+  .nav-center {
+    margin: 0 14px;
+  }
+
+  .search-box {
+    max-width: 380px;
+  }
+}
+
+
+/* =========================
+   <= 768px (Tablet / iPad)
+========================= */
+/* ============================================================
+   RESPONSIVE
+============================================================ */
 @media (max-width: 768px) {
+
   .auth-page {
     flex-direction: column;
+    min-height: calc(100vh - 70px);
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
   }
-  .auth-left, .auth-right {
+
+  .auth-left,
+  .auth-right {
     width: 100%;
-    padding: 60px 20px;
+    min-height: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 24px 20px;
+    gap: 16px;
   }
+
+  /* form tetap proporsional */
+  .auth-left > input,
+  .auth-right > input,
+  .password-box,
+  .title-line,
+  .error-text,
+  .success-text {
+    max-width: 420px;
+    width: 100%;
+  }
+
+  /* navbar search disembunyikan */
   .nav-center {
     display: none;
+  }
+
+  .title-line h2 {
+    font-size: 20px;
+  }
+
+  .logo-big {
+    font-size: 42px;
+  }
+}
+
+
+/* HP kecil */
+@media (max-width: 480px) {
+
+  .auth-page {
+    min-height: calc(100vh - 65px);
+    padding: 20px 0;
+  }
+
+  .auth-left,
+  .auth-right {
+    padding: 20px 16px;
+  }
+
+  .title-line h2 {
+    font-size: 18px;
+  }
+
+  .logo-big {
+    font-size: 38px;
+  }
+
+  input:not([type="submit"]):not(.search-box input) {
+    height: 46px;
+    font-size: 13px;
+  }
+
+  .btn.primary {
+    width: 100%;
+    max-width: 400px;
+    height: 46px;
+    font-size: 14px;
+  }
+}
+
+/* =========================
+   <= 600px (Tablet kecil)
+========================= */
+@media (max-width: 600px) {
+
+  .auth-left,
+  .auth-right {
+    padding: 42px 20px;
+    gap: 14px;
+  }
+
+  .logo-big {
+    font-size: 38px;
+  }
+
+  .title-line h2 {
+    font-size: 18px;
+  }
+
+  input:not([type="submit"]):not(.search-box input) {
+    height: 46px;
+    font-size: 13px;
+    border-radius: 22px;
+  }
+
+  .password-box input {
+    padding-right: 50px !important;
+  }
+
+  .eye-icon {
+    right: 16px;
+    font-size: 15px;
+  }
+
+  .btn.primary {
+    height: 46px;
+    border-radius: 23px;
+    font-size: 13px;
+  }
+
+  .forgot,
+  .switch {
+    font-size: 12px;
+  }
+
+  .error-text,
+  .success-text {
+    font-size: 12px;
+    padding-left: 4px;
+  }
+}
+
+
+/* =========================
+   <= 480px (Mobile)
+========================= */
+@media (max-width: 480px) {
+
+  /* NAVBAR */
+  .navbar {
+    padding: 0 10px;
+  }
+
+  .navbar-inner {
+    padding: 10px 0;
+  }
+
+  .nav-left .logo {
+    font-size: 18px;
+    gap: 6px;
+  }
+
+  .nav-right {
+    gap: 8px;
+  }
+
+  /* AUTH */
+  .auth-left,
+  .auth-right {
+    padding: 34px 16px;
+    gap: 13px;
+  }
+
+  .logo-big {
+    font-size: 34px;
+  }
+
+  .title-line {
+    gap: 10px;
+  }
+
+  .title-line h2 {
+    font-size: 17px;
+  }
+
+  .title-line span {
+    height: 1px;
+  }
+
+  input:not([type="submit"]):not(.search-box input) {
+    height: 44px;
+    font-size: 13px;
+    padding: 0 16px;
+    border-radius: 22px;
+  }
+
+  .password-box input {
+    padding-right: 46px !important;
+  }
+
+  .eye-icon {
+    right: 15px;
+    font-size: 14px;
+  }
+
+  .btn.primary {
+    height: 44px;
+    border-radius: 22px;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  .forgot,
+  .switch {
+    font-size: 12px;
+  }
+
+  .error-text,
+  .success-text {
+    font-size: 11px;
+  }
+}
+
+
+/* =========================
+   <= 360px (HP kecil)
+========================= */
+@media (max-width: 360px) {
+
+  .auth-left,
+  .auth-right {
+    padding: 28px 14px;
+  }
+
+  .logo-big {
+    font-size: 30px;
+  }
+
+  .title-line h2 {
+    font-size: 16px;
+  }
+
+  input:not([type="submit"]):not(.search-box input) {
+    height: 42px;
+    font-size: 12px;
+  }
+
+  .btn.primary {
+    height: 42px;
+    font-size: 12px;
+  }
+
+  .forgot,
+  .switch {
+    font-size: 11px;
   }
 }
