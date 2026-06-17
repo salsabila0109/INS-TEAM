@@ -27,9 +27,14 @@ app.use(
 app.use("/uploads", express.static("uploads"));
 
 // middleware
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  process.env.FRONTEND_URL
+];
+
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:5174"],
-  methods: ["GET", "POST", "PUT", "DELETE"], 
+  origin: allowedOrigins,
   credentials: true
 }));
 
@@ -94,6 +99,8 @@ app.post(
   }
 );
 
-app.listen(5000, () => {
-  console.log("Server jalan di http://localhost:5000");
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server jalan di port ${PORT}`);
 });
