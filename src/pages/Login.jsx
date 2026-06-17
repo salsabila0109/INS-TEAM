@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../styles/Auth.css";
 import axios from "axios";
@@ -7,7 +7,8 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 function Login() {
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const successMessage = location.state?.success;
   const [show, setShow] = useState(false);
 
   const [email, setEmail] = useState("");
@@ -147,7 +148,11 @@ function Login() {
           <h2>Masuk</h2>
           <span></span>
         </div>
-
+        {successMessage && (
+          <p className="success-text">
+            {successMessage}
+          </p>
+        )}
         <input
           type="email"
           placeholder="Email"

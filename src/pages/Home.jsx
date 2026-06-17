@@ -206,55 +206,6 @@ function Home() {
             setActiveCategory={setActiveCategory}
           />
         </section>
-
-        {/* 🔥 TRENDING */}
-        {isAllCategory && (
-          <section className="home-section">
-            <h2>
-              <FaFire className="section-icon" style={{ color: "#C94C4C" }} />
-              Trending Sekarang
-            </h2>
-
-            <div className="horizontal-scroll">
-              {trendingRecipes.map((item) => (
-                <RecipeCard key={item._id || item.id} data={item} />
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* 🆕 LATEST */}
-        {isAllCategory && (
-          <section className="home-section">
-            <h2>
-              <FaClock className="section-icon" style={{ color: "#64748b" }} />
-              Resep Terbaru
-            </h2>
-
-            <div className="horizontal-scroll">
-              {latestRecipes.map((item) => (
-                <RecipeCard key={item._id || item.id} data={item} />
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* ⭐ TOP RATED */}
-        {isAllCategory && (
-          <section className="home-section">
-            <h2>
-              <FaStar className="section-icon" style={{ color: "#c9a227" }} />
-              Top Rated
-            </h2>
-
-            <div className="horizontal-scroll">
-              {topRatedRecipes.map((item) => (
-                <RecipeCard key={item._id || item.id} data={item} />
-              ))}
-            </div>
-          </section>
-        )}
-
         {/* GRID ALL (FILTER KAMU TETAP DIPERTAHANKAN) */}
         <div className="recipe-cards-grid">
           {loading ? (

@@ -43,6 +43,13 @@ const EditProfil = () => {
   const [followers, setFollowers] = useState(0);
   const [following, setFollowing] = useState(0);
   const [imgError, setImgError] = useState(false);
+
+  const [popup, setPopup] =
+    useState({
+      show: false,
+      message: "",
+      type: "",
+    });
   // =========================
   // GET FOLLOW STATS
   // =========================
@@ -114,9 +121,12 @@ const EditProfil = () => {
         file.size >
         2 * 1024 * 1024
       ) {
-        alert(
-          "Ukuran foto maksimal 2MB"
-        );
+        setPopup({
+          show: true,
+          message:
+            "Ukuran foto maksimal 2MB",
+          type: "error",
+        });
         return;
       }
 
@@ -132,9 +142,12 @@ const EditProfil = () => {
           file.type
         )
       ) {
-        alert(
-          "Format gambar tidak didukung"
-        );
+        setPopup({
+          show: true,
+          message:
+            "Format gambar tidak didukung",
+          type: "error",
+        });
         return;
       }
 
@@ -218,21 +231,24 @@ const EditProfil = () => {
           )
         );
 
-        alert(
-          "Profil berhasil diperbarui!"
-        );
+        setPopup({
+          show: true,
+          message:
+            "Profil berhasil diperbarui!",
+          type: "success",
+        });
 
-        navigate(
-          "/profile"
-        );
       } catch (error) {
         console.log(
           error
         );
 
-        alert(
-          "Gagal update profil"
-        );
+        setPopup({
+          show: true,
+          message:
+            "Gagal update profil",
+          type: "error",
+        });
       }
     };
 
@@ -291,9 +307,12 @@ const EditProfil = () => {
           error
         );
 
-        alert(
-          "Gagal upload foto"
-        );
+        setPopup({
+          show: true,
+          message:
+            "Gagal upload foto",
+          type: "error",
+        });
       }
     };
 
@@ -474,7 +493,38 @@ const EditProfil = () => {
                 >
                   Simpan Perubahan
                 </button>
+                {popup.show && (
+                  <div className="popup-overlay">
+                    <div className="popup-box">
+                      <h3>
+                        {popup.type === "success"
+                          ? "Berhasil"
+                          : "Oops!"}
+                      </h3>
 
+                      <p>
+                        {popup.message}
+                      </p>
+
+                      <button
+                        onClick={() => {
+                          setPopup({
+                            show: false,
+                            message: "",
+                            type: "",
+                          });
+
+                          // hanya pindah jika sukses
+                          if (popup.type === "success") {
+                            navigate("/profile");
+                          }
+                        }}
+                      >
+                        OK
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </section>
           </div>

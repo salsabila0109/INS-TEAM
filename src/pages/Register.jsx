@@ -99,20 +99,12 @@ function Register() {
         }
       );
 
-      setSuccessMessage(
-        "Register berhasil!"
-      );
-
-      // simpan user jika backend mengirim data user
-      if (res.data.user) {
-        localStorage.setItem(
-          "user",
-          JSON.stringify(res.data.user)
-        );
-      }
-
-      // langsung ke halaman home
-      navigate("/");
+      navigate("/login", {
+        state: {
+          success:
+            "Akun berhasil dibuat. Silakan login.",
+        },
+      });
 
     } catch (err) {
 

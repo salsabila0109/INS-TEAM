@@ -200,7 +200,7 @@ function LihatResepSaya() {
             </h1>
 
             <p className="recipe-rating">
-              ⭐ {recipe.rating || 0}
+              ⭐ {recipe.rating || 0} &nbsp;
               (
               {recipe.totalReviews || 0}
               Penilaian)

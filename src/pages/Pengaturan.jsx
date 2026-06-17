@@ -15,7 +15,12 @@ function Pengaturan() {
   const [errorOldPassword, setErrorOldPassword] = useState("");
   const [errorNewPassword, setErrorNewPassword] = useState("");
   const [errorConfirmPassword, setErrorConfirmPassword] = useState("");
-
+  const [popup, setPopup] =
+    useState({
+      show: false,
+      message: "",
+      type: "",
+    });
   const [user, setUser] =
     useState(
       JSON.parse(
@@ -202,7 +207,12 @@ function Pengaturan() {
         }
       );
 
-      alert("Kata sandi berhasil diperbarui!");
+      setPopup({
+        show: true,
+        message:
+          "Kata sandi berhasil diperbarui!",
+        type: "success",
+      });
 
       setOldPassword("");
       setNewPassword("");
@@ -376,6 +386,36 @@ function Pengaturan() {
                   </button>
                 </div>
               </form>
+            )}
+            
+            {popup.show && (
+              <div className="popup-overlay">
+                <div className="popup-box">
+
+                  <h3>
+                    {popup.type === "success"
+                      ? "Berhasil"
+                      : "Oops!"}
+                  </h3>
+
+                  <p>
+                    {popup.message}
+                  </p>
+
+                  <button
+                    onClick={() =>
+                      setPopup({
+                        show: false,
+                        message: "",
+                        type: "",
+                      })
+                    }
+                  >
+                    OK
+                  </button>
+
+                </div>
+              </div>
             )}
 
             {/* ACTION FOOTER */}
