@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2026 at 04:49 PM
+-- Generation Time: Jun 17, 2026 at 07:11 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,7 +41,8 @@ CREATE TABLE `followers` (
 INSERT INTO `followers` (`id`, `follower_id`, `following_id`, `created_at`) VALUES
 (235, 23, 6, '2026-06-15 12:28:18'),
 (236, 6, 347, '2026-06-15 14:38:19'),
-(237, 25, 347, '2026-06-15 14:45:58');
+(237, 25, 347, '2026-06-15 14:45:58'),
+(238, 355, 6, '2026-06-17 03:14:43');
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,7 @@ CREATE TABLE `recipes` (
 --
 
 INSERT INTO `recipes` (`id`, `title`, `serving`, `description`, `category`, `image`, `ingredients`, `steps`, `userId`, `createdAt`, `updatedAt`, `rating`, `totalReviews`) VALUES
-(5, 'Dessert Coklat Puding Choco Oreo', '1', 'Dessert coklat yang sangat sederhana, creamy, dan manis dengan rasa coklat lembut dipadukan remahan biskuit. Cocok untuk pemula karena bahan sedikit dan langkahnya cepat tanpa oven.', 'Dessert', '1778933887053.jpg', '[\"1 bungkus kecil puding coklat instan (atau 1 sdm coklat bubuk + 1 sdt gula)\",\"150 ml susu cair atau air\",\"2 keping biskuit Oreo (diremukkan)\",\"1 sdt susu kental manis coklat (opsional)\"]', '[{\"text\":\"Campurkan bubuk puding coklat dengan susu cair/air dalam panci kecil, lalu aduk rata.\",\"images\":[\"1778933886962.png\"]},{\"text\":\"Masak dengan api kecil sambil diaduk hingga mulai mengental.\",\"images\":[\"1778933886979.png\"]},{\"text\":\"Tuang ke gelas atau mangkuk kecil, lalu taburkan remahan Oreo di atasnya.\",\"images\":[\"1778933886991.png\"]},{\"text\":\"Dinginkan sekitar 10–15 menit atau masukkan ke kulkas sebentar sebelum dimakan.\",\"images\":[\"1778933887000.png\",\"1778933887011.png\"]}]', 6, '2026-05-16 12:18:07', '2026-05-20 13:29:03', 5.0, 1),
+(5, 'Dessert Coklat Puding Choco Oreo ', '1', 'Dessert coklat yang sangat sederhana, creamy, dan manis dengan rasa coklat lembut dipadukan remahan biskuit. Cocok untuk pemula karena bahan sedikit dan langkahnya cepat tanpa oven.', 'Dessert', '1778933887053.jpg', '[\"1 bungkus kecil puding coklat instan (atau 1 sdm coklat bubuk + 1 sdt gula)\",\"150 ml susu cair atau air\",\"2 keping biskuit Oreo (diremukkan)\",\"1 sdt susu kental manis coklat (opsional)\"]', '[{\"text\":\"Campurkan bubuk puding coklat dengan susu cair/air dalam panci kecil, lalu aduk rata.\",\"images\":[\"1778933886962.png\"]},{\"text\":\"Masak dengan api kecil sambil diaduk hingga mulai mengental.\",\"images\":[\"1778933886979.png\"]},{\"text\":\"Tuang ke gelas atau mangkuk kecil, lalu taburkan remahan Oreo di atasnya.\",\"images\":[\"1778933886991.png\"]},{\"text\":\"Dinginkan sekitar 10–15 menit atau masukkan ke kulkas sebentar sebelum dimakan.\",\"images\":[\"1778933887000.png\",\"1778933887011.png\"]}]', 6, '2026-05-16 12:18:07', '2026-06-16 12:54:12', 5.0, 2),
 (6, 'Nasi Goreng Telur', '1', 'Nasi goreng telur adalah makanan sederhana yang mudah dibuat di rumah. Rasanya gurih, sedikit manis, dan cocok dimakan saat sarapan maupun malam hari. Resep ini menggunakan bahan yang mudah ditemukan dan proses memasaknya cepat.', 'Makanan', '1779321271089.jpeg', '[\"1 piring nasi putih\",\"1 butir telur\",\"2 siung bawang putih\",\"3 siung bawang merah\",\"2 sdm kecap manis\",\"1 sdm minyak goreng\",\"Garam secukupnya\",\"Merica secukupnya\",\"Daun bawang (opsional)\"]', '[{\"text\":\"Iris bawang merah dan bawang putih.\",\"images\":[]},{\"text\":\"Panaskan minyak di wajan.\",\"images\":[]},{\"text\":\"Tumis bawang hingga harum.\",\"images\":[]},{\"text\":\"Masukkan telur, lalu orak-arik.\",\"images\":[]},{\"text\":\"Tambahkan nasi putih dan aduk rata.\",\"images\":[]},{\"text\":\"Masukkan kecap manis, garam, dan merica.\",\"images\":[]},{\"text\":\"Aduk hingga semua bahan tercampur merata.\",\"images\":[]},{\"text\":\"ambahkan daun bawang jika suka.\",\"images\":[]},{\"text\":\"Sajikan selagi hangat.\",\"images\":[]}]', 6, '2026-05-20 23:54:31', '2026-05-20 23:54:31', NULL, 0),
 (7, 'Es Teh Lemon', '1', 'Es teh lemon adalah minuman segar dengan rasa manis dan sedikit asam. Cocok diminum saat cuaca panas dan sangat mudah dibuat.', 'Minuman', '1779321714303.jpeg', '[\"1 kantong teh\",\"1 buah lemon\",\"2 sdm gula\",\"Air panas secukupnya\",\"Es batu secukupnya\"]', '[{\"text\":\"Seduh teh dengan air panas\",\"images\":[]},{\"text\":\"Tambahkan gula lalu aduk hingga larut\",\"images\":[]},{\"text\":\"Peras lemon ke dalam teh.\",\"images\":[]},{\"text\":\"Tambahkan es batu.\",\"images\":[]},{\"text\":\"Sajikan dingin.\",\"images\":[]}]', 6, '2026-05-21 00:01:54', '2026-05-21 00:01:54', NULL, 0),
 (8, 'Susu Cokelat Dingin', '2', 'Susu cokelat dingin memiliki rasa manis dan creamy. Minuman ini cocok untuk anak-anak maupun orang dewasa.', 'Minuman', '1779321906190.jpeg', '[\"2 gelas susu cair\",\"4 sdm cokelat bubuk atau sirup cokelat\",\"1/5 sdm gula (opsional)\",\"Es batu secukupnya\"]', '[{\"text\":\"Campurkan susu dan cokelat\",\"images\":[]},{\"text\":\"Tambahkan gula jika ingin lebih manis\",\"images\":[]},{\"text\":\"Aduk hingga tercampur rata.\",\"images\":[]},{\"text\":\"Masukkan es batu.\",\"images\":[]},{\"text\":\"Sajikan dingin.\",\"images\":[]}]', 6, '2026-05-21 00:05:06', '2026-05-21 00:05:06', NULL, 0),
@@ -102,7 +103,8 @@ CREATE TABLE `reviews` (
 
 INSERT INTO `reviews` (`id`, `recipeId`, `userId`, `rating`, `comment`, `createdAt`, `updatedAt`) VALUES
 (1, 5, 23, 5, 'Resepnya mudah dan rasanya enak', '2026-05-20 13:29:03', '2026-05-20 13:29:03'),
-(296, 89, 25, 3, 'tes', '2026-06-15 14:47:28', '2026-06-15 14:47:28');
+(296, 89, 25, 3, 'tes', '2026-06-15 14:47:28', '2026-06-15 14:47:28'),
+(297, 5, 348, 5, 'sangat mudah dan enak', '2026-06-16 02:36:14', '2026-06-16 02:36:14');
 
 -- --------------------------------------------------------
 
@@ -124,7 +126,8 @@ CREATE TABLE `saved_recipes` (
 
 INSERT INTO `saved_recipes` (`id`, `userId`, `recipeId`, `createdAt`, `updatedAt`) VALUES
 (6, 23, 5, '2026-05-20 13:56:45', '2026-05-20 13:56:45'),
-(8, 23, 8, '2026-05-21 00:24:21', '2026-05-21 00:24:21');
+(8, 23, 8, '2026-05-21 00:24:21', '2026-05-21 00:24:21'),
+(119, 6, 89, '2026-06-16 14:29:44', '2026-06-16 14:29:44');
 
 -- --------------------------------------------------------
 
@@ -148,13 +151,21 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `createdAt`, `updatedAt`, `bio`, `photo`) VALUES
-(6, 'Tim Foodies Hub ', 'foodieshub@gmail.com', '$2b$10$Sdc7wiR3ujtKnRHZFBu2jOyKu/1g0czsF/iSC0bpYhYAHM6AeoljO', '2026-05-05 11:45:07', '2026-06-15 13:05:58', 'akun milik tim foodies resmi', 'http://localhost:5000/uploads/1779628211319.jfif'),
+(6, 'Tim Foodies Hub ', 'foodieshub@gmail.com', '$2b$10$eKKEXdYfALkhGzdA68bg1OGBFZNMMl4ty0Vxzx9urfqiIVHa5Ped2', '2026-05-05 11:45:07', '2026-06-17 03:13:27', 'akun milik tim princess foodies resmi', 'http://localhost:5000/uploads/1781662435577.jfif'),
 (20, 'tes', 'tes1@gmail.com', '$2b$10$CJSRlS2S0q/OibAmiplAieBu4rdb0iUmmmaK5rlmekXpdt2jZEwmK', '2026-05-14 12:38:37', '2026-05-14 12:38:37', NULL, NULL),
 (21, 'wwe', 'tess@gmail.com', '$2b$10$XucgpaUurTNatye8hYaxPeJKD2d51v/W3BnPPIVwwew13LF/Bp9nm', '2026-05-15 01:30:48', '2026-05-15 01:30:48', NULL, NULL),
 (22, 'Tes JWT', 'jwtTes@gmail.com', '$2b$10$R5a6YPEwXgxkdQEEjLLka.eDfeGoAiYHnjtNJiniQN3TIsmVS07Ca', '2026-05-16 12:19:08', '2026-05-16 12:22:17', 'JWT Tes', NULL),
 (23, 'Tes FoodiesHub', 'TesFoodies@gmail.com', '$2b$10$n5gEeBNgfrF5PZFd6VVguubvcJ8PWkPHlSFUKsVdGMiDAos3C2Nje', '2026-05-20 13:12:01', '2026-06-15 13:06:50', 'Akun tes foodies', 'http://localhost:5000/uploads/1779284509857.jpg'),
 (25, 'Lutfiah Latifah', 'lutfiah@gmail.com', '$2b$10$u.z4Dd87esV2xH0b6ISvPOr06g5ma0zJgripXzIbjA3E0eHLBdNta', '2026-05-27 10:51:56', '2026-06-15 14:45:37', '', NULL),
-(347, 'Iren', '1224irenna@gmail.com', '$2b$10$cW.yc5qOoqcQfs.I.B2.zeMz/WP.ezQ91L5gNYVVHhmBIcVje87Bi', '2026-06-15 13:17:14', '2026-06-15 13:17:14', NULL, NULL);
+(347, 'Iren', '1224irenna@gmail.com', '$2b$10$cW.yc5qOoqcQfs.I.B2.zeMz/WP.ezQ91L5gNYVVHhmBIcVje87Bi', '2026-06-15 13:17:14', '2026-06-16 04:40:44', 'haloo', NULL),
+(348, 'tes register', 'tesregister@gmail.com', '$2b$10$Xl4Kal70yG4hve08VOk9muwr1ycV2G6uPVWg40W5o1TbwTGXiduuy', '2026-06-16 02:35:48', '2026-06-16 02:35:48', NULL, NULL),
+(349, 'Sabil', 'sabil01@gmail.com', '$2b$10$ayNsAweAX/.bGy1RvbHN2ueWsSw7ZpA.Hq1cJG02PsMib49RdFtf2', '2026-06-17 02:08:51', '2026-06-17 02:32:19', 'tes', NULL),
+(350, 'tes reg', 'tesreg@gmail.com', '$2b$10$czzg6VCZLD1mBF801Q1RnOxoMfm9hbEevu5mbZ2IoRKPH79Dag7Cu', '2026-06-17 02:34:26', '2026-06-17 02:34:26', NULL, NULL),
+(351, 'TES', 'tesreg2@gmail.com', '$2b$10$.y0gzyg.toVCv5zq9c6SXu8YMEv1nCfW0/VT64VOL4eH7POC.PU6O', '2026-06-17 02:38:24', '2026-06-17 02:38:24', NULL, NULL),
+(352, 'tess', 'apaja@gmail.com', '$2b$10$5R.kQSvYP64zImrUCvp5KOj4gbF6DYxhHN07rhShJbWn.sq2WlqXO', '2026-06-17 02:40:26', '2026-06-17 02:40:26', NULL, NULL),
+(353, 'fix tes', 'fixtes@gmail.com', '$2b$10$IPXOD7672JsZixL1s8Namexf5Gdbs9uYAduhmTfakCyebOMUYRQnq', '2026-06-17 02:42:34', '2026-06-17 02:42:34', NULL, NULL),
+(354, 'fix tes 2', 'fixtes2@gmail.com', '$2b$10$fZSKDNagmHI3ibfJajrOQOclKImPBoPsDn1mZKIDIHCa33Sx5ujeC', '2026-06-17 02:45:00', '2026-06-17 02:46:29', 'tes', NULL),
+(355, 'Tes Fix Banget', 'fixx@gmail.com', '$2b$10$WYHqomCb1G4qEbTPq0oDR.fLCk/crKHIjhEDfe3kjrpzl6sHXuWpO', '2026-06-17 02:49:32', '2026-06-17 03:03:55', 'Anak Kost Bost', 'http://localhost:5000/uploads/1781664723456.jpg');
 
 --
 -- Indexes for dumped tables
@@ -208,7 +219,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `followers`
 --
 ALTER TABLE `followers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=238;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
 
 --
 -- AUTO_INCREMENT for table `recipes`
@@ -220,19 +231,19 @@ ALTER TABLE `recipes`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=297;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=298;
 
 --
 -- AUTO_INCREMENT for table `saved_recipes`
 --
 ALTER TABLE `saved_recipes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=348;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=356;
 
 --
 -- Constraints for dumped tables

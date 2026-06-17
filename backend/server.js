@@ -75,10 +75,21 @@ console.log("DB_PORT:", process.env.DB_PORT);
 
 // database
 db.authenticate()
-  .then(() => console.log("Database connected"))
+  .then(() => {
+    console.log("Database connected");
+
+    // hanya untuk development lokal
+    if (process.env.NODE_ENV !== "production") {
+      return db.sync();
+    }
+  })
+  .then(() => {
+    if (process.env.NODE_ENV !== "production") {
+      console.log("Database synced (dev only)");
+    }
+  })
   .catch((err) => console.log("DB Error:", err));
-
-
+   
 app.post(
   "/api/login",
   [
