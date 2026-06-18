@@ -6,6 +6,8 @@ const User = require("../models/User");
 const Review = require("../models/Review");
 const multer = require("multer");
 const path = require("path");
+const cloudinary = require("../config/cloudinary");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 const verifyToken = require(
   "../middlewares/verifyToken"
@@ -28,22 +30,12 @@ Review.belongsTo(Recipe, {
   foreignKey: "recipeId",
 });
 
-const storage = multer.diskStorage({
-
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "foodieshub",
+    allowed_formats: ["jpg", "png", "jpeg"],
   },
-
-  filename: (req, file, cb) => {
-
-    cb(
-      null,
-      Date.now() +
-      path.extname(file.originalname)
-    );
-
-  },
-
 });
 
 const upload = multer({
@@ -99,9 +91,7 @@ router.post(
 
           imageIndex++;
 
-          return file
-            ? file.filename
-            : "";
+          return file ? file.path : "";
 
         });
 
@@ -115,9 +105,7 @@ router.post(
         category,
 
         // simpan nama file
-        image:
-          req.files?.image?.[0]
-            ?.filename || "",
+        image: req.files?.image?.[0]?.path || "",
 
         ingredients,
 
@@ -131,19 +119,13 @@ router.post(
         message: "Resep berhasil dibuat",
         recipe,
       });
-
     } catch (error) {
-
       console.log(error);
-
       res.status(500).json({
         message: error.message,
       });
-
     }
-
-  }
-);
+    });
 
 // =========================
 // GET ALL RECIPES
@@ -416,9 +398,7 @@ router.put(
 
                 imageIndex++;
 
-                return file
-                  ? file.filename
-                  : "";
+                return file ? file.path : "";
               }
             );
         }
@@ -431,10 +411,7 @@ router.put(
       if (
         req.files?.image?.[0]
       ) {
-        mainImage =
-          req.files
-            .image[0]
-            .filename;
+        mainImage = req.files.image[0].path;
       }
 
       await recipe.update({

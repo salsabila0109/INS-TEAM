@@ -7,6 +7,7 @@ import ProfileSidebar from "../components/ProfileSidebar";
 import "../styles/followPage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { useFollow } from "../context/FollowContext";
 
 function FollowingPage() {
   const navigate = useNavigate();
@@ -17,11 +18,7 @@ function FollowingPage() {
   const [loading, setLoading] =
     useState(true);
 
-  const [followers, setFollowers] =
-    useState(0);
-
-  const [following, setFollowing] =
-    useState(0);
+  const { followers, following } = useFollow();
 
   const [activeMenu] =
     useState("profil");
@@ -31,58 +28,24 @@ function FollowingPage() {
   );
 
   useEffect(() => {
-    // =========================
-    // GET FOLLOWING
-    // =========================
-    const getFollowing =
-      async () => {
-        try {
-          const response =
-            await axios.get(
-              `http://localhost:5000/api/follow/following/${user.id}`
-            );
+    if (!user?.id) return;
 
-          setFollowingData(
-            response.data
-          );
-        } catch (error) {
-          console.log(error);
-        } finally {
-          setLoading(false);
-        }
-      };
+    const getFollowing = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/follow/following/${user.id}`
+        );
 
-    // =========================
-    // GET FOLLOW STATS
-    // =========================
-    const getFollowStats =
-      async () => {
-        try {
-          const response =
-            await axios.get(
-              `http://localhost:5000/api/follow/stats/${user.id}`
-            );
+        setFollowingData(response.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-          setFollowers(
-            response.data
-              .followers
-          );
-
-          setFollowing(
-            response.data
-              .following
-          );
-        } catch (error) {
-          console.log(error);
-        }
-      };
-
-    if (user?.id) {
-      getFollowing();
-      getFollowStats();
-    }
-  }, [user?.id]);
-
+    getFollowing();
+  }, []);
   return (
     <>
       <Navbar />
@@ -115,11 +78,12 @@ function FollowingPage() {
 
           <div className="follow-list">
             {loading ? (
-              <p>
-                Memuat...
-              </p>
-            ) : followingData.length >
-              0 ? (
+              <div className="loading-screen follower-loading">
+                <div className="foodies-spinner"></div>
+                <p>Memuat...</p>
+              </div>
+            ) : followingData.length > 
+            0 ? (                
               followingData.map(
                 (
                   item
@@ -134,11 +98,7 @@ function FollowingPage() {
                       <div className="follow-avatar">
                         {item.photo ? (
                           <img
-                            src={
-                              item.photo.startsWith("http")
-                                ? item.photo
-                                : `http://localhost:5000/uploads/${item.photo}`
-                            }
+                            src={item.photo}
                             alt={item.name}
                           />
                         ) : (

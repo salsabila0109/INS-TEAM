@@ -29,8 +29,7 @@ app.use("/uploads", express.static("uploads"));
 // middleware
 const allowedOrigins = [
   "http://localhost:5173",
-  "http://localhost:5174",
-  process.env.FRONTEND_URL
+  "http://localhost:5174"
 ];
 
 app.use(cors({
@@ -68,11 +67,6 @@ app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
-console.log("DB_HOST:", process.env.DB_HOST);
-console.log("DB_NAME:", process.env.DB_NAME);
-console.log("DB_USER:", process.env.DB_USER);
-console.log("DB_PORT:", process.env.DB_PORT);
-
 // database
 db.authenticate()
   .then(() => {
@@ -89,7 +83,7 @@ db.authenticate()
     }
   })
   .catch((err) => console.log("DB Error:", err));
-   
+
 app.post(
   "/api/login",
   [

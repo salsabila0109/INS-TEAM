@@ -12,9 +12,7 @@ function RecipeCard({ data }) {
   const navigate =
     useNavigate();
 
-  const user = JSON.parse(
-    localStorage.getItem("user")
-  );
+  const user = JSON.parse(localStorage.getItem("user") || "null");
 
   const [isSaved, setIsSaved] =
     useState(false);
@@ -33,7 +31,7 @@ function RecipeCard({ data }) {
 
           const response =
             await axios.get(
-              `http://localhost:5000/api/saved-recipes/check/${user.id}/${data.id}`
+              `${import.meta.env.VITE_API_URL}/api/saved-recipes/check/${user.id}/${data.id}`
             );
 
           setIsSaved(
@@ -64,7 +62,7 @@ function RecipeCard({ data }) {
 
         const response =
           await axios.post(
-            "http://localhost:5000/api/saved-recipes",
+             `${import.meta.env.VITE_API_URL}/api/saved-recipes`,
             {
               userId:
                 user.id,
@@ -95,8 +93,11 @@ function RecipeCard({ data }) {
       {/* IMAGE */}
       <div className="image">
         <img
-          src={`http://localhost:5000/uploads/${data.image}`}
+          src={data.image}
           alt={data.title}
+          onError={(e) => {
+            e.target.src = "https://via.placeholder.com/300";
+          }}
         />
       </div>
 

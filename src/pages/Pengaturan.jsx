@@ -9,6 +9,7 @@ import axios from "axios";
 import "../styles/pengaturan.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { useFollow } from "../context/FollowContext";
 
 function Pengaturan() {
   const navigate = useNavigate();
@@ -47,34 +48,7 @@ function Pengaturan() {
   // Menu aktif sidebar
   const [activeMenu] =
     useState("pengaturan");
-  const [followers, setFollowers] = useState(0);
-  const [following, setFollowing] = useState(0);
-
-  // =========================
-  // GET FOLLOW STATS
-  // =========================
-  const getFollowStats =
-    async (userId) => {
-      try {
-        const response =
-          await axios.get(
-            `http://localhost:5000/api/follow/stats/${userId}`
-          );
-
-        setFollowers(
-          response.data
-            .followers
-        );
-
-        setFollowing(
-          response.data
-            .following
-        );
-
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  const { followers, following } = useFollow();
 
   // Get user dari localStorage
   useEffect(() => {
@@ -88,11 +62,6 @@ function Pengaturan() {
     if (localUser) {
       setUser(
         localUser
-      );
-
-      // ambil jumlah follow
-      getFollowStats(
-        localUser.id
       );
     }
   }, []);
@@ -128,7 +97,7 @@ function Pengaturan() {
     try {
       const response =
         await axios.put(
-          `http://localhost:5000/api/profile/${user.id}`,
+          `${import.meta.env.VITE_API_URL}/api/profile/${user.id}`,
           formData,
           {
             headers: {
@@ -198,7 +167,7 @@ function Pengaturan() {
       const token = localStorage.getItem("token");
 
       await axios.put(
-        `http://localhost:5000/api/profile/change-password/${userId}`,
+        `${import.meta.env.VITE_API_URL}/api/profile/change-password/${userId}`,
         { oldPassword, newPassword },
         {
           headers: {

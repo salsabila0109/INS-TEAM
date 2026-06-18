@@ -4,6 +4,7 @@ import ProfileSidebar from "../components/ProfileSidebar";
 import "../styles/profile.css";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useFollow } from "../context/FollowContext";
 
 import {
   faUser,
@@ -21,9 +22,7 @@ function Profile() {
   const [user, setUser] = useState({});
   const [myRecipes, setMyRecipes] = useState([]);
   const [activeMenu, setActiveMenu] = useState("profil");
-  const [followers, setFollowers] = useState(0);
-  const [following, setFollowing] = useState(0);
-
+  const { followers, following } = useFollow();
   // =========================
   // UPLOAD FOTO PROFIL
   // =========================
@@ -42,11 +41,14 @@ function Profile() {
     formData.append("photo", file);
 
     try {
+      const token = localStorage.getItem("token");
+
       const response = await axios.put(
-        `http://localhost:5000/api/profile/${user.id}`,
+        `${import.meta.env.VITE_API_URL}/api/profile/${user.id}`,
         formData,
         {
           headers: {
+            Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
         }
@@ -69,31 +71,6 @@ function Profile() {
     }
   };
 
-  // =========================
-  // GET FOLLOW STATS
-  // =========================
-  const getFollowStats =
-    async (userId) => {
-      try {
-        const response =
-          await axios.get(
-            `http://localhost:5000/api/follow/stats/${userId}`
-          );
-
-        setFollowers(
-          response.data
-            .followers
-        );
-
-        setFollowing(
-          response.data
-            .following
-        );
-
-      } catch (error) {
-        console.log(error);
-      }
-    };
     
   // =========================
   // GET PROFILE & RESEP
@@ -112,7 +89,7 @@ function Profile() {
         if (!localUser?.id) return;
 
         const response = await axios.get(
-          `http://localhost:5000/api/profile/${localUser.id}`
+          `${import.meta.env.VITE_API_URL}/api/profile/${localUser.id}`
         );
 
         setUser(response.data);
@@ -133,7 +110,7 @@ function Profile() {
         if (!localUser?.id) return;
 
         const response = await axios.get(
-          `http://localhost:5000/api/recipes/user/${localUser.id}`
+          `${import.meta.env.VITE_API_URL}/api/recipes/user/${localUser.id}`
         );
 
         setMyRecipes(response.data);
@@ -143,13 +120,7 @@ function Profile() {
     };
 
   getProfile();
-  getMyRecipes();
-
-  if (localUser?.id) {
-    getFollowStats(
-      localUser.id
-    );
-  }    
+  getMyRecipes();   
   }, []);
 
   // =========================
@@ -234,7 +205,7 @@ function Profile() {
                   myRecipes.map((recipe) => (
                     <div className="recipe-horizontal-card" key={recipe.id}>
                       <img
-                        src={`http://localhost:5000/uploads/${recipe.image}`}
+                        src={recipe.image}
                         alt={recipe.title}
                         onError={(e) => {
                           e.target.src = "https://via.placeholder.com/140x95";

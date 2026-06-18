@@ -41,7 +41,7 @@ function ProfilDikunjungi() {
       // ========================
       const userRes =
         await axios.get(
-          `http://localhost:5000/api/profile/${id}`
+          `${import.meta.env.VITE_API_URL}/api/profile/${id}`
         );
 
       setUser(userRes.data);
@@ -51,7 +51,7 @@ function ProfilDikunjungi() {
       // ========================
       const recipeRes =
         await axios.get(
-          `http://localhost:5000/api/recipes/user/${id}`
+          `${import.meta.env.VITE_API_URL}/api/recipes/user/${id}`
         );
 
       setRecipes(recipeRes.data);
@@ -61,7 +61,7 @@ function ProfilDikunjungi() {
       // ========================
       const followRes =
         await axios.get(
-          `http://localhost:5000/api/follow/stats/${id}`,
+          `${import.meta.env.VITE_API_URL}/api/follow/stats/${id}`,
           {
             params: {
               currentUserId:
@@ -102,7 +102,7 @@ function ProfilDikunjungi() {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/follow/toggle",
+        `${import.meta.env.VITE_API_URL}/api/follow/toggle`,
         {
           followerId: currentUser.id,
           followingId: id,
@@ -127,8 +127,14 @@ function ProfilDikunjungi() {
         )
     );
 
-  if (!user)
-    return <p>Loading...</p>;
+  if (!user) {
+    return (
+      <div className="loading-screen">
+        <div className="foodies-spinner"></div>
+        <p>Memuat...</p>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -186,11 +192,7 @@ function ProfilDikunjungi() {
             <div className="profile-photo-wrapper">
               {user.photo ? (
                 <img
-                  src={
-                    user.photo.startsWith("http")
-                      ? user.photo
-                      : `http://localhost:5000/uploads/${user.photo}`
-                  }
+                  src={user.photo}
                   alt={user.name}
                   className="profile-photo"
                 />

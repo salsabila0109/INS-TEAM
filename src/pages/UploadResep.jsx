@@ -158,10 +158,7 @@ function UploadResep() {
       validSteps.forEach((step, stepIndex) => {
         const imageNames = [];
 
-        step.images.forEach((img, imgIndex) => {
-          const fileName = `step-${stepIndex}-${imgIndex}-${img.file.name}`;
-
-          imageNames.push(fileName);
+        step.images.forEach((img) => {
           formData.append("stepImages", img.file);
         });
 
@@ -181,7 +178,7 @@ function UploadResep() {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "http://localhost:5000/api/recipes",
+        `${import.meta.env.VITE_API_URL}/api/recipes`,
         formData,
         {
           headers: {

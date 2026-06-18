@@ -48,7 +48,7 @@ function EditResep() {
     useState([]);
   const [errorPopup, setErrorPopup] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
-
+  const API = import.meta.env.VITE_API_URL;
   // =========================
   // GET DATA RECIPE
   // =========================
@@ -56,10 +56,7 @@ function EditResep() {
     const getRecipe =
       async () => {
         try {
-          const res =
-            await axios.get(
-              `http://localhost:5000/api/recipes/${id}`
-            );
+          const res = await axios.get(`${API}/api/recipes/${id}`);
 
           const recipe =
             res.data;
@@ -95,7 +92,7 @@ function EditResep() {
             recipe.image
           ) {
             setImage({
-              url: `http://localhost:5000/uploads/${recipe.image}`,
+              url: recipe.image,
               oldImage:
                 recipe.image,
             });
@@ -113,7 +110,7 @@ function EditResep() {
                     (
                       img
                     ) => ({
-                      url: `http://localhost:5000/uploads/${img}`,
+                      url: img,
                       oldImage:
                         img,
                     })
@@ -332,7 +329,7 @@ function EditResep() {
     );
 
     // ================= VALIDASI =================
-    if (!image) {
+    if (!image?.url && !image?.file) {
       errors.push("Foto resep wajib diisi");
     }
 
@@ -398,7 +395,7 @@ function EditResep() {
       const token = localStorage.getItem("token");
 
       await axios.put(
-        `http://localhost:5000/api/recipes/${id}`,
+        `${API}/api/recipes/${id}`,
         formData,
         {
           headers: {

@@ -5,14 +5,11 @@ const cloudinary = require("../config/cloudinary");
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: "foodieshub/profiles",
-    allowed_formats: ["jpg", "png", "jpeg", "webp"],
+    folder: "foodieshub",
+    allowed_formats: ["jpg", "png", "jpeg"],
   },
 });
 
-const upload = multer({
-  storage,
-  limits: { fileSize: 2 * 1024 * 1024 },
-});
+const upload = multer({ storage });
 
 module.exports = upload;

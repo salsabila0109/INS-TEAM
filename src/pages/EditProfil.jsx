@@ -12,7 +12,7 @@ import axios from "axios";
 import { Camera } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-
+const API = import.meta.env.VITE_API_URL;
 const EditProfil = () => {
   const navigate =
     useNavigate();
@@ -50,6 +50,7 @@ const EditProfil = () => {
       message: "",
       type: "",
     });
+  
   // =========================
   // GET FOLLOW STATS
   // =========================
@@ -58,7 +59,7 @@ const EditProfil = () => {
       try {
         const response =
           await axios.get(
-            `http://localhost:5000/api/follow/stats/${userId}`
+            `${API}/api/follow/stats/${userId}`
           );
 
         setFollowers(
@@ -196,10 +197,7 @@ const EditProfil = () => {
 
         const response =
           await axios.put(
-            `http://localhost:5000/api/profile/${
-              user.id ||
-              user._id
-            }`,
+             `${API}/api/profile/${user.id}`,
             formData,
             {
               headers: {
@@ -273,7 +271,7 @@ const EditProfil = () => {
       try {
         const response =
           await axios.put(
-            `http://localhost:5000/api/profile/${user.id}`,
+            `${API}/api/profile/${user.id}`,
             formData,
             {
               headers: {

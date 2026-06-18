@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { FollowProvider } from "./context/FollowContext";
 
 // PUBLIC
 import Home from "./pages/Home";
@@ -23,32 +24,34 @@ import FollowingPage from "./pages/FollowingPage";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* PUBLIC ROUTES */}
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/cekdapur" element={<CekDapur />} />
-        <Route path="/detailresep/:id" element={<DetailResep />} />
-        <Route path="/profil-dikunjungi/:id" element={<ProfilDikunjungi />}/>
-        
-        {/* PRIVATE ROUTES (Hanya bisa diakses jika login) */}
-        <Route element={<ProtectedRoute />}>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/edit-profil" element={<EditProfil />} />
-          <Route path="/resepsaya" element={<ResepSaya />} />
-          <Route path="/reseptersimpan" element={<ResepTersimpan />} />
-          <Route path="/uploadresep" element={<UploadResep />} />
-          <Route path="/edit-resep/:id" element={<EditResep />} /> 
-          <Route path="/lihat-resep-saya/:id" element={<LihatResepSaya />}/>
-          <Route path="/followers" element={<FollowerPage />}/> 
-          <Route path="/following" element={<FollowingPage />}/>
+    <FollowProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* PUBLIC ROUTES */}
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/cekdapur" element={<CekDapur />} />
+          <Route path="/detailresep/:id" element={<DetailResep />} />
+          <Route path="/profil-dikunjungi/:id" element={<ProfilDikunjungi />}/>
+          
+          {/* PRIVATE ROUTES (Hanya bisa diakses jika login) */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/edit-profil" element={<EditProfil />} />
+            <Route path="/resepsaya" element={<ResepSaya />} />
+            <Route path="/reseptersimpan" element={<ResepTersimpan />} />
+            <Route path="/uploadresep" element={<UploadResep />} />
+            <Route path="/edit-resep/:id" element={<EditResep />} /> 
+            <Route path="/lihat-resep-saya/:id" element={<LihatResepSaya />}/>
+            <Route path="/followers" element={<FollowerPage />}/> 
+            <Route path="/following" element={<FollowingPage />}/>
 
-          <Route path="/pengaturan" element={<Pengaturan />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+            <Route path="/pengaturan" element={<Pengaturan />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </FollowProvider>
   );
 }
 

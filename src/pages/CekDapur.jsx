@@ -36,7 +36,7 @@ function CekDapur() {
         try {
           const response =
             await axios.get(
-              "http://localhost:5000/api/recipes"
+              `${import.meta.env.VITE_API_URL}/api/recipes`
             );
 
           setRecipes(
@@ -311,7 +311,7 @@ function CekDapur() {
                     >
                       {/* IMAGE */}
                       <img
-                        src={`http://localhost:5000/uploads/${item.image}`}
+                        src={item.image || "https://via.placeholder.com/150"}
                         alt={item.title}
                       />
 

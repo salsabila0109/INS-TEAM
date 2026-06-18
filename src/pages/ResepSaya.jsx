@@ -4,50 +4,24 @@ import "../styles/resepSaya.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useFollow } from "../context/FollowContext";
 
 function ResepSaya() {
   const navigate = useNavigate();
 
   const [recipes, setRecipes] = useState([]);
   const [activeMenu, setActiveMenu] = useState("resepsaya");
-  const [followers, setFollowers] = useState(0);
-  const [following, setFollowing] = useState(0);
+  const { followers, following } = useFollow();
 
   const user = JSON.parse(
     localStorage.getItem("user")
   );
 
-// =========================
-// GET FOLLOW STATS
-// =========================
-const getFollowStats =
-  async (userId) => {
-    try {
-      const response =
-        await axios.get(
-          `http://localhost:5000/api/follow/stats/${userId}`
-        );
-
-      setFollowers(
-        response.data
-          .followers
-      );
-
-      setFollowing(
-        response.data
-          .following
-      );
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     const getMyRecipes = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/recipes/user/${user.id}`
+          `${import.meta.env.VITE_API_URL}/api/recipes/user/${user.id}`
         );
 
         setRecipes(response.data);
@@ -56,7 +30,7 @@ const getFollowStats =
       }
     };
 
-    if (user?.id) {getMyRecipes(); getFollowStats(user.id);}
+    if (user?.id) {getMyRecipes();}
   }, []);
 
   // Upload foto profil
@@ -70,7 +44,7 @@ const getFollowStats =
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/profile/${user.id}`,
+        `${import.meta.env.VITE_API_URL}/api/profile/${user.id}`,
         formData,
         {
           headers: {
@@ -126,7 +100,7 @@ const getFollowStats =
                 key={resep.id}
               >
                 <img
-                  src={`http://localhost:5000/uploads/${resep.image}`}
+                  src={resep.image}
                   alt={resep.title}
                   className="my-recipe-img"
                 />

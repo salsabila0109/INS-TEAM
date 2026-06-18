@@ -4,6 +4,7 @@ import "../styles/resepSaya.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useFollow } from "../context/FollowContext";
 
 function ResepTersimpan() {
   const navigate = useNavigate();
@@ -14,39 +15,10 @@ function ResepTersimpan() {
   const [activeMenu] =
     useState("tersimpan");
 
-  const [followers, setFollowers] = useState(0);
-  const [following, setFollowing] = useState(0);
+  const { followers, following } = useFollow();
       
-  const user = JSON.parse(
-    localStorage.getItem("user")
-  );
+  const user = JSON.parse(localStorage.getItem("user") || "null");
 
-  // =========================
-  // GET FOLLOW STATS
-  // =========================
-  const getFollowStats =
-    async (userId) => {
-      try {
-        const response =
-          await axios.get(
-            `http://localhost:5000/api/follow/stats/${userId}`
-          );
-
-        setFollowers(
-          response.data
-            .followers
-        );
-
-        setFollowing(
-          response.data
-            .following
-        );
-
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    
   // AMBIL RESEP TERSIMPAN DARI DATABASE
   useEffect(() => {
     const getSavedRecipes =
@@ -59,7 +31,7 @@ function ResepTersimpan() {
 
           const response =
             await axios.get(
-              `http://localhost:5000/api/saved-recipes/${user.id}`,
+              `${import.meta.env.VITE_API_URL}/api/saved-recipes/${user.id}`,
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
@@ -77,10 +49,6 @@ function ResepTersimpan() {
 
     if (user?.id) {
       getSavedRecipes();
-
-      getFollowStats(
-        user.id
-      );
     }
   }, [user?.id]);
 
@@ -94,7 +62,7 @@ function ResepTersimpan() {
           );
 
         await axios.delete(
-          `http://localhost:5000/api/saved-recipes/${recipeId}/${user.id}`,
+          `${import.meta.env.VITE_API_URL}/api/saved-recipes/${recipeId}/${user.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -142,7 +110,7 @@ function ResepTersimpan() {
 
         const response =
           await axios.put(
-            `http://localhost:5000/api/profile/${user.id}`,
+            `${import.meta.env.VITE_API_URL}/api/profile/${user.id}`,
             formData,
             {
               headers: {
@@ -207,7 +175,7 @@ function ResepTersimpan() {
                     }
                   >
                     <img
-                      src={`http://localhost:5000/uploads/${resep.image}`}
+                      src={resep.image}
                       alt={
                         resep.title
                       }

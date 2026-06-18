@@ -18,11 +18,14 @@ function Login() {
   const [passwordError, setPasswordError] = useState("");
 
   useEffect(() => {
-    const user =
-      localStorage.getItem("user");
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
 
-    if (user) {
-      navigate("/");
+      if (user?.id) {
+        navigate("/");
+      }
+    } catch (e) {
+      localStorage.removeItem("user");
     }
   }, []);
 
@@ -47,7 +50,7 @@ function Login() {
     try {
 
       const res = await axios.post(
-        "http://localhost:5000/api/login",
+        `${import.meta.env.VITE_API_URL}/api/login`,
         {
           email,
           password,

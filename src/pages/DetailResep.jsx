@@ -4,6 +4,7 @@ import axios from "axios";
 import { FaUserCircle, FaRegBookmark, FaBookmark, FaShareAlt, FaPaperPlane } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import "../styles/detailresep.css";
+import "../styles/Loading.css";
 
 function DetailResep() {
   const { id } = useParams();
@@ -23,7 +24,7 @@ function DetailResep() {
       try {
         const res =
           await axios.get(
-            `http://localhost:5000/api/reviews/${id}`
+            `${import.meta.env.VITE_API_URL}/api/reviews/${id}`
           );
 
         setReviews(
@@ -40,7 +41,7 @@ function DetailResep() {
         try {
           const res =
             await axios.get(
-              `http://localhost:5000/api/recipes/${id}`
+              `${import.meta.env.VITE_API_URL}/api/recipes/${id}`
             );
 
           setRecipe(res.data);
@@ -49,7 +50,7 @@ function DetailResep() {
           if (user?.id) {
             const savedRes =
               await axios.get(
-                `http://localhost:5000/api/saved-recipes/check/${user.id}/${id}`
+                `${import.meta.env.VITE_API_URL}/api/saved-recipes/check/${user.id}/${id}`
               );
 
             setIsSaved(
@@ -70,8 +71,14 @@ function DetailResep() {
     getReviews();
   }, [id]);
 
-  if (loading)
-    return <div>Memuat...</div>;
+  if (loading) {
+    return (
+      <div className="loading-screen">
+        <div className="foodies-spinner"></div>
+        <p>Memuat...</p>
+      </div>
+    );
+  }
 
   if (!recipe)
     return <div>Resep tidak ditemukan</div>;
@@ -88,7 +95,7 @@ function DetailResep() {
 
         const response =
           await axios.post(
-            "http://localhost:5000/api/saved-recipes",
+            `${import.meta.env.VITE_API_URL}/api/saved-recipes`,
             {
               userId: user.id,
               recipeId: id,
@@ -128,7 +135,7 @@ function DetailResep() {
         }
 
         await axios.post(
-          "http://localhost:5000/api/reviews",
+          `${import.meta.env.VITE_API_URL}/api/reviews`,
           {
             userId:
               user.id,
@@ -160,6 +167,22 @@ function DetailResep() {
       }
     };
         
+  const renderPhoto = (photo) => {
+    if (!photo) {
+      return <FaUserCircle />;
+    }
+
+    return (
+      <img
+        src={photo}
+        alt="profile"
+        onError={(e) => {
+          e.target.style.display = "none";
+        }}
+      />
+    );
+  };
+
   const handleShare =
     async () => {
       const recipeUrl =
@@ -220,7 +243,7 @@ function DetailResep() {
           <section className="hero-section">
             <div className="image-frame">
               <img
-                src={`http://localhost:5000/uploads/${recipe.image}`}
+                src={recipe.image}
                 alt={recipe.title}
               />
             </div>
@@ -235,11 +258,7 @@ function DetailResep() {
               <div className="author-avatar">
                 {recipe.User?.photo ? (
                   <img
-                    src={
-                      recipe.User.photo.startsWith("http")
-                        ? recipe.User.photo
-                        : `http://localhost:5000/uploads/${recipe.User.photo}`
-                    }
+                    src={recipe.User.photo}
                     alt="user"
                   />
                 ) : (
@@ -339,7 +358,7 @@ function DetailResep() {
                         ) => (
                           <img
                             key={idx}
-                            src={`http://localhost:5000/uploads/${img}`}
+                            src={img}
                             alt="step"
                           />
                         )
@@ -396,19 +415,19 @@ function DetailResep() {
             <div className="comment-area">
               <div className="comment-box">
 
-                {/* Foto Profil User */}
                 <div className="comment-user-photo">
                   {user?.photo ? (
-                  <img
-                    src={
-                      user.photo?.startsWith("http")
-                        ? user.photo
-                        : `http://localhost:5000/uploads/${user.photo}`
-                    }
-                    alt="profile"
-                  />
+                    <img
+                      src={user.photo}
+                      alt="profile"
+                      onError={(e) => {
+                        e.target.style.display = "none";
+                      }}
+                    />
                   ) : (
-                    <FaUserCircle />
+                    <div className="comment-user-fallback">
+                      <FaUserCircle />
+                    </div>
                   )}
                 </div>
 
@@ -458,17 +477,7 @@ function DetailResep() {
                     }
                     style={{ cursor: "pointer" }}
                   >
-                  {item.User?.photo ? (
-                    <img
-                      src={item.User.photo.startsWith("http")
-                        ? item.User.photo
-                        : `http://localhost:5000/uploads/${item.User.photo}`
-                      }
-                      alt="profile"
-                    />
-                  ) : (
-                    <FaUserCircle />
-                  )}
+                  {renderPhoto(item.User?.photo)}
                 </div>
 
                   {/* kanan isi */}

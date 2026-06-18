@@ -23,18 +23,14 @@ function LihatResepSaya() {
   const [reviews, setReviews] =
     useState([]);
 
-  const user = JSON.parse(
-    localStorage.getItem(
-      "user"
-    )
-  );
+  const user = JSON.parse(localStorage.getItem("user") || "null");
 
   const getReviews =
     async () => {
       try {
         const res =
           await axios.get(
-            `http://localhost:5000/api/reviews/${id}`
+            `${import.meta.env.VITE_API_URL}/api/reviews/${id}`
           );
 
         setReviews(
@@ -51,7 +47,7 @@ function LihatResepSaya() {
         try {
           const res =
             await axios.get(
-              `http://localhost:5000/api/recipes/${id}`
+              `${import.meta.env.VITE_API_URL}/api/recipes/${id}`
             );
 
           setRecipe(
@@ -62,7 +58,7 @@ function LihatResepSaya() {
           if (user?.id) {
             const savedRes =
               await axios.get(
-                `http://localhost:5000/api/saved-recipes/check/${user.id}/${id}`
+                `${import.meta.env.VITE_API_URL}/api/saved-recipes/check/${user.id}/${id}`
               );
 
             setIsSaved(
@@ -83,41 +79,28 @@ function LihatResepSaya() {
     getReviews();
   }, [id]);
 
-  const handleBookmark =
-    async () => {
-      try {
-        if (!user) {
-          alert(
-            "Silakan login terlebih dahulu"
-          );
-          return;
-        }
-
-        const response =
-          await axios.post(
-            "http://localhost:5000/api/saved-recipes",
-            {
-              userId:
-                user.id,
-              recipeId: id,
-            }
-          );
-
-        setIsSaved(
-          response.data.saved
-        );
-
-        alert(
-          response.data.message
-        );
-      } catch (error) {
-        console.log(error);
-
-        alert(
-          "Gagal menyimpan resep"
-        );
+  const handleBookmark = async () => {
+    try {
+      if (!user?.id) {
+        alert("Silakan login terlebih dahulu");
+        return;
       }
-    };
+
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/saved-recipes`,
+        {
+          userId: user.id,
+          recipeId: id,
+        }
+      );
+
+      setIsSaved(response.data.saved);
+      alert(response.data.message);
+    } catch (error) {
+      console.log(error);
+      alert("Gagal menyimpan resep");
+    }
+  };
 
   const handleShare =
     async () => {
@@ -149,30 +132,36 @@ function LihatResepSaya() {
       }
     };
 
-  const handleDelete = async () => {
-    try {
-      const token = localStorage.getItem("token");
+    const handleDelete = async () => {
+      try {
+        const token = localStorage.getItem("token");
 
-      await axios.delete(
-        `http://localhost:5000/api/recipes/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+        await axios.delete(
+          `${import.meta.env.VITE_API_URL}/api/recipes/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-      setShowDeleteModal(false);
+        setShowDeleteModal(false);
 
-      navigate("/resepsaya");
-    } catch (error) {
-      console.log(error);
-      alert("Gagal menghapus resep");
-    }
-  };
+        navigate("/resepsaya");
+      } catch (error) {
+        console.log(error);
+        alert("Gagal menghapus resep");
+      }
+    };
 
-  if (loading)
-    return <div>Memuat...</div>;
+  if (loading) {
+    return (
+      <div className="loading-screen">
+        <div className="foodies-spinner"></div>
+        <p>Memuat...</p>
+      </div>
+    );
+  }
 
   if (!recipe)
     return (
@@ -211,7 +200,7 @@ function LihatResepSaya() {
           <section className="hero-section">
             <div className="image-frame">
               <img
-                src={`http://localhost:5000/uploads/${recipe.image}`}
+                src={recipe.image}
                 alt={recipe.title}
               />
             </div>
@@ -302,7 +291,7 @@ function LihatResepSaya() {
                         ) => (
                           <img
                             key={idx}
-                            src={`http://localhost:5000/uploads/${img}`}
+                            src={img}
                             alt="step"
                           />
                         )
@@ -374,13 +363,7 @@ function LihatResepSaya() {
                   <div className="review-photo">
                     {item.User?.photo ? (
                       <img
-                        src={
-                          item.User.photo.startsWith(
-                            "http"
-                          )
-                            ? item.User.photo
-                            : `http://localhost:5000/uploads/${item.User.photo}`
-                        }
+                        src={item.User.photo}
                         alt="profile"
                       />
                     ) : (

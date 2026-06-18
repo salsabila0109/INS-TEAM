@@ -5,11 +5,22 @@ const bcrypt = require("bcrypt");
 
 const User = require("../models/User");
 const Recipe = require("../models/Recipe");
-const upload = require("../middlewares/uploadProfile");
-
+const cloudinary = require("../config/cloudinary");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const multer = require("multer");
 const verifyToken = require(
   "../middlewares/verifyToken"
 );
+
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "foodieshub/profiles",
+    allowed_formats: ["jpg", "png", "jpeg"],
+  },
+});
+
+const upload = multer({ storage });
 
 // GET PROFILE
 router.get("/:id", async (req, res) => {
@@ -70,8 +81,7 @@ router.put("/:id", verifyToken, upload.single("photo"), async (req, res) => {
     let photo = user.photo;
 
     if (req.file) {
-      photo =
-        `http://localhost:5000/uploads/${req.file.filename}`;
+      photo = req.file.path;
     }
 
     await user.update({
@@ -80,9 +90,13 @@ router.put("/:id", verifyToken, upload.single("photo"), async (req, res) => {
       photo,
     });
 
+    const freshUser = await User.findByPk(req.params.id, {
+      attributes: ["id", "name", "email", "bio", "photo", "createdAt"]
+    });
+
     res.json({
       message: "Profil berhasil diupdate",
-      user,
+      user: freshUser,
     });
 
   } catch (error) {
