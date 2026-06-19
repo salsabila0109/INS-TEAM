@@ -17,13 +17,27 @@ function UploadResep() {
   const [submitted, setSubmitted] = useState(false);
   const [errorPopup, setErrorPopup] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
-  
+  const allowedTypes = [
+    "image/jpeg",
+    "image/jpg",
+    "image/png",
+  ];
   // ================= FOTO UTAMA (SINGLE) =================
   const [image, setImage] = useState(null);
 
   const handleImage = (e) => {
     const file = e.target.files[0];
     if (!file) return;
+
+    if (!allowedTypes.includes(file.type)) {
+      setErrorMessages([
+        "Format gambar tidak didukung. Gunakan JPG, JPEG, atau PNG."
+      ]);
+      setErrorPopup(true);
+
+      e.target.value = "";
+      return;
+    }
 
     setImage({
       file,
@@ -54,6 +68,20 @@ function UploadResep() {
 
   const handleStepImage = (e, index) => {
     const files = Array.from(e.target.files);
+
+    const invalidFiles = files.filter(
+      (file) => !allowedTypes.includes(file.type)
+    );
+
+    if (invalidFiles.length > 0) {
+      setErrorMessages([
+        "Semua gambar langkah harus berformat JPG, JPEG, atau PNG."
+      ]);
+      setErrorPopup(true);
+
+      e.target.value = "";
+      return;
+    }
 
     const newImgs = files.map((file) => ({
       file,
@@ -155,11 +183,13 @@ function UploadResep() {
 
       const formattedSteps = [];
 
-      validSteps.forEach((step, stepIndex) => {
+      validSteps.forEach((step) => {
         const imageNames = [];
 
         step.images.forEach((img) => {
           formData.append("stepImages", img.file);
+
+          imageNames.push(""); // placeholder
         });
 
         formattedSteps.push({
@@ -170,6 +200,7 @@ function UploadResep() {
 
       formData.append("steps", JSON.stringify(formattedSteps));
       formData.append("userId", user.id);
+      console.log(user);
 
       if (image) {
         formData.append("image", image.file);
@@ -177,6 +208,12 @@ function UploadResep() {
 
       const token = localStorage.getItem("token");
 
+      for (const pair of formData.entries()) {
+        console.log(pair[0], pair[1]);
+      }
+console.log(image);
+console.log(image.file);
+console.log(image.file instanceof File);
       await axios.post(
         `${import.meta.env.VITE_API_URL}/api/recipes`,
         formData,
@@ -189,11 +226,21 @@ function UploadResep() {
       );
 
       navigate("/");
-    } catch (error) {
-      console.log(error);
-      setErrorMessages(["Gagal upload resep, coba lagi"]);
-      setErrorPopup(true);
-    }
+    } 
+      catch (error) {
+        console.log("ERROR :", error);
+
+        if (error.response) {
+          console.log("STATUS :", error.response.status);
+          console.log("DATA :", error.response.data);
+        }
+
+        setErrorMessages([
+          error.response?.data?.message || "Gagal upload resep"
+        ]);
+
+        setErrorPopup(true);
+      }
   };
 
   return (

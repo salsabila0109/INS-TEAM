@@ -82,7 +82,8 @@ router.post(
       let imageIndex = 0;
 
       parsedSteps.forEach((step) => {
-
+console.log("STEP:", step);
+console.log("STEP IMAGES:", step.images);
       step.images =
         (step.images || []).map(() => {
 
@@ -96,7 +97,8 @@ router.post(
         });
 
       });
-
+console.log("BODY:", req.body);
+console.log("FILES:", req.files);
       const recipe = await Recipe.create({
 
         title,

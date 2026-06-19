@@ -301,11 +301,15 @@ background: rgba(201, 76, 76, 0.08);
 }
 
 .error-text {
+  display: block;
+  width: 100%;
   color: #e74c3c;
   font-size: 12px;
   margin-top: 4px;
+  text-align: left;
+  align-self: flex-start;
+  word-break: break-word;
 }
-
 /* =========================
    RESPONSIVE SETTINGS
 ========================= */
