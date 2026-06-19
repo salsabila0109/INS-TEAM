@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import "../styles/CekDapur.css";
+import cekdapur from "../assets/cekdapur.png";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -286,10 +287,7 @@ function CekDapur() {
 
           {/* RIGHT */}
           <div className="cek-right">
-            <img
-              src="/src/assets/cekdapur.png"
-              alt="cekdapur"
-            />
+            <img src={cekdapur} alt="cekdapur" />
           </div>
         </div>
 
