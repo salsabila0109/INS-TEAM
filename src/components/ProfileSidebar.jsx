@@ -61,9 +61,8 @@ function ProfileSidebar({
             cursor: "pointer",
           }}
         >
-          <strong>
-            {followers}
-          </strong>
+          <strong>{Number(followers) || 0}</strong>
+
           <span>
             pengikut
           </span>
@@ -77,9 +76,7 @@ function ProfileSidebar({
             cursor: "pointer",
           }}
         >
-          <strong>
-            {following}
-          </strong>
+          <strong>{Number(following) || 0}</strong>
           <span>
             mengikuti
           </span>
