@@ -3,7 +3,7 @@ import {useParams, useNavigate,} from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import {FaUserCircle, FaRegBookmark, FaBookmark, FaShareAlt, FaTrash, FaEdit,} from "react-icons/fa";
-import "../styles/detailresep.css";
+import "../styles/DetailResep.css";
 
 function LihatResepSaya() {
   const { id } = useParams();

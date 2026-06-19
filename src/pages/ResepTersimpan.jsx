@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import ProfileSidebar from "../components/ProfileSidebar";
-import "../styles/resepSaya.css";
+import "../styles/ResepSaya.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";

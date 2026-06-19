@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar";
-import "../styles/cekDapur.css";
+import "../styles/CekDapur.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";

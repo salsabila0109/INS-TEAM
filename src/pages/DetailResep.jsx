@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaUserCircle, FaRegBookmark, FaBookmark, FaShareAlt, FaPaperPlane } from "react-icons/fa";
 import Navbar from "../components/Navbar";
-import "../styles/detailresep.css";
+import "../styles/DetailResep.css";
 import "../styles/Loading.css";
 
 function DetailResep() {

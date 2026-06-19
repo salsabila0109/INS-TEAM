@@ -4,7 +4,7 @@ import axios from "axios";
 
 import RecipeCard from "../components/RecipeCard";
 import Navbar from "../components/Navbar";
-import "../styles/profilDikunjungi.css";
+import "../styles/ProfilDikunjungi.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 

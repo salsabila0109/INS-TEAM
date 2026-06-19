@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar";
-import "../styles/uploadResep.css";
+import "../styles/UploadResep.css";
 
 import {
   useState,

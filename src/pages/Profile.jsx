@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import ProfileSidebar from "../components/ProfileSidebar";
-import "../styles/profile.css";
+import "../styles/Profile.css";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useFollow } from "../context/FollowContext";

@@ -1,4 +1,4 @@
-import "../styles/recipeCard.css";
+import "../styles/RecipeCard.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
